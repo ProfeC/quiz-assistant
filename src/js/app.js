@@ -83,8 +83,11 @@ class App extends React.Component {
 	}
 
 	handleNextWord(event) {
-		this.setState({currentSpelling: ''});
-		this.setState({spellingMatches: false});
+		this.setState({
+			currentSpelling: '',
+			spellingMatches: false,
+			spellingChecked: false
+		});
 		event.target.value = '';
 		this.getRandomWord();
 	}
@@ -139,14 +142,14 @@ class App extends React.Component {
 				<PageHeader />
 
 				<h2 id="current-word" style={{visibility: wordStyle}}>{ this.state.currentWord }</h2>
-				<p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} /></p>
+				<p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} />
+				<button id="check-spelling" onClick={this.handleSpellingCheck}>Check It</button>
+				</p>
 
-				<hr />
 				<CorrectSpelling show={this.state.spellingMatches} checked={this.state.spellingChecked} />
-				<hr />
 
-				<button onClick={this.handleSpellingCheck}>Check Your Spelling</button>
 				<button onClick={this.displayWord}>Show Word Again</button>
+				<button onClick={this.handleNextWord}>Show Next Word</button>
 
 				<PageFooter totalWords={this.state.spellingWordsCount} />
 			</section>
@@ -154,7 +157,7 @@ class App extends React.Component {
 	}
 }
 
-class CorrectSpelling extends React.Component {
+class CorrectSpelling extends App {
 	constructor(props) {
 		super(props);
 
@@ -182,7 +185,6 @@ class CorrectSpelling extends React.Component {
 		return (
 			<div>
 				<h2>Correct!</h2>
-				<button onClick={this.handleNextWord}>Show Next Word</button>
 			</div>
 		);
 	}
