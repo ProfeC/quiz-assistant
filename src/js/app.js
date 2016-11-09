@@ -25,6 +25,8 @@ class App extends React.Component {
 		this.getRandomWord = this.getRandomWord.bind(this);
 		this.handleSpellingChange = this.handleSpellingChange.bind(this);
 		this.handleSpellingCheck = this.handleSpellingCheck.bind(this);
+
+		console.info( "\nMounted: 'App'" );
 	}
 
 	componentWillMount() {
@@ -32,17 +34,19 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		console.log( "Mounted: 'App'" );
 		this.getRandomWord();
 		// this.displayWord();
+		console.info("\nSpelling Word Count: " + this.state.spellingWordsCount);
 	}
 
 	componentWillUpdate() {
 		// this.displayWord();
+		// console.info("Random Number: " + this.state.rndNum);
+		console.info("\nRandom Word: " + this.state.currentWord);
 	}
 
 	componentWillUnmount() {
-		// console.log( "Unmounted ShowCurrentWord" );
+		// console.info( "Unmounted ShowCurrentWord" );
 	}
 
 	// NOTE: Get words from all lists.
@@ -56,7 +60,7 @@ class App extends React.Component {
 		}
 
 		this.setState({spellingWordsCount: this.state.spellingWords.length});
-		// console.log('Spelling Word Count: ' + this.state.spellingWordsCount);
+		// console.info('Spelling Word Count: ' + this.state.spellingWordsCount);
 	}
 
 	// NOTE: Get a random word
@@ -65,7 +69,7 @@ class App extends React.Component {
 		var rndNum =  Math.floor(Math.random() * this.state.spellingWords.length);
 
 		var wrd = this.state.spellingWords[rndNum];
-		// console.log(wrd);
+		// console.info(wrd);
 		this.setState({currentWord: wrd});
 		this.displayWord();
 	}
@@ -73,7 +77,6 @@ class App extends React.Component {
 	displayWord() {
 		this.startTimer();
 		this.setState({showWord: true});
-		console.log("timer started!");
 	}
 
 	handleSpellingChange(event) {
@@ -86,7 +89,6 @@ class App extends React.Component {
 	}
 
 	hideWord() {
-		console.log("timer's up!");
 		clearInterval( this.timerID );
 		this.setState({showWord: false});
 	}
@@ -96,18 +98,17 @@ class App extends React.Component {
 			() => this.hideWord(),
 			3000
 		);
+		console.info("\n*** Timer Started ***\n");
 	}
 
 	render() {
-		console.log("Spelling Word Count: " + this.state.spellingWordsCount);
-		// console.log("Random Number: " + this.state.rndNum);
-		console.log("Random Word: " + this.state.currentWord);
+		console.info("\n*** Timer Stopped ***\n");
 
 		const currentSpelling = this.state.currentSpelling;
 
 		var wordStyle;
 		wordStyle = this.state.showWord ? 'visible' : 'hidden';
-		console.log("Word Style: " + wordStyle);
+		console.info("\nWord Style: " + wordStyle);
 
 		return (
 			<section id="rapper">
