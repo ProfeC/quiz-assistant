@@ -23,6 +23,7 @@ class App extends React.Component {
 		// Scope functions...
 		this.getWords = this.getWords.bind(this);
 		this.getRandomWord = this.getRandomWord.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 	componentWillMount() {
@@ -40,8 +41,7 @@ class App extends React.Component {
 	}
 
 	componentWillUnmount() {
-		console.log( "Unmounted ShowCurrentWord" );
-		clearInterval( this.timerID );
+		// console.log( "Unmounted ShowCurrentWord" );
 	}
 
 	// NOTE: Get words from all lists.
