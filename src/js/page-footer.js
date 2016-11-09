@@ -4,7 +4,7 @@ class PageFooter extends React.Component {
 	render() {
 		return (
 			<footer>
-				<section id="total-words">Total Words: </section>
+				<section id="total-words">Total Words: {this.props.totalWords}</section>
 			</footer>
 		);
 	}
