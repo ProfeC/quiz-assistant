@@ -14,6 +14,7 @@ class App extends React.Component {
 			allWords: [],
 			hfaWords: [],
 			spellingWordsCount: 0,
+			spellingMatches: false,
 			currentWord: '',
 			currentSpelling: '',
 			showWord: true
@@ -81,6 +82,7 @@ class App extends React.Component {
 
 	handleNextWord(event) {
 		this.setState({currentSpelling: ''});
+		this.setState({spellingMatches: true});
 		event.target.value = '';
 		this.getRandomWord();
 	}
@@ -91,6 +93,11 @@ class App extends React.Component {
 
 	handleSpellingCheck(event) {
 		alert('Text field value is: ' + this.state.currentSpelling + '\n\nThe word was: ' + this.state.currentWord);
+
+		if ( this.state.currentSpelling === this.state.currentWord ) {
+			alert('Spellings match...');
+			this.setState({spellingMatches: true});
+		}
 	}
 
 	hideWord() {
@@ -114,19 +121,43 @@ class App extends React.Component {
 	render() {
 		const currentSpelling = this.state.currentSpelling;
 		const wordStyle = this.state.showWord ? 'visible' : 'hidden';
+		const matches = this.state.spellingMatches ? <CorrectSpelling show="{true}" /> : <CorrectSpelling show='false' />;
 		console.info("\nWord Style: " + wordStyle);
 
 		return (
 			<section id="rapper">
 				<PageHeader />
+
 				<h2 id="current-word" style={{visibility: wordStyle}}>{ this.state.currentWord }</h2>
 				<p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} /></p>
+
+				{matches}
+
 				<button onClick={this.handleSpellingCheck}>Check Your Spelling</button>
 				<button onClick={this.handleNextWord}>Show Next Word</button>
+
 				<PageFooter totalWords={this.state.spellingWordsCount} />
 			</section>
 		);
 	}
 }
 
+class CorrectSpelling extends React.Component {
+	constructor(props) {
+		super(props);
+		console.info( "\nMounted: 'Correct Spelling' Component." );
+	}
+
+	render() {
+		if ( this.props.show == "true" ) {
+			return (
+				<h2>Correct!</h2>
+			);
+		} else {
+			return (null);
+		}
+	}
+}
+
+// NOTE: Render the app on the page.
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
