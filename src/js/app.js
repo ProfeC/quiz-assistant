@@ -29,7 +29,7 @@ class App extends React.Component {
 		this.handleSpellingChange = this.handleSpellingChange.bind(this);
 		this.handleSpellingCheck = this.handleSpellingCheck.bind(this);
 
-		console.info( "\nMounted: 'App'" );
+		// console.info( "\nMounted: 'App'" );
 	}
 
 	componentWillMount() {
@@ -38,11 +38,11 @@ class App extends React.Component {
 
 	componentDidMount() {
 		this.getRandomWord();
-		console.info("\nSpelling Word Count: " + this.state.spellingWordsCount);
+		// console.info("\nSpelling Word Count: " + this.state.spellingWordsCount);
 	}
 
 	componentWillUpdate() {
-		console.info("\nRandom Word: " + this.state.currentWord);
+		// console.info("\nRandom Word: " + this.state.currentWord);
 	}
 
 	componentWillUnmount() {
@@ -100,13 +100,13 @@ class App extends React.Component {
 		// alert('Text field value is: ' + this.state.currentSpelling + '\n\nThe word was: ' + this.state.currentWord);
 
 		if ( this.state.currentSpelling === this.state.currentWord ) {
-			alert('Spellings match...');
+			// alert('Spellings match...');
 			this.setState({
 				spellingMatches: true,
 				spellingChecked: true
 			});
 		} else {
-			alert('Spellings don\'t match...');
+			// alert('Spellings don\'t match...');
 			this.setState({
 				spellingMatches: false,
 				spellingChecked: true
@@ -124,12 +124,12 @@ class App extends React.Component {
 			() => this.hideWord(),
 			3000
 		);
-		console.info("\n*** Timer Started ***\n");
+		// console.info("\n*** Timer Started ***\n");
 	}
 
 	stopTimer() {
 		clearInterval( this.timerID );
-		console.info("\n*** Timer Stopped ***\n");
+		// console.info("\n*** Timer Stopped ***\n");
 	}
 
 	render() {
@@ -161,14 +161,14 @@ class CorrectSpelling extends App {
 	constructor(props) {
 		super(props);
 
-		console.info( "\nMounted: 'Correct Spelling' Component." );
+		// console.info( "\nMounted: 'Correct Spelling' Component." );
 	}
 
 	render() {
 		const showMe = this.props.show;
 		const checkMe = this.props.checked;
-		console.log({showMe});
-		console.log({checkMe});
+		// console.log({showMe});
+		// console.log({checkMe});
 
 		if ( !this.props.checked ) {
 			return (
@@ -178,13 +178,13 @@ class CorrectSpelling extends App {
 
 		if ( this.props.checked && !this.props.show ) {
 			return (
-				<h2>Incorrect!</h2>
+				<h2 className="incorrect">Incorrect!</h2>
 			);
 		}
 
 		return (
 			<div>
-				<h2>Correct!</h2>
+				<h2 className="correct">Correct!</h2>
 			</div>
 		);
 	}
