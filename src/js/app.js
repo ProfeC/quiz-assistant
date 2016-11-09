@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PageHeader from './page-header';
 import PageFooter from './page-footer';
-// import FormSpellchecker from './form-spellchecker';
 import week1 from '../data/20161031.json';
 import week2 from '../data/20161107.json';
 
