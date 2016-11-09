@@ -10,18 +10,20 @@ class App extends React.Component {
 		super(props);
 
 		this.state = {
-			spellingWords: [],
 			allWords: [],
-			hfaWords: [],
-			spellingWordsCount: 0,
-			spellingMatches: false,
-			currentWord: '',
 			currentSpelling: '',
-			showWord: true
+			currentWord: '',
+			hfaWords: [],
+			showWord: true,
+			spellingChecked: false,
+			spellingMatches: false,
+			spellingWords: [],
+			spellingWordsCount: 0
 		}
 
 		// Scope functions...
 		this.getWords = this.getWords.bind(this);
+		this.displayWord = this.displayWord.bind(this);
 		this.getRandomWord = this.getRandomWord.bind(this);
 		this.handleNextWord = this.handleNextWord.bind(this);
 		this.handleSpellingChange = this.handleSpellingChange.bind(this);
@@ -82,7 +84,7 @@ class App extends React.Component {
 
 	handleNextWord(event) {
 		this.setState({currentSpelling: ''});
-		this.setState({spellingMatches: true});
+		this.setState({spellingMatches: false});
 		event.target.value = '';
 		this.getRandomWord();
 	}
@@ -92,11 +94,20 @@ class App extends React.Component {
 	}
 
 	handleSpellingCheck(event) {
-		alert('Text field value is: ' + this.state.currentSpelling + '\n\nThe word was: ' + this.state.currentWord);
+		// alert('Text field value is: ' + this.state.currentSpelling + '\n\nThe word was: ' + this.state.currentWord);
 
 		if ( this.state.currentSpelling === this.state.currentWord ) {
 			alert('Spellings match...');
-			this.setState({spellingMatches: true});
+			this.setState({
+				spellingMatches: true,
+				spellingChecked: true
+			});
+		} else {
+			alert('Spellings don\'t match...');
+			this.setState({
+				spellingMatches: false,
+				spellingChecked: true
+			});
 		}
 	}
 
@@ -121,8 +132,7 @@ class App extends React.Component {
 	render() {
 		const currentSpelling = this.state.currentSpelling;
 		const wordStyle = this.state.showWord ? 'visible' : 'hidden';
-		const matches = this.state.spellingMatches ? <CorrectSpelling show="{true}" /> : <CorrectSpelling show='false' />;
-		console.info("\nWord Style: " + wordStyle);
+		// console.info("\nWord Style: " + wordStyle);
 
 		return (
 			<section id="rapper">
@@ -131,10 +141,12 @@ class App extends React.Component {
 				<h2 id="current-word" style={{visibility: wordStyle}}>{ this.state.currentWord }</h2>
 				<p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} /></p>
 
-				{matches}
+				<hr />
+				<CorrectSpelling show={this.state.spellingMatches} checked={this.state.spellingChecked} />
+				<hr />
 
 				<button onClick={this.handleSpellingCheck}>Check Your Spelling</button>
-				<button onClick={this.handleNextWord}>Show Next Word</button>
+				<button onClick={this.displayWord}>Show Word Again</button>
 
 				<PageFooter totalWords={this.state.spellingWordsCount} />
 			</section>
@@ -145,19 +157,37 @@ class App extends React.Component {
 class CorrectSpelling extends React.Component {
 	constructor(props) {
 		super(props);
+
 		console.info( "\nMounted: 'Correct Spelling' Component." );
 	}
 
 	render() {
-		if ( this.props.show == "true" ) {
+		const showMe = this.props.show;
+		const checkMe = this.props.checked;
+		console.log({showMe});
+		console.log({checkMe});
+
+		if ( !this.props.checked ) {
 			return (
-				<h2>Correct!</h2>
+				null
 			);
-		} else {
-			return (null);
 		}
+
+		if ( this.props.checked && !this.props.show ) {
+			return (
+				<h2>Incorrect!</h2>
+			);
+		}
+
+		return (
+			<div>
+				<h2>Correct!</h2>
+				<button onClick={this.handleNextWord}>Show Next Word</button>
+			</div>
+		);
 	}
 }
+
 
 // NOTE: Render the app on the page.
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
