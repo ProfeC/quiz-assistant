@@ -75,8 +75,14 @@ class App extends React.Component {
 	}
 
 	displayWord() {
-		this.startTimer();
+		// NOTE: Make sure the timer stops running.
+		this.stopTimer();
+
+		// NOTE: Update visibility state
 		this.setState({showWord: true});
+
+		// NOTE: Restart the timer
+		this.startTimer();
 	}
 
 	handleSpellingChange(event) {
