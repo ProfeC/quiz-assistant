@@ -114,7 +114,7 @@ class App extends React.Component {
 				<PageHeader />
 				<h2 id="current-word" style={{visibility: wordStyle}}>{ this.state.currentWord }</h2>
 				<p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} /></p>
-				<input type="submit" onClick={this.handleSpellingCheck} value="Check Your Spelling" />
+				<button onClick={this.handleSpellingCheck}>Check Your Spelling</button>
 				<button onClick={this.getRandomWord}>Show Next Word</button>
 				<PageFooter />
 			</section>
