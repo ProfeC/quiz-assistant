@@ -93,7 +93,7 @@ class App extends React.Component {
 	startTimer() {
 		this.timerID = setInterval(
 			() => this.hideWord(),
-			5000
+			3000
 		);
 	}
 
