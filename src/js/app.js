@@ -22,6 +22,7 @@ class App extends React.Component {
 		// Scope functions...
 		this.getWords = this.getWords.bind(this);
 		this.getRandomWord = this.getRandomWord.bind(this);
+		this.handleNextWord = this.handleNextWord.bind(this);
 		this.handleSpellingChange = this.handleSpellingChange.bind(this);
 		this.handleSpellingCheck = this.handleSpellingCheck.bind(this);
 
@@ -78,6 +79,12 @@ class App extends React.Component {
 		this.startTimer();
 	}
 
+	handleNextWord(event) {
+		this.setState({currentSpelling: ''});
+		event.target.value = '';
+		this.getRandomWord();
+	}
+
 	handleSpellingChange(event) {
 		this.setState({currentSpelling: event.target.value});
 	}
@@ -115,7 +122,7 @@ class App extends React.Component {
 				<h2 id="current-word" style={{visibility: wordStyle}}>{ this.state.currentWord }</h2>
 				<p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} /></p>
 				<button onClick={this.handleSpellingCheck}>Check Your Spelling</button>
-				<button onClick={this.getRandomWord}>Show Next Word</button>
+				<button onClick={this.handleNextWord}>Show Next Word</button>
 				<PageFooter totalWords={this.state.spellingWordsCount} />
 			</section>
 		);
