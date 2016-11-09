@@ -35,12 +35,10 @@ class App extends React.Component {
 
 	componentDidMount() {
 		this.getRandomWord();
-		// this.displayWord();
 		console.info("\nSpelling Word Count: " + this.state.spellingWordsCount);
 	}
 
 	componentWillUpdate() {
-		// this.displayWord();
 		// console.info("Random Number: " + this.state.rndNum);
 		console.info("\nRandom Word: " + this.state.currentWord);
 	}
