@@ -15,7 +15,7 @@ class App extends React.Component {
 			allWords: [],
 			hfaWords: [],
 			spellingWordsCount: 0,
-			randomWord: '',
+			currentWord: '',
 			currentSpelling: '',
 			showWord: true
 		}
@@ -23,17 +23,18 @@ class App extends React.Component {
 		// Scope functions...
 		this.getWords = this.getWords.bind(this);
 		this.getRandomWord = this.getRandomWord.bind(this);
-		this.handleChange = this.handleChange.bind(this);
+		this.handleSpellingChange = this.handleSpellingChange.bind(this);
+		this.handleSpellingCheck = this.handleSpellingCheck.bind(this);
 	}
 
 	componentWillMount() {
-		this.getWords();
-		this.getRandomWord();
-		// this.displayWord();
 	}
 
 	componentDidMount() {
 		console.log( "Mounted: 'App'" );
+		this.getWords();
+		this.getRandomWord();
+		// this.displayWord();
 	}
 
 	componentWillUpdate() {
@@ -65,7 +66,7 @@ class App extends React.Component {
 
 		var wrd = this.state.spellingWords[rndNum];
 		// console.log(wrd);
-		this.setState({randomWord: wrd});
+		this.setState({currentWord: wrd});
 		this.displayWord();
 	}
 
@@ -75,13 +76,13 @@ class App extends React.Component {
 		console.log("timer started!");
 	}
 
-	handleChange(event) {
-		this.setState({value: event.target.value});
+	handleSpellingChange(event) {
+		this.setState({currentSpelling: event.target.value});
 	}
 
-	handleSubmit(event) {
+	handleSpellingCheck(event) {
 		this.setState({showWord: true});
-		alert('Text field value is: ' + this.state.value + '\n\nThe word was: ' + this.props.word);
+		alert('Text field value is: ' + this.state.currentSpelling + '\n\nThe word was: ' + this.state.currentWord);
 	}
 
 	hideWord() {
@@ -100,9 +101,9 @@ class App extends React.Component {
 	render() {
 		console.log("Spelling Word Count: " + this.state.spellingWordsCount);
 		// console.log("Random Number: " + this.state.rndNum);
-		console.log("Random Word: " + this.state.randomWord);
+		console.log("Random Word: " + this.state.currentWord);
 
-		const currentSpelling = this.state.value;
+		const currentSpelling = this.state.currentSpelling;
 
 		var wordStyle;
 		wordStyle = this.state.showWord ? 'visible' : 'hidden';
@@ -111,12 +112,9 @@ class App extends React.Component {
 		return (
 			<section id="rapper">
 				<PageHeader />
-
-
-
-				<h2 id="current-word" style={{visibility: wordStyle}}>{ this.state.randomWord }</h2>
-				<p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleChange} /></p>
-				<input type="submit" onClick={this.handleSubmit} value="Check Your Spelling" />
+				<h2 id="current-word" style={{visibility: wordStyle}}>{ this.state.currentWord }</h2>
+				<p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} /></p>
+				<input type="submit" onClick={this.handleSpellingCheck} value="Check Your Spelling" />
 				<button onClick={this.getRandomWord}>Show Next Word</button>
 				<PageFooter />
 			</section>
