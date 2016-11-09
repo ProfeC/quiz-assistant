@@ -28,11 +28,11 @@ class App extends React.Component {
 	}
 
 	componentWillMount() {
+		this.getWords();
 	}
 
 	componentDidMount() {
 		console.log( "Mounted: 'App'" );
-		this.getWords();
 		this.getRandomWord();
 		// this.displayWord();
 	}
