@@ -38,7 +38,6 @@ class App extends React.Component {
 	}
 
 	componentWillUpdate() {
-		// console.info("Random Number: " + this.state.rndNum);
 		console.info("\nRandom Word: " + this.state.currentWord);
 	}
 
@@ -57,7 +56,6 @@ class App extends React.Component {
 		}
 
 		this.setState({spellingWordsCount: this.state.spellingWords.length});
-		// console.info('Spelling Word Count: ' + this.state.spellingWordsCount);
 	}
 
 	// NOTE: Get a random word
@@ -85,7 +83,6 @@ class App extends React.Component {
 	}
 
 	handleSpellingCheck(event) {
-		// this.setState({showWord: true});
 		alert('Text field value is: ' + this.state.currentSpelling + '\n\nThe word was: ' + this.state.currentWord);
 	}
 
