@@ -63,10 +63,8 @@ class App extends React.Component {
 
 	// NOTE: Get a random word
 	getRandomWord() {
-
-		var rndNum =  Math.floor(Math.random() * this.state.spellingWords.length);
-
-		var wrd = this.state.spellingWords[rndNum];
+		const rndNum =  Math.floor(Math.random() * this.state.spellingWords.length);
+		const wrd = this.state.spellingWords[rndNum];
 		// console.info(wrd);
 		this.setState({currentWord: wrd});
 		this.displayWord();
@@ -88,12 +86,12 @@ class App extends React.Component {
 	}
 
 	handleSpellingCheck(event) {
-		this.setState({showWord: true});
+		// this.setState({showWord: true});
 		alert('Text field value is: ' + this.state.currentSpelling + '\n\nThe word was: ' + this.state.currentWord);
 	}
 
 	hideWord() {
-		clearInterval( this.timerID );
+		this.stopTimer();
 		this.setState({showWord: false});
 	}
 
@@ -105,13 +103,14 @@ class App extends React.Component {
 		console.info("\n*** Timer Started ***\n");
 	}
 
-	render() {
+	stopTimer() {
+		clearInterval( this.timerID );
 		console.info("\n*** Timer Stopped ***\n");
+	}
 
+	render() {
 		const currentSpelling = this.state.currentSpelling;
-
-		var wordStyle;
-		wordStyle = this.state.showWord ? 'visible' : 'hidden';
+		const wordStyle = this.state.showWord ? 'visible' : 'hidden';
 		console.info("\nWord Style: " + wordStyle);
 
 		return (
@@ -121,7 +120,7 @@ class App extends React.Component {
 				<p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} /></p>
 				<button onClick={this.handleSpellingCheck}>Check Your Spelling</button>
 				<button onClick={this.getRandomWord}>Show Next Word</button>
-				<PageFooter />
+				<PageFooter totalWords={this.state.spellingWordsCount} />
 			</section>
 		);
 	}
