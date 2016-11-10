@@ -13,6 +13,7 @@ class App extends React.Component {
 			allWords: [],
 			currentSpelling: '',
 			currentWord: '',
+			displayTime: 5000,
 			hfaWords: [],
 			showWord: true,
 			spellingChecked: false,
@@ -122,7 +123,7 @@ class App extends React.Component {
 	startTimer() {
 		this.timerID = setInterval(
 			() => this.hideWord(),
-			3000
+			this.state.displayTime
 		);
 		// console.info("\n*** Timer Started ***\n");
 	}
