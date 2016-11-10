@@ -52,12 +52,15 @@ module.exports = {
 			}
 		]
 	},
+
 	resolve: {
 		extensions: ['', '.js', '.jsx'],
-		root: [
-			path.resolve('./src')
+		modules: [
+			path.resolve('./src'),
+			'node_modules'
 		]
 	},
+
 	plugins: [
 		// new webpack.LoaderOptionsPlugin({
 		// 	minimize: true,

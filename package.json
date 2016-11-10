@@ -1,7 +1,7 @@
 {
   "name": "spelling-quiz-assistant",
   "version": "1.0.0",
-  "description": "Spelling quiz assistant",
+  "description": "Spelling Quiz Assistant",
   "main": "src/js/index.js",
   "repository": {},
   "author": "G. Lee Clark, II <gclark2@gmail.com>",
@@ -31,6 +31,7 @@
   "scripts": {
     "bundle": "webpack --production --progress --colors",
     "start": "webpack-dev-server --colors --progress --inline",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --progress --colors --watch"
   }
 }
