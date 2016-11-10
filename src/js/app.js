@@ -5,6 +5,9 @@ import PageFooter from './page-footer';
 // import week1 from '../data/20161031.json';
 import week2 from '../data/20161107.json';
 
+import '../index.html';
+import '../css/app.css';
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
