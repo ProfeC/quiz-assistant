@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PageHeader from './page-header';
 import PageFooter from './page-footer';
-import week1 from '../data/20161031.json';
+// import week1 from '../data/20161031.json';
 import week2 from '../data/20161107.json';
 
 class App extends React.Component {
@@ -51,9 +51,9 @@ class App extends React.Component {
 
 	// NOTE: Get words from all lists.
 	getWords(props) {
-		for ( var word of week1.spellingWords ) {
-			this.state.spellingWords.push(word);
-		}
+		// for ( var word of week1.spellingWords ) {
+		// 	this.state.spellingWords.push(word);
+		// }
 
 		for ( var word of week2.spellingWords ) {
 			this.state.spellingWords.push(word);
