@@ -19,7 +19,7 @@
     "webpack-dev-server": "^1.16.2"
   },
   "scripts": {
-    "bundle": "webpack --production --progress",
+    "bundle": "webpack --production --progress --colors",
     "start": "webpack-dev-server --colors --progress --inline",
     "webpack": "webpack --progress --colors --watch"
   }
