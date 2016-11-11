@@ -2,8 +2,9 @@ button {
 	font-size: 1.25em;
 	margin: 3px;
 	padding: 3px;
-	#check-spelling {
-		background: rgba(128, 128, 128, 0.35);
+
+	&#check-spelling {
+		background: rgba(0, 128, 0, .13);
 		color: rgb(0, 128, 0);
 		padding: 3px 21px;
 	}
