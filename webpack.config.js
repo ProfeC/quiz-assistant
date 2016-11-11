@@ -1,6 +1,7 @@
 var webpack = require( 'webpack' );
 var path = require( 'path' );
 // var plugins = require('webpack-load-plugins')();
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	context: path.join(__dirname, './src'),
@@ -18,7 +19,7 @@ module.exports = {
 	// NOTE: Webpack Development Server
 	devServer: {
 		contentBase: "build/",
-		compress: true,
+		// compress: true,
 		clientLogLevel: "info"
 	},
 
@@ -44,12 +45,20 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.css$/,
+				test: /\.scss$/,
 				loaders: [
-					'style',
-					'css'
+					"style",
+					"css?sourceMap",
+					"sass?sourceMap"
 				]
-			}
+			},
+			// {
+			// 	test: /\.css$/,
+			// 	loaders: [
+			// 		'style',
+			// 		'css'
+			// 	]
+			// }
 		]
 	},
 
@@ -73,8 +82,17 @@ module.exports = {
 			sourceMap: false,
 			compress: { warnings: false },
 			output: { comments: false }
-		})
+		}),
+		// new ExtractTextPlugin('scss/app.scss', {
+		// 	allChunks: true
+		// }),
+		new ExtractTextPlugin('css/[name].css')
 	],
+
+	// NOTE: Sass Loader options
+	sassLoader: {
+		includePaths: [path.resolve(__dirname, "./src/scss")]
+	},
 
 	stats: {
 		colors: true
