@@ -8,7 +8,7 @@ module.exports = {
 	entry: {
 		app: './js/app.js',
 		html: './index.html',
-		vendor: ['react']
+		// vendor: ['react']
 	},
 
 	output: {
