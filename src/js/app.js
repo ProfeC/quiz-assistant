@@ -42,9 +42,6 @@ class App extends React.Component {
 	componentDidMount() {
 		this.getRandomWord();
 		// console.info("\nSpelling Word Count: " + this.state.spellingWordsCount);
-
-		console.log(this.refs);
-		this.refs.currentSpelling ? this.refs.currentSpelling.focus() : null;
 	}
 
 	componentWillUpdate() {
@@ -152,7 +149,7 @@ class App extends React.Component {
 				<PageHeader />
 
 				<h2 id="current-word" style={{visibility: wordStyle}}>{ this.state.currentWord }</h2>
-				<p><input ref="currentSpelling" tabIndex="1" placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} autoFocus="true" />
+				<p><input tabIndex="1" placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} />
 				<button id="check-spelling" onClick={this.handleSpellingCheck}>Check It</button>
 				</p>
 
