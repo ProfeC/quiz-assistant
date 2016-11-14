@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as Utils from './utils';
+// import * as Utils from './utils';
 
 // NOTE: Layout
 import PageHeader from './page-header';
@@ -31,7 +31,7 @@ class App extends React.Component {
 		}
 
 		// Scope functions...
-		// this.getWords = this.getWords.bind(this);
+		this.getWords = this.getWords.bind(this);
 		this.displayWord = this.displayWord.bind(this);
 		this.getRandomWord = this.getRandomWord.bind(this);
 		this.handleNextWord = this.handleNextWord.bind(this);
@@ -42,34 +42,46 @@ class App extends React.Component {
 	}
 
 	componentWillMount() {
+		console.info("Component Will Mount");
 
-		this.setState({
-			list: Utils.getUrlParam('list')
-		});
-
-		console.log(this.state.list);
+		this.getWords();
 	}
 
 	componentDidMount() {
-		console.info("Component Mounted");
-		console.log(Utils.getSpellingWords(this.state.list));
+		console.info("Component Did Mount");
 
 		this.getRandomWord();
 		// console.info("\nSpelling Word Count: " + this.state.spellingWordsCount);
 	}
 
 	componentWillUpdate() {
+		console.info("Component Will Update");
 		// console.info("\nRandom Word: " + this.state.currentWord);
 	}
 
 	componentDidUpdate() {
 		console.info("Component Updated");
-		console.log(Utils.getSpellingWords(this.state.list));
-
 	}
 
 	componentWillUnmount() {
-		// console.info( "Unmounted ShowCurrentWord" );
+		console.info( "Unmounted ShowCurrentWord" );
+	}
+
+	// NOTE: Get words from all lists.
+	getWords() {
+		// for ( var word of week1.spellingWords ) {
+		// 	this.state.spellingWords.push(word);
+		// }
+
+		// for ( var word of week2.spellingWords ) {
+		// 	this.state.spellingWords.push(word);
+		// }
+
+		// this.setState({spellingWordsCount: this.state.spellingWords.length});
+		this.setState({
+			spellingWords: week2.spellingWords,
+			spellingWordsCount: week2.spellingWords.length
+		});
 	}
 
 	// NOTE: Get a random word
@@ -202,5 +214,3 @@ class CorrectSpelling extends App {
 
 // NOTE: Render the app on the page.
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
-
-console.error(Utils.sqa);

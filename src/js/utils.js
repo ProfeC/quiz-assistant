@@ -21,17 +21,17 @@ export function getSpellingWords(list) {
 	.then(
 		function( response ) {
 			if ( response.status != 200 ) {
-				console.log('Something went all wonky! Status Code: ' + response.status);
+				console.error('Something went all wonky! Status Code: ' + response.status);
 				return;
 			}
 
-			response.json().then(function(data) {
-				console.log(data);
-				Object.assign(sqa, data.spellingWords);
-				return data.spellingWords;
-			});
-		}
-	)
+			return response.json();
+		})
+	.then(function(data) {
+		console.log(data);
+		console.log(data.spellingWords);
+		return data.spellingWords;
+	})
 	.catch( function( err ) {
 		console.error('Fetch Error!', err);
 	});
