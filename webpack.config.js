@@ -1,7 +1,8 @@
-var webpack = require( 'webpack' );
-var path = require( 'path' );
-// var plugins = require('webpack-load-plugins')();
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+let webpack = require( 'webpack' );
+let path = require( 'path' );
+// let plugins = require('webpack-load-plugins')();
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let extractCSS = new ExtractTextPlugin('app.bundle.css');
 
 module.exports = {
 	context: path.join(__dirname, './src'),
@@ -44,21 +45,15 @@ module.exports = {
 					name: '[name].[ext]'
 				}
 			},
-			{
-				test: /\.scss$/,
-				loaders: [
-					"style",
-					"css?sourceMap",
-					"sass?sourceMap"
-				]
-			},
 			// {
-			// 	test: /\.css$/,
+			// 	test: /\.scss$/,
 			// 	loaders: [
-			// 		'style',
-			// 		'css'
+			// 		"style",
+			// 		"css?sourceMap",
+			// 		"sass?sourceMap"
 			// 	]
-			// }
+			// },
+			{ test: /\.scss$/i, loader: extractCSS.extract(['css?sourceMap','sass?sourceMap']) }
 		]
 	},
 
@@ -83,15 +78,13 @@ module.exports = {
 			compress: { warnings: false },
 			output: { comments: false }
 		}),
-		// new ExtractTextPlugin('scss/app.scss', {
-		// 	allChunks: true
-		// }),
-		new ExtractTextPlugin('css/[name].css')
+		extractCSS
 	],
 
 	// NOTE: Sass Loader options
 	sassLoader: {
-		includePaths: [path.resolve(__dirname, "./src/scss")]
+		includePaths: [path.resolve(__dirname, "./src/scss")],
+		sourceMap: true
 	},
 
 	stats: {
