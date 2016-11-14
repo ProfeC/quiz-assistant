@@ -58,11 +58,15 @@ class App extends React.Component {
 		// 	this.state.spellingWords.push(word);
 		// }
 
-		for ( var word of week2.spellingWords ) {
-			this.state.spellingWords.push(word);
-		}
+		// for ( var word of week2.spellingWords ) {
+		// 	this.state.spellingWords.push(word);
+		// }
 
-		this.setState({spellingWordsCount: this.state.spellingWords.length});
+		// this.setState({spellingWordsCount: this.state.spellingWords.length});
+		this.setState({
+			spellingWords: week2.spellingWords,
+			spellingWordsCount: week2.spellingWords.length
+		});
 	}
 
 	// NOTE: Get a random word
