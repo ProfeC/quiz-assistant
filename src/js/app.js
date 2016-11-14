@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as Utils from './utils';
+
+// NOTE: Layout
 import PageHeader from './page-header';
 import PageFooter from './page-footer';
+
+// NOTE: Data
 // import week1 from '../data/20161031.json';
 import week2 from '../data/20161107.json';
 
@@ -21,11 +26,13 @@ class App extends React.Component {
 			spellingChecked: false,
 			spellingMatches: false,
 			spellingWords: [],
-			spellingWordsCount: 0
+			spellingWordsCount: 0,
+			urlParams: Utils.getUrlParam('list')
 		}
 
 		// Scope functions...
 		this.getWords = this.getWords.bind(this);
+		// this.getUrlParams = Utils.getUrlParams.bind(this);
 		this.displayWord = this.displayWord.bind(this);
 		this.getRandomWord = this.getRandomWord.bind(this);
 		this.handleNextWord = this.handleNextWord.bind(this);
@@ -37,6 +44,7 @@ class App extends React.Component {
 
 	componentWillMount() {
 		this.getWords();
+		Utils.getWords(this.state.urlParams);
 	}
 
 	componentDidMount() {
@@ -46,6 +54,10 @@ class App extends React.Component {
 
 	componentWillUpdate() {
 		// console.info("\nRandom Word: " + this.state.currentWord);
+	}
+
+	componentDidUpdate() {
+		// console.info("Component Updated");
 	}
 
 	componentWillUnmount() {
@@ -67,6 +79,8 @@ class App extends React.Component {
 			spellingWords: week2.spellingWords,
 			spellingWordsCount: week2.spellingWords.length
 		});
+
+		console.log(Utils.getUrlParam('list'));
 	}
 
 	// NOTE: Get a random word
@@ -196,6 +210,8 @@ class CorrectSpelling extends App {
 		);
 	}
 }
+
+
 
 
 // NOTE: Render the app on the page.
