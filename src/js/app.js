@@ -22,17 +22,16 @@ class App extends React.Component {
 			currentWord: '',
 			displayTime: 5000,
 			hfaWords: [],
+			list: '',
 			showWord: true,
 			spellingChecked: false,
 			spellingMatches: false,
 			spellingWords: [],
-			spellingWordsCount: 0,
-			urlParams: Utils.getUrlParam('list')
+			spellingWordsCount: 0
 		}
 
 		// Scope functions...
-		this.getWords = this.getWords.bind(this);
-		// this.getUrlParams = Utils.getUrlParams.bind(this);
+		// this.getWords = this.getWords.bind(this);
 		this.displayWord = this.displayWord.bind(this);
 		this.getRandomWord = this.getRandomWord.bind(this);
 		this.handleNextWord = this.handleNextWord.bind(this);
@@ -43,11 +42,18 @@ class App extends React.Component {
 	}
 
 	componentWillMount() {
-		this.getWords();
-		Utils.getWords(this.state.urlParams);
+
+		this.setState({
+			list: Utils.getUrlParam('list')
+		});
+
+		console.log(this.state.list);
 	}
 
 	componentDidMount() {
+		console.info("Component Mounted");
+		console.log(Utils.getSpellingWords(this.state.list));
+
 		this.getRandomWord();
 		// console.info("\nSpelling Word Count: " + this.state.spellingWordsCount);
 	}
@@ -57,30 +63,13 @@ class App extends React.Component {
 	}
 
 	componentDidUpdate() {
-		// console.info("Component Updated");
+		console.info("Component Updated");
+		console.log(Utils.getSpellingWords(this.state.list));
+
 	}
 
 	componentWillUnmount() {
 		// console.info( "Unmounted ShowCurrentWord" );
-	}
-
-	// NOTE: Get words from all lists.
-	getWords(props) {
-		// for ( var word of week1.spellingWords ) {
-		// 	this.state.spellingWords.push(word);
-		// }
-
-		// for ( var word of week2.spellingWords ) {
-		// 	this.state.spellingWords.push(word);
-		// }
-
-		// this.setState({spellingWordsCount: this.state.spellingWords.length});
-		this.setState({
-			spellingWords: week2.spellingWords,
-			spellingWordsCount: week2.spellingWords.length
-		});
-
-		console.log(Utils.getUrlParam('list'));
 	}
 
 	// NOTE: Get a random word
@@ -211,8 +200,7 @@ class CorrectSpelling extends App {
 	}
 }
 
-
-
-
 // NOTE: Render the app on the page.
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
+
+console.error(Utils.sqa);
