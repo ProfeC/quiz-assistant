@@ -179,38 +179,5 @@ class App extends React.Component {
 	}
 }
 
-class CorrectSpelling extends App {
-	constructor(props) {
-		super(props);
-
-		// console.info( "\nMounted: 'Correct Spelling' Component." );
-	}
-
-	render() {
-		const showMe = this.props.show;
-		const checkMe = this.props.checked;
-		// console.log({showMe});
-		// console.log({checkMe});
-
-		if ( !this.props.checked ) {
-			return (
-				null
-			);
-		}
-
-		if ( this.props.checked && !this.props.show ) {
-			return (
-				<h2 className="incorrect">Incorrect!</h2>
-			);
-		}
-
-		return (
-			<div>
-				<h2 className="correct">Correct!</h2>
-			</div>
-		);
-	}
-}
-
 // NOTE: Render the app on the page.
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
