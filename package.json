@@ -28,13 +28,16 @@
     "eslint": "^3.9.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.24.1",
     "json-loader": "^0.5.4",
     "node-sass": "^3.11.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2",
-    "webpack-load-plugins": "^0.1.2"
+    "webpack-load-plugins": "^0.1.2",
+    "webpack-merge": "^0.16.0",
+    "webpack-validator": "^2.2.9"
   },
   "scripts": {
     "bundle": "webpack --production --progress --colors",

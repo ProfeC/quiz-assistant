@@ -1,19 +1,31 @@
-let webpack = require( 'webpack' );
-let path = require( 'path' );
-// let plugins = require('webpack-load-plugins')();
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let extractCSS = new ExtractTextPlugin('app.bundle.css');
+// const plugins = require('webpack-load-plugins')();
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+const path = require( 'path' );
+const validate = require('webpack-validator');
+const webpack = require( 'webpack' );
 
-module.exports = {
-	context: path.join(__dirname, './src'),
+const extractCSS = new ExtractTextPlugin('app.bundle.css');
+
+const PATHS = {
+	src: path.join(__dirname, 'src'),
+	build: path.join(__dirname, 'build')
+};
+
+const common = {
+	// Entry accepts a path or an object of entries.
+	// We'll be using the latter form given it's
+	// convenient with more complex configurations.
+
 	entry: {
-		app: './js/app.js',
-		html: './index.html',
+		app: PATHS.src + '/js/app.js',
+		// html: PATHS.src + '/index.html',
 		// vendor: ['react']
 	},
 
 	output: {
-		path: path.resolve( __dirname, 'build' ),
+		path: PATHS.build,
 		filename: '[name].bundle.js'
 	},
 
@@ -93,3 +105,16 @@ module.exports = {
 
 	devtool: 'source-map'
 };
+
+var config;
+
+// Detect how npm is run and branch based on that
+switch(process.env.npm_lifecycle_event) {
+	case 'build':
+		config = merge(common, {});
+		break;
+	default:
+		config = merge(common, {});
+}
+
+module.exports = validate(config);
