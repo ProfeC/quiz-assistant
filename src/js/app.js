@@ -6,9 +6,13 @@ import ReactDOM from 'react-dom';
 import PageHeader from './page-header';
 import PageFooter from './page-footer';
 
+// NOTE: Components
+import CurrentWord from './show-current-word';
+import CorrectSpelling from './show-correct-spelling';
+
 // NOTE: Data
 // import week1 from '../data/20161031.json';
-import week2 from '../data/20161107.json';
+import data from '../data/20161107.json';
 
 require('../scss/app.scss');
 
@@ -156,14 +160,13 @@ class App extends React.Component {
 
 	render() {
 		const currentSpelling = this.state.currentSpelling;
-		const wordStyle = this.state.showWord ? 'visible' : 'hidden';
-		// console.info("\nWord Style: " + wordStyle);
 
 		return (
 			<section id="rapper">
-				<PageHeader />
+				<PageHeader title={ this.state.spellingWordsTitle } />
 
-				<h2 id="current-word" style={{visibility: wordStyle}}>{ this.state.currentWord }</h2>
+				<CurrentWord visibility={ this.state.showWord } word={ this.state.currentWord } />
+
 				<p><input tabIndex="1" placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} />
 				<button id="check-spelling" onClick={this.handleSpellingCheck}>Check It</button>
 				</p>
