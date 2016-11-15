@@ -42,29 +42,29 @@ class App extends React.Component {
 	}
 
 	componentWillMount() {
-		console.info("Component Will Mount");
+		// console.info("Component Will Mount");
 
 		this.getWords();
 	}
 
 	componentDidMount() {
-		console.info("Component Did Mount");
+		// console.info("Component Did Mount");
 
 		this.getRandomWord();
 		// console.info("\nSpelling Word Count: " + this.state.spellingWordsCount);
 	}
 
 	componentWillUpdate() {
-		console.info("Component Will Update");
+		// console.info("Component Will Update");
 		// console.info("\nRandom Word: " + this.state.currentWord);
 	}
 
 	componentDidUpdate() {
-		console.info("Component Updated");
+		// console.info("Component Updated");
 	}
 
 	componentWillUnmount() {
-		console.info( "Unmounted ShowCurrentWord" );
+		// console.info( "Unmounted ShowCurrentWord" );
 	}
 
 	// NOTE: Get words from all lists.
