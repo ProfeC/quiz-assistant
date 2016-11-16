@@ -41,6 +41,7 @@
   },
   "scripts": {
     "bundle": "webpack --production --progress --colors",
+    "build": "webpack",
     "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --progress --colors"
