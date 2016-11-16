@@ -21,9 +21,6 @@ const common = {
 
 	entry: {
 		app: PATHS.src + '/js',
-		// style: PATHS.scss + '/app.scss',
-		// html: PATHS.src + '/index.html',
-		vendor: ['react', 'react-dom']
 	},
 
 	output: {
@@ -82,12 +79,21 @@ switch(process.env.npm_lifecycle_event) {
 		config = merge(
 			common,
 			{
-				devtool: 'source-map'
+				devtool: 'source-map',
+				output: {
+					path: PATHS.build,
+					filename: '[name].[chunkhash].js',
+					chunkFilename: '[chunkhash].js'
+				}
 			},
 			parts.setFreeVariable(
 				'process.env.NODE_ENV',
 				'production'
 			),
+			parts.extractBundle({
+				name: 'vendor',
+				entries: ['react', 'react-dom']
+			}),
 			parts.minify(),
 			parts.setupSass(PATHS.src)
 		);
