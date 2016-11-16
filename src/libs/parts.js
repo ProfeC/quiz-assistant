@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin('app.bundle.css');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 exports.devServer = function(options) {
 	return {
@@ -117,6 +118,18 @@ exports.extractBundle = function(options) {
 				names: [
 					options.name, 'manifest'
 				]
+			})
+		]
+	};
+}
+
+exports.clean = function(path) {
+	return {
+		plugins: [
+			new CleanWebpackPlugin([path], {
+				// Without `root` CleanWebpackPlugin won't point to our
+				// project and will fail to work.
+				root: process.cwd()
 			})
 		]
 	};
