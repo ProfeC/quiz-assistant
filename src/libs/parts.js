@@ -85,11 +85,21 @@ exports.minify = function() {
 				output: {
 					comments: false
 				},
-				include: PATHS.src + '/js',
 				compress: {
 					warnings: false
 				},
 			})
+		]
+	};
+}
+
+exports.setFreeVariable = function(key, value) {
+	const env = {};
+	env[key] = JSON.stringify(value);
+
+	return {
+		plugins: [
+			new webpack.DefinePlugin(env)
 		]
 	};
 }

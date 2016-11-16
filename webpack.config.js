@@ -23,12 +23,12 @@ const common = {
 		app: PATHS.src + '/js',
 		// style: PATHS.scss + '/app.scss',
 		// html: PATHS.src + '/index.html',
-		// vendor: ['react']
+		vendor: ['react', 'react-dom']
 	},
 
 	output: {
 		path: PATHS.build,
-		filename: '[name].bundle.js'
+		filename: '[name].js'
 	},
 
 	module: {
@@ -84,6 +84,10 @@ switch(process.env.npm_lifecycle_event) {
 			{
 				devtool: 'source-map'
 			},
+			parts.setFreeVariable(
+				'process.env.NODE_ENV',
+				'production'
+			),
 			parts.minify(),
 			parts.setupSass(PATHS.src)
 		);
