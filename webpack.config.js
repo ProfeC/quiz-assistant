@@ -1,16 +1,17 @@
 // const plugins = require('webpack-load-plugins')();
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const path = require( 'path' );
 const validate = require('webpack-validator');
 const webpack = require( 'webpack' );
 
-const extractCSS = new ExtractTextPlugin('app.bundle.css');
+const parts = require('./src/libs/parts');
 
 const PATHS = {
-	src: path.join(__dirname, 'src'),
-	build: path.join(__dirname, 'build')
+	build: path.join(__dirname, 'build'),
+	data: path.join(__dirname, 'src', 'data'),
+	scss: path.join(__dirname, 'src', 'scss'),
+	src: path.join(__dirname, 'src')
 };
 
 const common = {
@@ -19,7 +20,8 @@ const common = {
 	// convenient with more complex configurations.
 
 	entry: {
-		app: PATHS.src + '/js/app.js',
+		app: PATHS.src + '/js',
+		// style: PATHS.scss + '/app.scss',
 		// html: PATHS.src + '/index.html',
 		// vendor: ['react']
 	},
@@ -27,13 +29,6 @@ const common = {
 	output: {
 		path: PATHS.build,
 		filename: '[name].bundle.js'
-	},
-
-	// NOTE: Webpack Development Server
-	devServer: {
-		contentBase: "build/",
-		// compress: true,
-		clientLogLevel: "info"
 	},
 
 	module: {
@@ -56,54 +51,27 @@ const common = {
 				query: {
 					name: '[name].[ext]'
 				}
-			},
-			// {
-			// 	test: /\.scss$/,
-			// 	loaders: [
-			// 		"style",
-			// 		"css?sourceMap",
-			// 		"sass?sourceMap"
-			// 	]
-			// },
-			{ test: /\.scss$/i, loader: extractCSS.extract(['css?sourceMap','sass?sourceMap']) }
+			}
 		]
 	},
 
-	resolve: {
-		extensions: ['', '.js', '.jsx'],
-		modules: [
-			path.resolve('./src'),
-			'node_modules'
-		]
-	},
+	// resolve: {
+	// 	extensions: ['', '.js', '.jsx'],
+	// 	modules: [
+	// 		path.resolve('./src'),
+	// 		'node_modules'
+	// 	]
+	// },
 
 	plugins: [
-		// new webpack.LoaderOptionsPlugin({
-		// 	minimize: true,
-		// 	debug: false
-		// }),
-		new webpack.optimize.UglifyJsPlugin({
-			debug: false,
-			mangle: false,
-			minimize: true,
-			sourceMap: true,
-			compress: { warnings: false },
-			output: { comments: false }
-		}),
-		extractCSS
+		new HtmlWebpackPlugin ({
+			title: 'Spelling Quiz Assistant'
+		})
 	],
-
-	// NOTE: Sass Loader options
-	sassLoader: {
-		includePaths: [path.resolve(__dirname, "./src/scss")],
-		sourceMap: true
-	},
 
 	stats: {
 		colors: true
 	},
-
-	devtool: 'source-map'
 };
 
 var config;
@@ -111,10 +79,28 @@ var config;
 // Detect how npm is run and branch based on that
 switch(process.env.npm_lifecycle_event) {
 	case 'build':
-		config = merge(common, {});
+		config = merge(
+			common,
+			{
+				devtool: 'source-map'
+			},
+			parts.minify(),
+			parts.setupSass(PATHS.src)
+		);
 		break;
 	default:
-		config = merge(common, {});
+		config = merge(
+			common,
+			{
+				devtool: 'eval-source-map'
+			},
+			parts.setupSass(PATHS.scss),
+			parts.devServer({
+				// Customize host/port here if needed
+				host: process.env.HOST,
+				port: process.env.PORT
+			})
+		);
 }
 
 module.exports = validate(config);
