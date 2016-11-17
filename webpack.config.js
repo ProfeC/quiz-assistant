@@ -91,7 +91,7 @@ switch(process.env.npm_lifecycle_event) {
 				'production'
 			),
 			parts.extractBundle({
-				name: 'vendor',
+				name: 'frameworks',
 				entries: ['react', 'react-dom']
 			}),
 			parts.minify(),
