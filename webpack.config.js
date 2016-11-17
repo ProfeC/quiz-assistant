@@ -11,7 +11,6 @@ const PATHS = {
 	build: path.join(__dirname, 'build'),
 	data: path.join(__dirname, 'src', 'data'),
 	style: [
-		path.join(__dirname, 'node_modules', 'purecss'),
 		path.join(__dirname, 'src', 'style', 'app.css')
 	],
 	src: path.join(__dirname, 'src')
@@ -72,6 +71,7 @@ var config;
 // Detect how npm is run and branch based on that
 switch(process.env.npm_lifecycle_event) {
 	case 'build':
+	case 'stats':
 		config = merge(
 			common,
 			{
@@ -98,6 +98,8 @@ switch(process.env.npm_lifecycle_event) {
 			parts.purifyCSS([PATHS.src])
 		);
 		break;
+
+
 	default:
 		config = merge(
 			common,
@@ -113,4 +115,7 @@ switch(process.env.npm_lifecycle_event) {
 		);
 }
 
-module.exports = validate(config);
+// Run validator in quiet mode to avoid output in stats
+module.exports = validate(config, {
+	quiet: true
+});

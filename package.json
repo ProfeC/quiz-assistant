@@ -15,7 +15,6 @@
   "private": true,
   "dependencies": {
     "babel-runtime": "^6.18.0",
-    "purecss": "^0.6.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
@@ -46,6 +45,7 @@
     "bundle": "webpack --production --progress --colors",
     "build": "webpack --progress",
     "start": "webpack-dev-server --progress",
+    "stats": "webpack --profile --json > stats.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --progress --colors"
   }

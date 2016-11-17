@@ -13,7 +13,7 @@ exports.devServer = function(options) {
 
 			// Unlike the cli flag, this doesn't set
 			// HotModuleReplacementPlugin!
-			hot: true,
+			// hot: true,
 			inline: true,
 
 			// Display only errors to reduce the amount of output.
