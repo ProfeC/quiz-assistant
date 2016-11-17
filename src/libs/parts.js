@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack-plugin');
 
 exports.devServer = function(options) {
 	return {
@@ -41,6 +42,20 @@ exports.devServer = function(options) {
 	};
 }
 
+exports.setupCSS = function(paths) {
+	return {
+		module: {
+			loaders: [
+				{
+					test: /\.css$/,
+					loaders: ['style', 'css'],
+					include: paths
+				}
+			]
+		}
+	};
+}
+
 exports.setupSCSS = function(paths) {
 	return {
 		module: {
@@ -55,7 +70,24 @@ exports.setupSCSS = function(paths) {
 	};
 }
 
-exports.extractStyle = function(paths) {
+exports.extractCSS = function(paths) {
+	return {
+		module: {
+			loaders: [
+				{
+					test: /\.css$/i,
+					loader: ExtractTextPlugin.extract('style', 'css?sourceMap'),
+					include: paths
+				},
+			]
+		},
+		plugins: [
+			new ExtractTextPlugin('[name].[chunkhash].css')
+		]
+	};
+}
+
+exports.extractSCSS = function(paths) {
 	return {
 		module: {
 			loaders: [
@@ -128,6 +160,20 @@ exports.clean = function(path) {
 				// Without `root` CleanWebpackPlugin won't point to our
 				// project and will fail to work.
 				root: process.cwd()
+			})
+		]
+	};
+}
+
+exports.purifyCSS = function(paths) {
+	return {
+		plugins: [
+			new PurifyCSSPlugin({
+				basePath: process.cwd(),
+				// `paths` is used to point PurifyCSS to files not
+				// visible to Webpack. You can pass glob patterns
+				// to it.
+				paths: paths
 			})
 		]
 	};

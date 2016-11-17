@@ -1,4 +1,5 @@
-import React from 'react';
+const React = require('react');
+// import React from 'react';
 import ReactDOM from 'react-dom';
 // import * as Utils from './utils';
 

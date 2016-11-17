@@ -10,7 +10,10 @@ const parts = require('./src/libs/parts');
 const PATHS = {
 	build: path.join(__dirname, 'build'),
 	data: path.join(__dirname, 'src', 'data'),
-	scss: path.join(__dirname, 'src', 'scss', 'app.scss'),
+	style: [
+		path.join(__dirname, 'node_modules', 'purecss'),
+		path.join(__dirname, 'src', 'style', 'app.css')
+	],
 	src: path.join(__dirname, 'src')
 };
 
@@ -20,7 +23,7 @@ const common = {
 	// convenient with more complex configurations.
 
 	entry: {
-		style: PATHS.scss,
+		style: PATHS.style,
 		app: PATHS.src + '/js',
 	},
 
@@ -52,14 +55,6 @@ const common = {
 			}
 		]
 	},
-
-	// resolve: {
-	// 	extensions: ['', '.js', '.jsx'],
-	// 	modules: [
-	// 		path.resolve('./src'),
-	// 		'node_modules'
-	// 	]
-	// },
 
 	plugins: [
 		new HtmlWebpackPlugin ({
@@ -99,7 +94,8 @@ switch(process.env.npm_lifecycle_event) {
 				entries: ['react', 'react-dom']
 			}),
 			parts.minify(),
-			parts.extractStyle(PATHS.scss)
+			parts.extractCSS(PATHS.style),
+			parts.purifyCSS([PATHS.src])
 		);
 		break;
 	default:
@@ -108,7 +104,7 @@ switch(process.env.npm_lifecycle_event) {
 			{
 				devtool: 'eval-source-map'
 			},
-			parts.setupSCSS(PATHS.scss),
+			parts.setupCSS(PATHS.style),
 			parts.devServer({
 				// Customize host/port here if needed
 				host: process.env.HOST,
