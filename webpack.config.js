@@ -10,10 +10,8 @@ const parts = require('./src/libs/parts');
 const PATHS = {
 	build: path.join(__dirname, 'build'),
 	data: path.join(__dirname, 'src', 'data'),
-	style: [
-		path.join(__dirname, 'src', 'style', 'app.css')
-	],
-	src: path.join(__dirname, 'src')
+	src: path.join(__dirname, 'src'),
+	style: path.join(__dirname, 'src', 'style', 'app.css')
 };
 
 const common = {
@@ -35,9 +33,10 @@ const common = {
 		loaders: [
 			{
 				test: /\.(js|jsx)$/,
-				exclude: /node_modules/,
-				loader: 'babel-loader',
+				include: PATHS.src,
+				loader: 'babel',
 				query: {
+					cacheDirectory: true,
 					presets: [ 'latest', 'react' ]
 				}
 			} ,
