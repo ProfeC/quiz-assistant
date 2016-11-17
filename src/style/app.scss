@@ -1,0 +1,59 @@
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,300,700);
+
+#root {
+	font-family: 'Droid Sans';
+	width: 960px;
+	margin: 30px auto;
+	text-align: center;
+
+	footer {
+		margin-top: 30px;
+		text-align: center;
+	}
+
+	header {
+		font-size: 2em;
+	}
+}
+
+input {
+	font-size: 2.3em;
+	padding: 3px 5px;
+	margin: 0;
+	border: 2px solid rgba(128, 128, 128, 0.5);
+}
+
+#current-word {
+	font-size: 2.5em;
+	margin: auto 13px;
+	padding: 15px;
+}
+
+.correct,
+.incorrect {
+	font-size: 1.5em;
+	font-style: italic;
+}
+
+.correct {
+	color: green;
+}
+
+.incorrect {
+	color: red;
+}
+
+button {
+	font-size: 1.25em;
+	margin: 3px;
+	padding: 3px;
+
+	&#check-spelling {
+		background: rgba(0, 128, 0, .13);
+		border-left-width: 0;
+		color: rgb(0, 128, 0);
+		font-size: 2.3em;
+		margin: 0;
+		padding: 3px 21px;
+	}
+}

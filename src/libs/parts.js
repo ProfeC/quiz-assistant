@@ -56,20 +56,6 @@ exports.setupCSS = function(paths) {
 	};
 }
 
-exports.setupSCSS = function(paths) {
-	return {
-		module: {
-			loaders: [
-				{
-					test: /\.scss$/,
-					loaders: ['style', 'css', 'sass'],
-					include: paths
-				}
-			]
-		}
-	};
-}
-
 exports.extractCSS = function(paths) {
 	return {
 		module: {
@@ -87,13 +73,27 @@ exports.extractCSS = function(paths) {
 	};
 }
 
-exports.extractSCSS = function(paths) {
+exports.setupSass = function(paths) {
+	return {
+		module: {
+			loaders: [
+				{
+					test: /\.scss$/,
+					loaders: ['style', 'css', 'sass'],
+					include: paths
+				}
+			]
+		}
+	};
+}
+
+exports.extractSass = function(paths) {
 	return {
 		module: {
 			loaders: [
 				{
 					test: /\.scss$/i,
-					loader: ExtractTextPlugin.extract('style', 'css?sourceMap','sass?sourceMap'),
+					loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap'),
 					include: paths
 				},
 			]
