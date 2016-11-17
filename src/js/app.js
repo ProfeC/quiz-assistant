@@ -11,7 +11,7 @@ import CurrentWord from './show-current-word'
 import CorrectSpelling from './show-correct-spelling'
 
 // NOTE: Data
-// import week1 from '../data/20161031.json'
+// import data from '../data/20161031.json'
 import data from '../data/20161107.json'
 
 class App extends React.Component {
