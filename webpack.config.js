@@ -45,13 +45,6 @@ const common = {
 				test: /\.json$/,
 				loader: 'json'
 			},
-			{
-				test: /\.html$/,
-				loader: 'file',
-				query: {
-					name: '[name].[ext]'
-				}
-			}
 		]
 	},
 
