@@ -14,8 +14,6 @@ import CorrectSpelling from './show-correct-spelling';
 // import week1 from '../data/20161031.json';
 import data from '../data/20161107.json';
 
-require('../scss/app.scss');
-
 class App extends React.Component {
 	constructor(props) {
 		super(props);

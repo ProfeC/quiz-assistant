@@ -10,7 +10,7 @@ const parts = require('./src/libs/parts');
 const PATHS = {
 	build: path.join(__dirname, 'build'),
 	data: path.join(__dirname, 'src', 'data'),
-	scss: path.join(__dirname, 'src', 'scss'),
+	scss: path.join(__dirname, 'src', 'scss', 'app.scss'),
 	src: path.join(__dirname, 'src')
 };
 
@@ -20,6 +20,7 @@ const common = {
 	// convenient with more complex configurations.
 
 	entry: {
+		style: PATHS.scss,
 		app: PATHS.src + '/js',
 	},
 
@@ -98,7 +99,7 @@ switch(process.env.npm_lifecycle_event) {
 				entries: ['react', 'react-dom']
 			}),
 			parts.minify(),
-			parts.setupSass(PATHS.src)
+			parts.extractStyle(PATHS.scss)
 		);
 		break;
 	default:
@@ -107,7 +108,7 @@ switch(process.env.npm_lifecycle_event) {
 			{
 				devtool: 'eval-source-map'
 			},
-			parts.setupSass(PATHS.scss),
+			parts.setupSCSS(PATHS.scss),
 			parts.devServer({
 				// Customize host/port here if needed
 				host: process.env.HOST,

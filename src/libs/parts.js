@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractCSS = new ExtractTextPlugin('app.bundle.css');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 exports.devServer = function(options) {
@@ -42,35 +41,34 @@ exports.devServer = function(options) {
 	};
 }
 
-exports.setupSass = function(paths) {
+exports.setupSCSS = function(paths) {
+	return {
+		module: {
+			loaders: [
+				{
+					test: /\.scss$/,
+					loaders: ['style', 'css', 'sass'],
+					include: paths
+				}
+			]
+		}
+	};
+}
+
+exports.extractStyle = function(paths) {
 	return {
 		module: {
 			loaders: [
 				{
 					test: /\.scss$/i,
-					loader: extractCSS.extract(['css?sourceMap','sass?sourceMap']),
+					loader: ExtractTextPlugin.extract('style', 'css?sourceMap','sass?sourceMap'),
 					include: paths
 				},
-				// {
-				// 	test: /\.scss$/,
-				// 	loaders: [
-				// 		"style",
-				// 		"css?sourceMap",
-				// 		"sass?sourceMap"
-				// 	]
-				// },
-				// { test: /\.scss$/i, loader: extractCSS.extract(['css?sourceMap','sass?sourceMap']) }
 			]
 		},
 		plugins: [
-			extractCSS
-		],
-
-		// NOTE: Sass Loader options
-		// sassLoader: {
-		// 	includePaths: [paths],
-		// 	sourceMap: true
-		// }
+			new ExtractTextPlugin('[name].[chunkhash].css')
+		]
 	};
 }
 
