@@ -9,7 +9,7 @@ class ShowCurrentWord extends React.Component {
 
 	render() {
 		const wordStyle = this.props.visibility ? 'visible' : 'hidden';
-		console.info("\nWord Style: " + wordStyle);
+		// console.info("\nWord Style: " + wordStyle);
 
 		return (<h1 id="current-word" style={{ visibility: wordStyle }}>{ this.props.word }</h1>);
 	}
