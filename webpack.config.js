@@ -4,8 +4,9 @@ const merge = require('webpack-merge');
 const path = require( 'path' );
 const validate = require('webpack-validator');
 const webpack = require( 'webpack' );
-
 const parts = require('./src/libs/parts');
+const TARGET = process.env.npm_lifecycle_event;
+process.env.BABEL_ENV = TARGET;
 
 const PATHS = {
     build: path.join(__dirname, 'build'),
@@ -29,17 +30,22 @@ const common = {
         filename: '[name].js'
     },
 
+    resolve: {
+      extensions: ['', '.js', '.jsx']
+    },
+
     module: {
         loaders: [
             {
                 test: /\.(js|jsx)$/,
                 include: PATHS.src,
+                loaders: ['babel?cacheDirectory'],
                 // loaders: ['babel?cacheDirectory=true&presets=latest&presets=react','eslint'],
-                loader: 'babel',
-                query: {
-                    cacheDirectory: true,
-                    presets: [ 'latest', 'react' ]
-                }
+                // loader: 'babel',
+                // query: {
+                //     cacheDirectory: true,
+                //     presets: [ 'latest', 'react' ]
+                // }
             } ,
             {
                 test: /\.json$/,
