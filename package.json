@@ -29,6 +29,7 @@
     "eslint": "^3.9.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "gh-pages": "^0.12.0",
     "html-webpack-plugin": "^2.24.1",
     "json-loader": "^0.5.4",
     "node-sass": "^3.11.2",
@@ -42,11 +43,11 @@
     "webpack-validator": "^2.2.9"
   },
   "scripts": {
-    "bundle": "webpack --production --progress --colors",
     "build": "webpack --progress",
+    "deploy": "gh-pages -d build",
     "start": "webpack-dev-server --progress",
     "stats": "webpack --profile --json > stats.json",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --progress --colors"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
+
