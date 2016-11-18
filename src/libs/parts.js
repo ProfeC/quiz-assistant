@@ -93,8 +93,8 @@ exports.extractSass = function(paths) {
 			loaders: [
 				{
 					test: /\.scss$/i,
-                // loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap'),
-					loader: ExtractTextPlugin.extract('style', 'css!sass'),
+                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap'),
+					// loader: ExtractTextPlugin.extract('style', 'css!sass'),
 					include: paths
 				},
 			]
