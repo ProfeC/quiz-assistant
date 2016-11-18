@@ -11,7 +11,7 @@ const PATHS = {
 	build: path.join(__dirname, 'build'),
 	data: path.join(__dirname, 'src', 'data'),
 	src: path.join(__dirname, 'src'),
-	style: path.join(__dirname, 'src', 'style', 'app.css')
+	style: path.join(__dirname, 'src', 'style', 'app.scss')
 };
 
 const common = {
@@ -86,8 +86,8 @@ switch(process.env.npm_lifecycle_event) {
 				entries: ['react', 'react-dom']
 			}),
 			parts.minify(),
-			parts.extractCSS(PATHS.style),
-			parts.purifyCSS([PATHS.src])
+			parts.extractSass(PATHS.style)
+			// parts.purifyCSS([PATHS.src])
 		);
 		break;
 
@@ -98,7 +98,7 @@ switch(process.env.npm_lifecycle_event) {
 			{
 				devtool: 'eval-source-map'
 			},
-			parts.setupCSS(PATHS.style),
+			parts.setupSass(PATHS.style),
 			parts.devServer({
 				// Customize host/port here if needed
 				host: process.env.HOST,
