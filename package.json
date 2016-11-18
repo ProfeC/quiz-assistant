@@ -24,18 +24,11 @@
     "babel-loader": "^6.2.7",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
-    "babel-preset-react-hmre": "^1.1.1",
     "clean-webpack-plugin": "^0.1.14",
     "css-loader": "^0.25.0",
     "eslint": "^3.9.1",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-loader": "^1.6.1",
-    "eslint-plugin-promise": "^3.4.0-0",
-    "eslint-plugin-react": "^6.7.1",
-    "eslint-plugin-standard": "^2.0.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
-    "gh-pages": "^0.12.0",
     "html-webpack-plugin": "^2.24.1",
     "json-loader": "^0.5.4",
     "node-sass": "^3.11.2",
@@ -49,11 +42,11 @@
     "webpack-validator": "^2.2.9"
   },
   "scripts": {
+    "bundle": "webpack --production --progress --colors",
     "build": "webpack --progress",
-    "deploy": "gh-pages -d build",
     "start": "webpack-dev-server --progress",
     "stats": "webpack --profile --json > stats.json",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:lint": "eslint . --ext .js --ext .jsx --ignore-path .gitignore --cache"
+    "webpack": "webpack --progress --colors"
   }
 }
