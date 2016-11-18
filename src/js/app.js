@@ -117,7 +117,7 @@ class App extends React.Component {
   }
 
   handleSpellingChange (event) {
-    this.setState({currentSpelling: event.target.value})
+    this.setState({currentSpelling: event.target.value.toLowerCase()})
   }
 
   handleSpellingCheck (event) {
