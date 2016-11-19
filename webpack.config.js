@@ -5,7 +5,7 @@ const path = require( 'path' );
 const validate = require('webpack-validator');
 const webpack = require( 'webpack' );
 
-const parts = require('./src/libs/parts');
+const parts = require('./libs/parts');
 
 const PATHS = {
 	build: path.join(__dirname, 'build'),
