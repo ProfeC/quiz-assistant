@@ -23,6 +23,7 @@
     "babel-loader": "^6.2.7",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "babel-preset-react-hmre": "^1.1.1",
     "clean-webpack-plugin": "^0.1.14",
     "css-loader": "^0.26.0",
     "extract-text-webpack-plugin": "^1.0.1",
