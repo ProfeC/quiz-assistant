@@ -1,5 +1,5 @@
 {
-  "name": "spelling-quiz-assistant",
+  "name": "quiz-assistant",
   "version": "1.0.0",
   "description": "Spelling Quiz Assistant",
   "main": "src/js/index.js",
