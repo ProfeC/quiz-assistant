@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import * as Utils from './utils'
+import * as Utils from './utils'
 
 // NOTE: Layout
 import PageHeader from './page-header'
@@ -14,7 +14,7 @@ import CorrectSpelling from './show-correct-spelling'
 // import data from '../data/20161031.json'
 import data from '../data/20161107.json'
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor (props) {
     super(props)
 
@@ -46,12 +46,23 @@ class App extends React.Component {
   componentWillMount () {
     // console.info("Component Will Mount")
     this.getWords()
+
+    if (location.search) {
+      this.setState({
+        list: Utils.getUrlParam('list')
+      })
+    }
+
   }
 
   componentDidMount () {
     // console.info("Component Did Mount")
     // console.info("\nSpelling Word Count: " + this.state.spellingWordsCount)
     this.getRandomWord()
+
+    this.setState({
+      hfaWords: Utils.getSpellingWords(this.state.list)
+    })
   }
 
   componentWillUpdate () {
