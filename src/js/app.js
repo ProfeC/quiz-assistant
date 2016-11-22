@@ -17,6 +17,7 @@ import data from '../data/20161107.json'
 export default class App extends React.Component {
   constructor (props) {
     super(props)
+    this.displayName = 'Main Application'
 
     this.state = {
       allWords: [],

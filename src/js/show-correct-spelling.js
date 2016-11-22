@@ -4,6 +4,8 @@ class ShowCorrectSpelling extends React.Component {
   constructor (props) {
     super(props)
 
+    this.displayName = 'Show Correct Spelling'
+
     // console.info( "\nMounted: 'Correct Spelling' Component." )
   }
 

@@ -3,80 +3,82 @@ import React from 'react';
 // import NextWord from './next-word';
 
 class FormSpellchecker extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			currentSpelling: '',
-			showWord: true
-		};
+    this.displayName = 'Spell Checking Form'
 
-		// this.handleChange = this.handleChange.bind(this);
-		// this.handleSubmit = this.handleSubmit.bind(this);
-		// this.handleNextWord = this.handleNextWord.bind(this);
-	}
+    this.state = {
+      currentSpelling: '',
+      showWord: true
+    };
 
-	componentWillMount() {
-		console.log( "Mounted ShowCurrentWord" );
-		this.displayWord();
-	}
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleNextWord = this.handleNextWord.bind(this);
+  }
 
-	componentWillUnmount() {
-		console.log( "Unmounted ShowCurrentWord" );
-		clearInterval( this.timerID );
-	}
+  componentWillMount() {
+    console.log( "Mounted ShowCurrentWord" );
+    this.displayWord();
+  }
 
-	displayWord() {
-		this.startTimer();
-		this.setState({showWord: true});
-		console.log("timer started!");
-	}
+  componentWillUnmount() {
+    console.log( "Unmounted ShowCurrentWord" );
+    clearInterval( this.timerID );
+  }
 
-	handleChange(event) {
-		this.setState({value: event.target.value});
-	}
+  displayWord() {
+    this.startTimer();
+    this.setState({showWord: true});
+    console.log("timer started!");
+  }
 
-	handleSubmit(event) {
-		this.setState({showWord: true});
-		alert('Text field value is: ' + this.state.value + '\n\nThe word was: ' + this.props.word);
-	}
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
 
-	handleNextWord() {
-		getRandomWord();
-	}
+  handleSubmit(event) {
+    this.setState({showWord: true});
+    alert('Text field value is: ' + this.state.value + '\n\nThe word was: ' + this.props.word);
+  }
 
-	hideWord() {
-		console.log("timer's up!");
-		clearInterval( this.timerID );
-		this.setState({showWord: false});
-	}
+  handleNextWord() {
+    getRandomWord();
+  }
 
-	startTimer() {
-		this.timerID = setInterval(
-			() => this.hideWord(),
-			5000
-		);
-	}
+  hideWord() {
+    console.log("timer's up!");
+    clearInterval( this.timerID );
+    this.setState({showWord: false});
+  }
 
-	render() {
-		const currentWord = this.props.word;
-		const currentSpelling = this.state.value;
+  startTimer() {
+    this.timerID = setInterval(
+      () => this.hideWord(),
+      5000
+    );
+  }
 
-		var wordStyle;
-		wordStyle = this.state.showWord ? 'visible' : 'hidden';
-		console.log("Word Style: " + wordStyle);
+  render() {
+    const currentWord = this.props.word;
+    const currentSpelling = this.state.value;
 
-		return (
-			<div>
-				<h2 id="current-word" style={{visibility: wordStyle}}>{ currentWord }</h2>
-				<p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleChange} /></p>
-				<input type="submit" onClick={this.handleSubmit} value="Check Your Spelling" />
-				<button onClick={this.handleNextWord}>Show Next Word</button>
-			</div>
-		);
-	}
+    var wordStyle;
+    wordStyle = this.state.showWord ? 'visible' : 'hidden';
+    console.log("Word Style: " + wordStyle);
+
+    return (
+      <div>
+        <h2 id="current-word" style={{visibility: wordStyle}}>{ currentWord }</h2>
+        <p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleChange} /></p>
+        <input type="submit" onClick={this.handleSubmit} value="Check Your Spelling" />
+        <button onClick={this.handleNextWord}>Show Next Word</button>
+      </div>
+    );
+  }
 }
 
 export default FormSpellchecker;
 
-				/* <ShowCurrentWord word={currentWord} /> */
+        /* <ShowCurrentWord word={currentWord} /> */

@@ -4,6 +4,8 @@ class ShowCurrentWord extends React.Component {
   constructor (props) {
     super(props)
 
+    this.displayName = 'Show Current Word'
+
     // console.info( "\nMounted: 'Current Word' Component." )
   }
 
