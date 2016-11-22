@@ -1,4 +1,5 @@
 // NOTE: Utility Functions
+import React from 'react'
 
 // NOTE: Require data files.
 // FIX: THERE MUST BE A BETTER WAY TO DO THIS!
@@ -56,3 +57,31 @@ export function fetchSpellingWords(list) {
     console.error('Fetch Error!', err);
   });
 }
+
+export function checkEnter(e, ...props) {
+  if (e.key === 'Enter') {
+    // console.log($r)
+    console.info(props)
+
+    // handleSpellingCheck(e)
+  }
+}
+
+export function handleSpellingCheck (e, ...props) {
+
+    // alert('Text field value is: ' + this.state.currentSpelling + '\n\nThe word was: ' + this.state.currentWord)
+
+    if (this.state.currentSpelling === this.state.currentWord) {
+      // alert('Spellings match...')
+      this.setState({
+        spellingMatches: true,
+        spellingChecked: true
+      })
+    } else {
+      // alert('Spellings don\'t match...')
+      this.setState({
+        spellingMatches: false,
+        spellingChecked: true
+      })
+    }
+  }

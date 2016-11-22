@@ -177,7 +177,7 @@ export default class App extends React.Component {
 
         <CurrentWord visibility={ this.state.showWord } word={ this.state.currentWord } />
 
-        <p><input tabIndex="1" placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} />
+        <p><input tabIndex="1" placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} autoFocus={true} onKeyPress={Utils.checkEnter} />
         <button id="check-spelling" onClick={this.handleSpellingCheck}>Check It</button>
         </p>
 
