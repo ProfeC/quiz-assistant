@@ -1,10 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import * as Utils from './utils'
+// import ReactDOM from 'react-dom'
+import * as Utils from '../libs/utils'
 
 // NOTE: Layout
-import PageHeader from './page-header'
-import PageFooter from './page-footer'
+import PageHeader from '../views/page-header'
+import PageFooter from '../views/page-footer'
 
 // NOTE: Components
 import CurrentWord from './show-current-word'
@@ -193,4 +193,4 @@ export default class App extends React.Component {
 }
 
 // NOTE: Render the app on the page.
-ReactDOM.render(<App />, document.getElementById('root'))
+// ReactDOM.render(<App />, document.getElementById('root'))

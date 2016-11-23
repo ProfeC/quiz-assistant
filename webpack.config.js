@@ -12,8 +12,8 @@ const PATHS = {
   components: path.join(__dirname, 'app', 'components'),
   data: path.join(__dirname, 'app', 'data'),
   libs: path.join(__dirname, 'app', 'libs'),
-  style: path.join(__dirname, 'app', 'scss', 'app.scss')
-  views: path.join(__dirname, 'app', 'views'),
+  style: path.join(__dirname, 'app', 'scss', 'app.scss'),
+  views: path.join(__dirname, 'app', 'views')
 };
 
 const common = {
