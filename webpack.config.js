@@ -7,12 +7,13 @@ const webpack = require( 'webpack' );
 const parts = require('./libs/parts');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
+  app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
-  components: path.join(__dirname, 'src', 'app', 'components'),
-  data: path.join(__dirname, 'src', 'data'),
-  libs: path.join(__dirname, 'src', 'app', 'libs'),
-  src: path.join(__dirname, 'src'),
-  style: path.join(__dirname, 'src', 'scss', 'app.scss')
+  components: path.join(__dirname, 'app', 'components'),
+  data: path.join(__dirname, 'app', 'data'),
+  libs: path.join(__dirname, 'app', 'libs'),
+  style: path.join(__dirname, 'app', 'scss', 'app.scss')
+  views: path.join(__dirname, 'app', 'views'),
 };
 
 const common = {
@@ -22,7 +23,7 @@ const common = {
 
   entry: {
     style: PATHS.style,
-    app: PATHS.src + '/app',
+    app: PATHS.app,
   },
 
   output: {
@@ -39,7 +40,7 @@ const common = {
     loaders: [
       {
         test: /\.(js|jsx)$/,
-        include: PATHS.src,
+        include: PATHS.app,
         loaders: ['babel?cacheDirectory']
       } ,
       {
@@ -90,7 +91,7 @@ switch(process.env.npm_lifecycle_event) {
       }),
       parts.minify(),
       parts.extractSass(PATHS.style)
-      // parts.purifyCSS([PATHS.src])
+      // parts.purifyCSS([PATHS.app])
     );
     break;
 
