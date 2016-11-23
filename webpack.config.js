@@ -10,7 +10,7 @@ const PATHS = {
   build: path.join(__dirname, 'build'),
   data: path.join(__dirname, 'src', 'data'),
   src: path.join(__dirname, 'src'),
-  style: path.join(__dirname, 'src', 'style', 'app.scss')
+  style: path.join(__dirname, 'src', 'scss', 'app.scss')
 };
 
 const common = {
