@@ -8,7 +8,9 @@ const parts = require('./libs/parts');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   build: path.join(__dirname, 'build'),
+  components: path.join(__dirname, 'src', 'app', 'components'),
   data: path.join(__dirname, 'src', 'data'),
+  libs: path.join(__dirname, 'src', 'app', 'libs'),
   src: path.join(__dirname, 'src'),
   style: path.join(__dirname, 'src', 'scss', 'app.scss')
 };
@@ -20,7 +22,7 @@ const common = {
 
   entry: {
     style: PATHS.style,
-    app: PATHS.src + '/js',
+    app: PATHS.src + '/app',
   },
 
   output: {
