@@ -38,11 +38,11 @@ const common = {
 
   module: {
     loaders: [
-      {
-        test: /\.(js|jsx)$/,
-        include: PATHS.app,
-        loaders: ['babel?cacheDirectory']
-      } ,
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   include: PATHS.app,
+      //   loaders: ['babel?cacheDirectory']
+      // } ,
       {
         test: /\.json$/,
         loader: 'json'
@@ -90,8 +90,10 @@ switch(process.env.npm_lifecycle_event) {
         entries: ['react', 'react-dom']
       }),
       parts.minify(),
-      parts.extractSass(PATHS.style)
-      // parts.purifyCSS([PATHS.app])
+      parts.extractSass(PATHS.style),
+      // parts.purifyCSS([PATHS.app]),
+      parts.loadJSX(PATHS.app),
+      parts.lintJSX(PATHS.app)
     );
     break;
 
@@ -107,7 +109,9 @@ switch(process.env.npm_lifecycle_event) {
         // Customize host/port here if needed
         host: process.env.HOST,
         port: process.env.PORT
-      })
+      }),
+      parts.loadJSX(PATHS.app),
+      parts.lintJSX(PATHS.app)
     );
 }
 

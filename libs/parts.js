@@ -3,6 +3,18 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 // const PurifyCSSPlugin = require('purifycss-webpack-plugin');
 
+exports.clean = function(path) {
+  return {
+    plugins: [
+      new CleanWebpackPlugin([path], {
+        // Without `root` CleanWebpackPlugin won't point to our
+        // project and will fail to work.
+        root: process.cwd()
+      })
+    ]
+  };
+}
+
 exports.devServer = function(options) {
 	return {
 		devServer: {
@@ -42,6 +54,122 @@ exports.devServer = function(options) {
 	};
 }
 
+exports.extractBundle = function(options) {
+  const entry = {};
+  entry[options.name] = options.entries;
+
+  return {
+    // Define an entry point needed for splitting.
+    entry: entry,
+    plugins: [
+      // Extract bundle and manifest files. Manifest is needed for reliable caching.
+      new webpack.optimize.CommonsChunkPlugin({
+        names: [
+          options.name, 'manifest'
+        ]
+      })
+    ]
+  };
+}
+
+exports.extractCSS = function(paths) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: /\.css$/i,
+          loader: ExtractTextPlugin.extract('style', 'css?sourceMap'),
+          include: paths
+        },
+      ]
+    },
+    plugins: [
+      new ExtractTextPlugin('[name].[chunkhash].css')
+    ]
+  };
+}
+
+exports.extractSass = function(paths) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: /\.scss$/i,
+                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap'),
+          // loader: ExtractTextPlugin.extract('style', 'css!sass'),
+          include: paths
+        },
+      ]
+    },
+    plugins: [
+      new ExtractTextPlugin('[name].[chunkhash].css')
+    ]
+  };
+}
+
+exports.lintJSX = function(include) {
+  return {
+    module: {
+      preLoaders: [
+        {
+          test: /\.(js|jsx)$/,
+          loaders: ['eslint'],
+          include: include
+        }
+      ]
+    }
+  };
+}
+
+exports.loadJSX = function(include) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: /\.(js|jsx)$/,
+          // Enable caching for extra performance
+          loaders: ['babel?cacheDirectory'],
+          include: include
+        }
+      ]
+    }
+  };
+}
+
+exports.minify = function() {
+  return {
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin({
+        debug: false,
+        drop_console: true,
+        mangle: false,
+        minimize: true,
+        sourceMap: true,
+        output: {
+          comments: false
+        },
+        compress: {
+          warnings: false
+        },
+      })
+    ]
+  };
+}
+
+// exports.purifyCSS = function(paths) {
+//  return {
+//    plugins: [
+//      new PurifyCSSPlugin({
+//        basePath: process.cwd(),
+//        // `paths` is used to point PurifyCSS to files not
+//        // visible to Webpack. You can pass glob patterns
+//        // to it.
+//        paths: paths
+//      })
+//    ]
+//  };
+// }
+
 exports.setupCSS = function(paths) {
 	return {
 		module: {
@@ -53,23 +181,6 @@ exports.setupCSS = function(paths) {
 				}
 			]
 		}
-	};
-}
-
-exports.extractCSS = function(paths) {
-	return {
-		module: {
-			loaders: [
-				{
-					test: /\.css$/i,
-					loader: ExtractTextPlugin.extract('style', 'css?sourceMap'),
-					include: paths
-				},
-			]
-		},
-		plugins: [
-			new ExtractTextPlugin('[name].[chunkhash].css')
-		]
 	};
 }
 
@@ -87,44 +198,6 @@ exports.setupSass = function(paths) {
 	};
 }
 
-exports.extractSass = function(paths) {
-	return {
-		module: {
-			loaders: [
-				{
-					test: /\.scss$/i,
-                loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap'),
-					// loader: ExtractTextPlugin.extract('style', 'css!sass'),
-					include: paths
-				},
-			]
-		},
-		plugins: [
-			new ExtractTextPlugin('[name].[chunkhash].css')
-		]
-	};
-}
-
-exports.minify = function() {
-	return {
-		plugins: [
-			new webpack.optimize.UglifyJsPlugin({
-				debug: false,
-				drop_console: true,
-				mangle: false,
-				minimize: true,
-				sourceMap: true,
-				output: {
-					comments: false
-				},
-				compress: {
-					warnings: false
-				},
-			})
-		]
-	};
-}
-
 exports.setFreeVariable = function(key, value) {
 	const env = {};
 	env[key] = JSON.stringify(value);
@@ -135,48 +208,3 @@ exports.setFreeVariable = function(key, value) {
 		]
 	};
 }
-
-exports.extractBundle = function(options) {
-	const entry = {};
-	entry[options.name] = options.entries;
-
-	return {
-		// Define an entry point needed for splitting.
-		entry: entry,
-		plugins: [
-			// Extract bundle and manifest files. Manifest is needed for reliable caching.
-			new webpack.optimize.CommonsChunkPlugin({
-				names: [
-					options.name, 'manifest'
-				]
-			})
-		]
-	};
-}
-
-exports.clean = function(path) {
-	return {
-		plugins: [
-			new CleanWebpackPlugin([path], {
-				// Without `root` CleanWebpackPlugin won't point to our
-				// project and will fail to work.
-				root: process.cwd()
-			})
-		]
-	};
-}
-
-// exports.purifyCSS = function(paths) {
-// 	return {
-// 		plugins: [
-// 			new PurifyCSSPlugin({
-// 				basePath: process.cwd(),
-// 				// `paths` is used to point PurifyCSS to files not
-// 				// visible to Webpack. You can pass glob patterns
-// 				// to it.
-// 				paths: paths
-// 			})
-// 		]
-// 	};
-// }
-
