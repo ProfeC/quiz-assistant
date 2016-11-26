@@ -42,7 +42,6 @@ export default class App extends React.Component {
     }
 
     // Scope functions...
-    this.getWords = this.getWords.bind(this)
     this.displayWord = this.displayWord.bind(this)
     this.getRandomWord = this.getRandomWord.bind(this)
     this.handleNextWord = this.handleNextWord.bind(this)
@@ -54,7 +53,6 @@ export default class App extends React.Component {
 
   componentWillMount () {
     // console.info("Component Will Mount")
-    this.getWords()
   }
 
   componentDidMount () {
@@ -74,16 +72,6 @@ export default class App extends React.Component {
 
   componentWillUnmount () {
     // console.info( "Unmounted ShowCurrentWord" )
-  }
-
-  // NOTE: Get words from all lists.
-  getWords () {
-    // this.setState({spellingWordsCount: this.state.spellingWords.length})
-    this.setState({
-      spellingWords: data.spellingWords,
-      spellingWordsCount: data.spellingWords.length,
-      spellingWordsTitle: data.title
-    })
   }
 
   // NOTE: Get a random word
