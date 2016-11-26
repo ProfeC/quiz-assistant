@@ -10,14 +10,38 @@ const data_20161107 = require('../data/20161107.json')
 const data_20161121 = require('../data/20161121.json')
 const data_20161127 = require('../data/20161127.json')
 
-// NOTE: Get words from all lists.
+// NOTE: Get requested lists.
+export function getList(list) {
+  console.info('utils.getList')
+  console.info(eval('data_' + list))
+  if (list === null) {
+    return false
+  }
+
+  return eval('data_' + list)
+}
+
+// NOTE: Get spelling words.
 export function getSpellingWords(list) {
   if (list === null) {
     return false
   }
 
+  console.info('utils.getSpellingWords()')
   console.info(eval('data_' + list))
   return eval('data_' + list).spellingWords
+}
+
+// NOTE: Get number of items.
+export function getCount(someArray) {
+
+  if (someArray === null) {
+    return false
+  }
+
+  console.info('utils.getCount')
+  console.info(someArray)
+  return someArray.length
 }
 
 // NOTE: Get URL Parameters

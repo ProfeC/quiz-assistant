@@ -11,6 +11,7 @@ class PageHeader extends React.Component {
     return (
       <header>
         <h3><em>"{ this.props.title }"</em> Spelling Quiz Assistant</h3>
+        <p className="skills">{this.props.skill}</p>
       </header>
     )
   }

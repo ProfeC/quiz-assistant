@@ -7,10 +7,13 @@ const webpack = require( 'webpack' );
 const parts = require('./libs/parts');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
+  app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
-  data: path.join(__dirname, 'src', 'data'),
-  src: path.join(__dirname, 'src'),
-  style: path.join(__dirname, 'src', 'style', 'app.scss')
+  components: path.join(__dirname, 'app', 'components'),
+  data: path.join(__dirname, 'app', 'data'),
+  libs: path.join(__dirname, 'app', 'libs'),
+  style: path.join(__dirname, 'app', 'scss', 'app.scss'),
+  views: path.join(__dirname, 'app', 'views')
 };
 
 const common = {
@@ -20,7 +23,7 @@ const common = {
 
   entry: {
     style: PATHS.style,
-    app: PATHS.src + '/js',
+    app: PATHS.app,
   },
 
   output: {
@@ -35,11 +38,11 @@ const common = {
 
   module: {
     loaders: [
-      {
-        test: /\.(js|jsx)$/,
-        include: PATHS.src,
-        loaders: ['babel?cacheDirectory']
-      } ,
+      // {
+      //   test: /\.(js|jsx)$/,
+      //   include: PATHS.app,
+      //   loaders: ['babel?cacheDirectory']
+      // } ,
       {
         test: /\.json$/,
         loader: 'json'
@@ -87,8 +90,10 @@ switch(process.env.npm_lifecycle_event) {
         entries: ['react', 'react-dom']
       }),
       parts.minify(),
-      parts.extractSass(PATHS.style)
-      // parts.purifyCSS([PATHS.src])
+      parts.extractSass(PATHS.style),
+      // parts.purifyCSS([PATHS.app]),
+      parts.loadJSX(PATHS.app),
+      parts.lintJSX(PATHS.app)
     );
     break;
 
@@ -104,7 +109,9 @@ switch(process.env.npm_lifecycle_event) {
         // Customize host/port here if needed
         host: process.env.HOST,
         port: process.env.PORT
-      })
+      }),
+      parts.loadJSX(PATHS.app),
+      parts.lintJSX(PATHS.app)
     );
 }
 
