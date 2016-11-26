@@ -12,25 +12,33 @@ import CorrectSpelling from './show-correct-spelling'
 
 // NOTE: Data
 // import data from '../data/20161031.json'
-import data from '../data/20161107.json'
+import data from '../data/20161127.json'
 
 export default class App extends React.Component {
   constructor (props) {
     super(props)
     this.displayName = 'Main Application'
 
+    const wordList = Utils.getList(this.props.urlList)
+    const title = wordList.title
+    const skill = wordList.skill
+
     this.state = {
-      allWords: [],
       currentSpelling: '',
       currentWord: '',
       displayTime: 5000,
-      hfaWords: [],
-      list: '',
+      hfWords: wordList.hfwords,
+      hfWordsCount: wordList.hfwords.length,
       showWord: true,
+      skill: skill,
+      skillWords: wordList.skillWords,
+      skillWordsCount: wordList.skillWords.length,
       spellingChecked: false,
       spellingMatches: false,
-      spellingWords: [],
-      spellingWordsCount: 0
+      spellingWords: wordList.spellingWords,
+      spellingWordsCount: wordList.spellingWords.length,
+      title: title,
+      wordList: wordList
     }
 
     // Scope functions...
@@ -47,28 +55,17 @@ export default class App extends React.Component {
   componentWillMount () {
     // console.info("Component Will Mount")
     this.getWords()
-
-    if (location.search) {
-      this.setState({
-        list: Utils.getUrlParam('list')
-      })
-    }
-
   }
 
   componentDidMount () {
     // console.info("Component Did Mount")
-    // console.info("\nSpelling Word Count: " + this.state.spellingWordsCount)
-    this.getRandomWord()
 
-    this.setState({
-      hfaWords: Utils.getSpellingWords(this.state.list)
-    })
+    // NOTE: Get a random Word
+    this.getRandomWord()
   }
 
   componentWillUpdate () {
     // console.info("Component Will Update")
-    // console.info("\nRandom Word: " + this.state.currentWord)
   }
 
   componentDidUpdate () {
@@ -81,14 +78,6 @@ export default class App extends React.Component {
 
   // NOTE: Get words from all lists.
   getWords () {
-    // for ( var word of week1.spellingWords ) {
-    //  this.state.spellingWords.push(word)
-    // }
-
-    // for ( var word of data.spellingWords ) {
-    //  this.state.spellingWords.push(word)
-    // }
-
     // this.setState({spellingWordsCount: this.state.spellingWords.length})
     this.setState({
       spellingWords: data.spellingWords,
@@ -99,6 +88,10 @@ export default class App extends React.Component {
 
   // NOTE: Get a random word
   getRandomWord () {
+    // const intCount = this.state.wordList.spellingWords.length
+    // console.info(intCount)
+
+    // const rndNum = Math.floor(Math.random() * this.state.wordList.spellingWords.length)
     const rndNum = Math.floor(Math.random() * this.state.spellingWords.length)
     const wrd = this.state.spellingWords[rndNum]
     // console.info(wrd)
@@ -169,28 +162,37 @@ export default class App extends React.Component {
   }
 
   render () {
-    const currentSpelling = this.state.currentSpelling
+    let currentSpelling = this.state.currentSpelling
+    // let wordCount = Utils.getCount(this.state.wordList.spellingWords)
+    // console.info(wordCount)
+
 
     return (
       <section id="rapper">
-        <PageHeader title={ this.state.spellingWordsTitle } />
+        <PageHeader title={ this.state.title } skill={this.state.skill}/>
 
         <CurrentWord visibility={ this.state.showWord } word={ this.state.currentWord } />
+        <CorrectSpelling show={this.state.spellingMatches} checked={this.state.spellingChecked} />
 
         <p><input tabIndex="1" placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} autoFocus={true} onKeyPress={Utils.checkEnter} />
         <button id="check-spelling" onClick={this.handleSpellingCheck}>Check It</button>
         </p>
 
-        <CorrectSpelling show={this.state.spellingMatches} checked={this.state.spellingChecked} />
-
         <button onClick={this.displayWord}>Show Word Again</button>
         <button onClick={this.handleNextWord}>Show Next Word</button>
 
-        <PageFooter totalWords={this.state.spellingWordsCount} />
+        <PageFooter totalWords={this.state.count} />
       </section>
     )
   }
 }
+
+App.defaultProps = {
+  urlList: Utils.getUrlParam('list'),
+  displayTime: Utils.getUrlParam('displayTime')
+  // countSpelling: Utils.getCount(this.wordList.spellingWords)
+}
+
 
 // NOTE: Render the app on the page.
 // ReactDOM.render(<App />, document.getElementById('root'))
