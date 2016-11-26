@@ -28,9 +28,7 @@ class ShowCorrectSpelling extends React.Component {
     }
 
     return (
-      <div>
         <h2 className="correct">Correct!</h2>
-      </div>
     )
   }
 }
