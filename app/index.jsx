@@ -9,9 +9,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import App from './components/app'
-import Provider from './components/Provider'
+// import Provider from './components/Provider'
+
+// ReactDOM.render(
+//   <Provider><App /></Provider>,
+//   document.getElementById('root')
+// )
 
 ReactDOM.render(
-  <Provider><App /></Provider>,
+  <App />,
   document.getElementById('root')
 )
