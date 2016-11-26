@@ -13,6 +13,10 @@
 
 	header {
 		font-size: 2em;
+
+		& .skills {
+			color: rgba(66, 66, 66, 0.25)
+		}
 	}
 }
 
