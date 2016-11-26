@@ -12,8 +12,8 @@ const data_20161127 = require('../data/20161127.json')
 
 // NOTE: Get requested lists.
 export function getList(list) {
-  console.info('utils.getList')
-  console.info(eval('data_' + list))
+  // console.info('utils.getList')
+  // console.info(eval('data_' + list))
   if (list === null) {
     return false
   }
@@ -109,3 +109,22 @@ export function handleSpellingCheck (e, ...props) {
       })
     }
   }
+
+// NOTE: Timer Functions
+export function startTimer (time, id, myCallback) {
+  // console.info('utils.startTimer(\'' + id + '\')')
+  // console.log(time)
+  // console.log(id)
+  // console.log(myCallback)
+  id = setInterval(
+    myCallback,
+    time
+  )
+  // console.info("\n*** Timer Started ***\n")
+}
+
+export function stopTimer (id) {
+  console.info('utils.stopTimer(\'' + id + '\')')
+  clearInterval(id)
+  // console.info("\n*** Timer Stopped ***\n")
+}

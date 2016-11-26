@@ -83,19 +83,23 @@ export default class App extends React.Component {
     const rndNum = Math.floor(Math.random() * this.state.spellingWords.length)
     const wrd = this.state.spellingWords[rndNum]
     // console.info(wrd)
+    this.displayWord(wrd)
     this.setState({currentWord: wrd})
-    this.displayWord()
   }
 
-  displayWord () {
+  displayWord (word) {
+    // console.info(word)
     // NOTE: Make sure the timer stops running.
     this.stopTimer()
+    // Utils.stopTimer(word)
 
     // NOTE: Update visibility state
     this.setState({showWord: true})
 
     // NOTE: Restart the timer
     this.startTimer()
+    // console.log('Utils.startTimer(' + this.state.displayTime + ', ' + word + ', ' + this.hideWord + ')')
+    // Utils.startTimer(this.state.displayTime, word, this.hideWord)
   }
 
   handleNextWord (event) {
@@ -133,6 +137,7 @@ export default class App extends React.Component {
 
   hideWord () {
     this.stopTimer()
+    // Utils.stopTimer(this.state.currentWord)
     this.setState({showWord: false})
   }
 
