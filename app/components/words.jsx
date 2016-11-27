@@ -181,7 +181,7 @@ export default class Words extends React.Component {
 }
 
 Words.defaultProps = {
-  urlList: Utils.getUrlParam('list'),
+  urlList: Utils.getUrlParam('list') || '20161127',
   displayTime: Utils.getUrlParam('displayTime')
   // countSpelling: Utils.getCount(this.wordList.spellingWords)
 }
