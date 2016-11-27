@@ -174,7 +174,7 @@ export default class Words extends React.Component {
         <button onClick={this.displayWord}>Show Word Again</button>
         <button onClick={this.handleNextWord}>Show Next Word</button>
 
-        <PageFooter totalWords={this.state.count} />
+        <PageFooter totalWords={this.state.spellingWordsCount} />
       </section>
     )
   }
