@@ -21,6 +21,7 @@
     "react-dom": "^15.3.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.7",
@@ -32,6 +33,7 @@
     "eslint": "^3.10.2",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-react": "^6.7.1",
+    "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "gh-pages": "^0.12.0",
@@ -39,12 +41,13 @@
     "html-webpack-template": "^5.4.1",
     "json-loader": "^0.5.4",
     "node-sass": "^3.13.0",
+    "nodemon": "^1.11.0",
     "purifycss-webpack-plugin": "^2.0.3",
     "react-addons-perf": "^15.4.1",
     "react-addons-test-utils": "^15.4.1",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.3",
+    "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
     "webpack-load-plugins": "^0.1.2",
     "webpack-merge": "^0.17.0",
@@ -53,7 +56,8 @@
   "scripts": {
     "build": "webpack --progress",
     "deploy": "gh-pages -d build",
-    "start": "webpack-dev-server --progress",
+    "start": "nodemon --exec babel-node server.js --ignore build/",
+    "start-dev": "webpack-dev-server --progress",
     "stats": "webpack --profile --json > stats.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
