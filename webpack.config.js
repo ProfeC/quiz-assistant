@@ -8,7 +8,7 @@ const parts = require('./libs/parts');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
+  build: path.join(__dirname, 'public'),
   components: path.join(__dirname, 'app', 'components'),
   data: path.join(__dirname, 'app', 'data'),
   libs: path.join(__dirname, 'app', 'libs'),
