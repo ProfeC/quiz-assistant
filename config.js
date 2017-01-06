@@ -9,7 +9,11 @@ export const logStars = function(message) {
 };
 
 export default {
-  port: env.PORT || 8080
+  port: env.PORT || 8080,
+  host: env.HOST || '0.0.0.0',
+  get serverUrl() {
+    return `http://${this.host}:${this.port}`;
+  }
 };
 
-// REF:  https://github.com/jscomplete/learn-fullstack-javascript/blob/v2.1-end/config.js
+// REF:  https://github.com/jscomplete/learn-fullstack-javascript/
