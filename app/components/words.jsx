@@ -10,10 +10,6 @@ import PageFooter from '../views/page-footer'
 import CurrentWord from './show-current-word'
 import CorrectSpelling from './show-correct-spelling'
 
-// NOTE: Data
-// import data from '../data/20161031.json'
-import data from '../data/20161127.json'
-
 export default class Words extends React.Component {
   constructor (props) {
     super(props)
@@ -159,7 +155,6 @@ export default class Words extends React.Component {
     // let wordCount = Utils.getCount(this.state.wordList.spellingWords)
     // console.info(wordCount)
 
-
     return (
       <section id="rapper">
         <PageHeader title={ this.state.title } skill={this.state.skill}/>
@@ -181,7 +176,7 @@ export default class Words extends React.Component {
 }
 
 Words.defaultProps = {
-  urlList: Utils.getUrlParam('list') || '20161121',
+  urlList: Utils.getUrlParam('list') || '20161127',
   displayTime: Utils.getUrlParam('displayTime')
   // countSpelling: Utils.getCount(this.wordList.spellingWords)
 }
