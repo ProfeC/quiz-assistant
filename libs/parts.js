@@ -84,7 +84,8 @@ exports.extractCSS = function(paths) {
       ]
     },
     plugins: [
-      new ExtractTextPlugin('[name].[chunkhash].css')
+      // new ExtractTextPlugin('[name].[chunkhash].css')
+      new ExtractTextPlugin('[name].css')
     ]
   };
 }
@@ -102,7 +103,8 @@ exports.extractSass = function(paths) {
       ]
     },
     plugins: [
-      new ExtractTextPlugin('[name].[chunkhash].css')
+      // new ExtractTextPlugin('[name].[chunkhash].css')
+      new ExtractTextPlugin('[name].css')
     ]
   };
 }
