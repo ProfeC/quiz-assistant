@@ -14,6 +14,15 @@ server.get('/', (req, res) => {
   });
 });
 
+server.get('/words/:list', (req, res) => {
+  // res.send(req.params);
+  res.redirect('/?list=' + req.params.list)
+
+  // res.render('index', {
+  //   content: '...'
+  // });
+});
+
 server.use('/api', apiRouter);
 server.use(express.static('public'));
 
