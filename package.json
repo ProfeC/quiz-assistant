@@ -56,9 +56,10 @@
   },
   "scripts": {
     "build": "webpack --progress",
+    "watch": "webpack --progress --watch -d",
     "deploy": "gh-pages -d build",
     "start": "nodemon --exec babel-node server.js --ignore public/",
-    "start-dev": "webpack-dev-server --progress",
+    "start-devserver": "webpack-dev-server --progress",
     "stats": "webpack --profile --json > stats.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
