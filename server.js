@@ -6,6 +6,8 @@ const server = express();
 
 server.set('view engine', 'ejs');
 
+// import './serverRender';
+
 server.get('/', (req, res) => {
   res.render('index', {
     content: '...'
