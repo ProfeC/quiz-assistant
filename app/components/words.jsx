@@ -177,11 +177,11 @@ export default class Words extends React.Component {
   }
 }
 
-Words.defaultProps = {
-  urlList: Utils.getUrlParam('list') || '20161127',
-  displayTime: Utils.getUrlParam('displayTime')
-  // countSpelling: Utils.getCount(this.wordList.spellingWords)
-}
+// Words.defaultProps = {
+//   urlList: Utils.getUrlParam('list') || '20161127',
+//   displayTime: Utils.getUrlParam('displayTime')
+//   // countSpelling: Utils.getCount(this.wordList.spellingWords)
+// }
 
 
 // NOTE: Render the app on the page.
