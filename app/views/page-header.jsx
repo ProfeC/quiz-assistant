@@ -10,7 +10,7 @@ class PageHeader extends React.Component {
   render () {
     return (
       <header>
-        <h3><em>"{ this.props.title }"</em> Spelling Quiz Assistant</h3>
+        <h3><em>"{ this.props.title }"</em></h3>
         <p className="skills">{this.props.skill}</p>
       </header>
     )
