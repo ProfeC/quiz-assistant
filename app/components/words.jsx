@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 // import ReactDOM from 'react-dom'
 import * as Utils from '../libs/utils'
@@ -15,26 +16,16 @@ export default class Words extends React.Component {
     super(props)
     this.displayName = 'Spelling Words Application'
 
-    const wordList = Utils.getList(this.props.urlList)
-    const title = wordList.title
-    const skill = wordList.skill
-
     this.state = {
       currentSpelling: '',
       currentWord: '',
       displayTime: 5000,
-      hfWords: wordList.hfwords,
-      hfWordsCount: wordList.hfwords.length,
       showWord: true,
-      skill: skill,
-      skillWords: wordList.skillWords,
-      skillWordsCount: wordList.skillWords.length,
+      skill: '',
       spellingChecked: false,
       spellingMatches: false,
-      spellingWords: wordList.spellingWords,
-      spellingWordsCount: wordList.spellingWords.length,
-      title: title,
-      wordList: wordList
+      title: '',
+      wordList: {}
     }
 
     // Scope functions...
@@ -52,10 +43,20 @@ export default class Words extends React.Component {
   }
 
   componentDidMount () {
-    // console.info("Component Did Mount")
+    // console.info('Component Did Mount')
+    axios.get('/api/words/' + this.props.urlList)
+      .then( resp => {
+        console.info(resp.data.wordList);
+        this.setState({
+          wordList: resp.data.wordList,
+          title: resp.data.wordList.title,
+          skill: resp.data.wordList.skill
+        });
 
-    // NOTE: Get a random Word
-    this.getRandomWord()
+        // NOTE: Get a random Word
+        this.getRandomWord();
+      })
+      .catch(console.error);
   }
 
   componentWillUpdate () {
@@ -76,8 +77,9 @@ export default class Words extends React.Component {
     // console.info(intCount)
 
     // const rndNum = Math.floor(Math.random() * this.state.wordList.spellingWords.length)
-    const rndNum = Math.floor(Math.random() * this.state.spellingWords.length)
-    const wrd = this.state.spellingWords[rndNum]
+    // const rndNum = Math.floor(Math.random() * this.state.spellingWords.length)
+    const rndNum = Math.floor(Math.random() * this.state.wordList.spellingWords.length)
+    const wrd = this.state.wordList.spellingWords[rndNum]
     // console.info(wrd)
     this.displayWord(wrd)
     this.setState({currentWord: wrd})
