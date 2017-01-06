@@ -74,10 +74,12 @@ switch(process.env.npm_lifecycle_event) {
         devtool: 'source-map',
         output: {
           path: PATHS.build,
-          filename: '[name].[chunkhash].js',
+          // filename: '[name].[chunkhash].js',
+          filename: '[name].js',
           // This is used for require.ensure. The setup
           // will work without but this is useful to set.
-          chunkFilename: '[chunkhash].js'
+          // chunkFilename: '[chunkhash].js'
+          chunkFilename: '.js'
         }
       },
       parts.clean(PATHS.build),
