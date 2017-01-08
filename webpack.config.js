@@ -33,7 +33,8 @@ const common = {
 
   // NOTE: Don't remove ' '. Imports without an extension won't work without it.
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    modulesDirectories: ['node_modules']
   },
 
   module: {

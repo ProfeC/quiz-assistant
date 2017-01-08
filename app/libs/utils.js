@@ -3,8 +3,8 @@ import React from 'react'
 
 // NOTE: Require data files.
 // FIX: THERE MUST BE A BETTER WAY TO DO THIS!
-// const data_20161024 = require('../data/20161024.json')
-import data_20161024_b from '../data/20161024.json'
+const data_fileList = require('../data/file-list.json')
+const data_20161024 = require('../data/20161024.json')
 const data_20161031 = require('../data/20161031.json')
 const data_20161107 = require('../data/20161107.json')
 const data_20161121 = require('../data/20161121.json')
@@ -29,7 +29,7 @@ export function getSpellingWords(list) {
 
   console.info('utils.getSpellingWords()')
   console.info(eval('data_' + list))
-  return eval('data_' + list).spellingWords
+  return eval('data_' + list)
 }
 
 // NOTE: Get number of items.

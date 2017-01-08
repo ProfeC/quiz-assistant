@@ -63,3 +63,10 @@ button {
 		padding: 3px 21px;
 	}
 }
+
+nav {
+	&.spelling {
+		 float:left;
+		 margin-right: 13px;
+	}
+}
