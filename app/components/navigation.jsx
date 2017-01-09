@@ -12,7 +12,7 @@ const pushState = (obj, url) =>
 export default class Navigation extends React.Component {
   constructor (props) {
     super(props)
-    this.displayName = 'Main Navigation'
+    this.displayName = this.props.title
 
     this.state = {
       navList: null
