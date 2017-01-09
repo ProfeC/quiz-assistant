@@ -3,8 +3,10 @@ import React from 'react'
 import * as Utils from '../libs/utils'
 
 // NOTE: Layout
+import Nav from './navigation'
 import PageHeader from '../views/page-header'
 import PageFooter from '../views/page-footer'
+import Words from './words'
 
 const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
@@ -44,6 +46,13 @@ export default class App extends React.Component {
     return (
       <section id="rapper">
         <PageHeader title={ this.displayName } />
+        <section id="side-nav">
+          <Nav source={this.props.navSource} category={this.props.navCategory} className="side-nav" />
+        </section>
+        <section id="main">
+          <Words urlList={this.props.urlList} displayTime={this.props.displayTime} />
+        </section>
+
       </section>
     )
   }
