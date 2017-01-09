@@ -1,7 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,300,700);
 
-#root {
+body {
 	font-family: 'Droid Sans';
+	font-size: 1.25em;
+	padding: 0 30px;
+}
+
+#root {
 	width: 1000px;
 	margin: 30px auto;
 	text-align: center;
@@ -66,7 +71,19 @@ button {
 
 nav {
 	&.spelling {
-		 float:left;
-		 margin-right: 13px;
+		float:left;
+		margin-right: 13px;
+
+		& ul {
+			padding-left: 0;
+
+			& li {
+				list-style-type: none;
+			}
+		}
+	}
+
+	a {
+		text-decoration: none;
 	}
 }
