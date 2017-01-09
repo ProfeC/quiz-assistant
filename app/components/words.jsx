@@ -49,6 +49,7 @@ export default class Words extends React.Component {
         console.info(resp.data.wordList);
         this.setState({
           wordList: resp.data.wordList,
+          spellingWordsCount: resp.data.wordList.spellingWords.length,
           title: resp.data.wordList.title,
           skill: resp.data.wordList.skill
         });
