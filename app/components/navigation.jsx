@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React from 'react'
-// import ReactDOM from 'react-dom'
 import * as Utils from '../libs/utils'
 
 // NOTE: Layout
@@ -29,31 +28,31 @@ export default class Navigation extends React.Component {
   componentDidMount () {
     // console.info("Component Did Mount")
 
-    if (this.props.category) {
-      this.url = '/api/files/' + this.props.source + '/' + this.props.category;
-      this.resp = 'resp.data.category'
-      console.log('category')
+    // if (this.props.category) {
+    //   this.url = '/api/files/' + this.props.source + '/' + this.props.category;
+    //   this.resp = 'resp.data.category'
+    //   console.log('category')
 
-      this.setState({
-        category: this.props.category
-      })
-    } else {
-      this.url = '/api/files/' + this.props.source;
-      this.resp = 'resp.data'
-      console.log('no category')
-    }
+    //   this.setState({
+    //     category: this.props.category
+    //   })
+    // } else {
+    //   this.url = '/api/files/' + this.props.source;
+    //   this.resp = 'resp.data'
+    //   console.log('no category')
+    // }
 
-    axios.get(this.url)
-      .then( resp => {
-        console.info(resp)
-        console.info(resp.data.category)
-        console.info(eval(this.resp))
+    // axios.get(this.url)
+    //   .then( resp => {
+    //     console.info(resp)
+    //     console.info(resp.data.category)
+    //     console.info(eval(this.resp))
 
-        this.setState({
-          data: resp.data
-        })
-      })
-      .catch(console.error)
+    //     this.setState({
+    //       data: eval(this.resp)
+    //     })
+    //   })
+    //   .catch(console.error)
 
   }
 
@@ -81,9 +80,9 @@ export default class Navigation extends React.Component {
   // TODO: Iterate over the received nav items.
 
   // NOTE: Handle clicks
-    handleClick() {
-      console.log(this.props.navID)
-    }
+    // handleClick() => {
+    //   console.log(this.props)
+    // };
 
 
   render () {
@@ -91,6 +90,7 @@ export default class Navigation extends React.Component {
       <nav className={this.state.category}>
         <ul>
           <li className="heading">{this.state.category}</li>
+          <li onClick={this.handleClick}>Jan's New Home Dynamic</li>
           <li onClick={this.handleClick}><a href="/words/20170109" title="Skill: controlled or, ore - ending: es; plural es">Jan's New Home</a></li>
           <li><a href="/words/20161127" title="Skill: long e (e, ee) Syllables VCCV pattern">Honey Bees</a></li>
           <li><a href="/words/20161121" title="Skill: long u (CVCe) Long e (CVCe)">Life in the Forest</a></li>

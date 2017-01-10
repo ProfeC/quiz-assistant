@@ -74,8 +74,8 @@ export function fetchSpellingWords(list) {
       return response.json();
     })
   .then(function(data) {
-    console.log(data);
-    console.log(data.spellingWords);
+    // console.log(data);
+    // console.log(data.spellingWords);
     return data.spellingWords;
   })
   .catch( function( err ) {
@@ -96,20 +96,20 @@ export function handleSpellingCheck (e, ...props) {
 
     // alert('Text field value is: ' + this.state.currentSpelling + '\n\nThe word was: ' + this.state.currentWord)
 
-    if (this.state.currentSpelling === this.state.currentWord) {
+  if (this.state.currentSpelling === this.state.currentWord) {
       // alert('Spellings match...')
-      this.setState({
-        spellingMatches: true,
-        spellingChecked: true
-      })
-    } else {
+    this.setState({
+      spellingMatches: true,
+      spellingChecked: true
+    })
+  } else {
       // alert('Spellings don\'t match...')
-      this.setState({
-        spellingMatches: false,
-        spellingChecked: true
-      })
-    }
+    this.setState({
+      spellingMatches: false,
+      spellingChecked: true
+    })
   }
+}
 
 // NOTE: Timer Functions
 export function startTimer (time, id, myCallback) {

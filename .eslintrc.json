@@ -3,17 +3,29 @@
     "eslint:recommended",
     "plugin:react/recommended"
   ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
   "plugins": [
     "react"
   ],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
+    "commonjs": true,
+    "es6": true,
     "node": true
   },
   "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": ["error","unix"],
     // Disable `no-console` rule
-    "no-console": 0,
+    // "no-console": 0,
+    "no-console": ["warn", { "allow": ["info", "error"] }],
     // Give a warning if identifiers contain underscores
     "no-underscore-dangle": 1,
     // Default to single quotes and raise an error if something else is used

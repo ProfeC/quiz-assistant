@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import * as Utils from './libs/utils'
 
 import App from './components/app'
-import Nav from './components/navigation'
+import Navigation from './components/navigation'
 import Words from './components/words'
 import PageHeader from './views/page-header'
 import PageFooter from './views/page-footer'
@@ -14,7 +14,7 @@ ReactDOM.render(
 )
 
 ReactDOM.render(
-    <Nav source="fileList" category="spelling" className="side-nav" title="Spelling Words" />,
+    <Navigation source="fileList" category="spelling" className="side-nav" title="Spelling Words" />,
   document.getElementById('side-nav')
 )
 
