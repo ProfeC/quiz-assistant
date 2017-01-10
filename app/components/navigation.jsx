@@ -33,6 +33,10 @@ export default class Navigation extends React.Component {
       this.url = '/api/files/' + this.props.source + '/' + this.props.category;
       this.resp = 'resp.data.category'
       console.log('category')
+
+      this.setState({
+        category: this.props.category
+      })
     } else {
       this.url = '/api/files/' + this.props.source;
       this.resp = 'resp.data'
@@ -84,7 +88,7 @@ export default class Navigation extends React.Component {
 
   render () {
     return (
-      <nav className="{this.state.category}">
+      <nav className={this.state.category}>
         <ul>
           <li className="heading">{this.state.category}</li>
           <li onClick={this.handleClick}><a href="/words/20170109" title="Skill: controlled or, ore - ending: es; plural es">Jan's New Home</a></li>
