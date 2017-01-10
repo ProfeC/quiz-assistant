@@ -9,6 +9,7 @@ const data_20161031 = require('../data/20161031.json')
 const data_20161107 = require('../data/20161107.json')
 const data_20161121 = require('../data/20161121.json')
 const data_20161127 = require('../data/20161127.json')
+const data_20170109 = require('../data/20170109.json')
 
 // NOTE: Get requested lists.
 export function getList(list) {

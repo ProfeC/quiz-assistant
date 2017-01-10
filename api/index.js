@@ -15,8 +15,29 @@ router.get('/words/:listID', (req, res) => {
 	res.send({ 'wordList': wordList });
 });
 
-router.get('/files/:source/:category?', (req, res) => {
-  console.info(req.params);
+// NOTE: Get file
+router.get('/files/:source', (req, res) => {
+  // console.info(req.params);
+
+  fileList = Utils.getList(req.params.source)
+    // console.info(fileList);
+  category = req.params.category
+    // console.info(category);
+
+  if (category !== undefined) {
+    categoryList = 'fileList.' + category
+    // console.info(categoryList);
+    // console.info(eval(categoryList));
+
+    res.send({ category: eval(categoryList) });
+  } else {
+    res.send({ 'fileList': fileList });
+  }
+});
+
+// NOTE: Get file categories
+router.get('/files/:source/:category', (req, res) => {
+  // console.info(req.params);
 
   fileList = Utils.getList(req.params.source)
     // console.info(fileList);
