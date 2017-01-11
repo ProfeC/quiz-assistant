@@ -8,11 +8,11 @@ let category = null;
 let categoryList = null;
 
 router.get('/words/:listID', (req, res) => {
-    // res.send(req.params);
+  // res.send(req.params);
 
-    wordList = Utils.getList(req.params.listID)
+  wordList = Utils.getList(req.params.listID)
 
-	res.send({ 'wordList': wordList });
+  res.send({ 'wordList': wordList });
 });
 
 // NOTE: Get file

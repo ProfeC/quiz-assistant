@@ -1,9 +1,10 @@
+import axios from 'axios'
 import React from 'react'
 // import ReactDOM from 'react-dom'
+import Navigation from './navigation'
 import * as Utils from '../libs/utils'
 
 // NOTE: Layout
-import Nav from './navigation'
 import Words from './words'
 
 const pushState = (obj, url) =>
@@ -15,6 +16,8 @@ export default class App extends React.Component {
     this.displayName = 'Main Application'
 
     this.state = {
+      data: null,
+      category: null
     }
 
     // console.info( "\nMounted: 'App'" )
@@ -26,6 +29,32 @@ export default class App extends React.Component {
 
   componentDidMount () {
     // console.info("Component Did Mount")
+
+    if (this.props.category) {
+      this.url = '/api/files/' + this.props.navSource + '/' + this.props.navCategory;
+      this.resp = 'resp.data.category'
+      console.info('category')
+
+      this.setState({
+        category: this.props.navCategory
+      })
+    } else {
+      this.url = '/api/files/' + this.props.navSource;
+      this.resp = 'resp.data'
+      console.info('no category')
+    }
+
+    axios.get(this.url)
+      .then( resp => {
+        console.info(resp)
+        console.info(resp.data.category)
+        console.info(eval(this.resp))
+
+        this.setState({
+          data: eval(this.resp)
+        })
+      })
+      .catch(console.error)
   }
 
   componentWillUpdate () {
@@ -42,7 +71,14 @@ export default class App extends React.Component {
 
   render () {
     return (
-        <Words urlList={this.props.urlList} displayTime={this.props.displayTime} />
+      <div>
+        <nav className={this.props.category} id="side-nav">
+          <Navigation source={this.props.navSource} category={this.props.navCategory} className="side-nav" data={this.state.data} />
+        </nav>
+        <div>
+          <Words urlList={this.props.urlList} displayTime={this.props.displayTime} />
+        </div>
+      </div>
     )
   }
 }

@@ -1,17 +1,22 @@
 import config from './config';
 import apiRouter from './api';
-
 import express from 'express';
+import serverRender from './serverRender';
+
 const server = express();
 
 server.set('view engine', 'ejs');
 
-// import './serverRender';
 
 server.get('/', (req, res) => {
-  res.render('index', {
-    content: 'Loading Application...'
-  });
+  serverRender().then(({initialMarkup, initialNavigation}) => {
+    res.render('index', {
+      initialMarkup,
+      initialNavigation
+      // content: 'Loading Application...'
+    });
+  })
+  .catch(console.error);
 });
 
 server.get('/words/:list', (req, res) => {
