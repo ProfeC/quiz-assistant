@@ -23,6 +23,11 @@ body {
 			color: rgba(66, 66, 66, 0.25)
 		}
 	}
+
+	#rapper {
+		float: right;
+		margin-left: auto;
+	}
 }
 
 input {
@@ -70,9 +75,15 @@ button {
 }
 
 nav {
+	a {
+		text-decoration: none;
+	}
+
 	&.spelling {
 		float:left;
 		margin-right: 13px;
+		margin-top: 50px;
+		min-height: 100%;
 
 		& ul {
 			padding-left: 0;
@@ -81,9 +92,5 @@ nav {
 				list-style-type: none;
 			}
 		}
-	}
-
-	a {
-		text-decoration: none;
 	}
 }
