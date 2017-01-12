@@ -3,9 +3,18 @@ import * as Utils from '../libs/utils'
 
 // NOTE: Layout
 import PageHeader from '../views/page-header'
+//
+// const NavList = ({items, onNavClick}) => (
+//   <div className="NavList">
+//     <ul>
+//     {items.map(item =>
+//       '<li key={item.id} onClick={onNavClick} {...item}>{item.title}</li>'
+//     )}
+//   </ul>
+//   </div>
+// );
 
-const pushState = (obj, url) =>
-  window.history.pushState(obj, '', url);
+// let data = null
 
 export default class Navigation extends React.Component {
   constructor (props) {
@@ -17,11 +26,14 @@ export default class Navigation extends React.Component {
 
   componentWillMount () {
     // console.info("Component Will Mount")
+    //
+    // console.log('\n********\nnavigation.jsx will mount\n*********\n ' + this.props.data + '\n**********\n')
   }
 
   componentDidMount () {
     // console.info("Component Did Mount")
-    console.log(this.props);
+    //
+    // console.log('\n********\nnavigation.jsx did mount\n*********\n ' + this.props.data + '\n**********\n')
   }
 
   componentWillUpdate () {
@@ -30,39 +42,26 @@ export default class Navigation extends React.Component {
 
   componentDidUpdate () {
     // console.info("Component Updated")
+
+    // console.log('\n********\nnavigation.jsx did update\n*********\n ' + this.props.data + '\n**********\n')
+    // data = this.props.data
   }
 
   componentWillUnmount () {
     // console.info( "Unmounted ShowCurrentWord" )
   }
 
-  // const ContestList = ({ contests }) => (
-  //   <div className="ContestList">
-  //     {contests.map(contest =>
-  //       <ContestPreview key={contest.id} {...contest} />
-  //     )}
-  //   </div>
-  // );
-
-  // TODO: Iterate over the received nav items.
-
-  // NOTE: Handle clicks
-  handleClick () {
-    console.info(this.props)
-  }
-
-  fetchWords (listID) {
-    console.info(this.props)
-    pushState(
-      {currentListID: listID},
-      '/words/'
-    )
-  }
+    // TODO: Iterate over the received nav items.
+    // const ContestList = ({ contests }) => (
+    //   <div className="ContestList">
+    //     {contests.map(contest =>
+    //       <ContestPreview key={contest.id} {...contest} />
+    //     )}
+    //   </div>
+    // );
 
   render () {
-
-     console.log(this.props.data)
-
+    // console.log(data); // returns null!!!
     return (
       <div>
         <ul>
@@ -79,7 +78,7 @@ export default class Navigation extends React.Component {
   }
 }
 
-  // 
+  //
   // <ul>
   //   {this.props.data.map(item => '<li key={item.id} {...item}>' + item.title + '</li>')}
   // </ul>

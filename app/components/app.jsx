@@ -69,6 +69,14 @@ export default class App extends React.Component {
     // console.info( "Unmounted ShowCurrentWord" )
   }
 
+  // fetchWords = (listID) => {
+  //   console.info(this.props)
+  //   pushState(
+  //     {currentListID: listID},
+  //     `/words/${listID}`
+  //   )
+  // }
+
   render () {
     return (
       <div>
