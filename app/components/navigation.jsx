@@ -21,7 +21,7 @@ export default class Navigation extends React.Component {
 
   componentDidMount () {
     // console.info("Component Did Mount")
-
+    console.log(this.props);
   }
 
   componentWillUpdate () {
@@ -61,14 +61,10 @@ export default class Navigation extends React.Component {
 
   render () {
 
-     console.log()
+     console.log(this.props.data)
 
     return (
       <div>
-        <ul>
-          {this.props.data.map(item => '<li key={item.id} {...item}>' + item.title + '</li>')}
-        </ul>
-        <hr />
         <ul>
           <li className="heading">{this.props.category}</li>
           <li><a href="/words/20170109" title="Skill: controlled or, ore - ending: es; plural es">Jan's New Home</a></li>
@@ -83,6 +79,8 @@ export default class Navigation extends React.Component {
   }
 }
 
-Navigation.propTypes = {
-  nav: React.PropTypes.String
-}
+  // 
+  // <ul>
+  //   {this.props.data.map(item => '<li key={item.id} {...item}>' + item.title + '</li>')}
+  // </ul>
+  // <hr />
