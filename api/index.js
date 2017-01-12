@@ -15,44 +15,21 @@ router.get('/words/:listID', (req, res) => {
   res.send({ 'wordList': wordList });
 });
 
-// NOTE: Get file
-router.get('/files/:source', (req, res) => {
-  // console.info(req.params);
-
-  fileList = req.params.source
-  // console.info(fileList);
-  category = req.params.category
-  // console.info(category);
-
-  if (category !== undefined) {
-    categoryList = 'fileList.' + category
-    // console.info(categoryList);
-    // console.info(eval(categoryList));
-    res.send({ category: eval(categoryList) });
-  } else {
-    // console.info(fileList)
-    res.send({ 'fileList': fileList });
-  }
-});
-
 // NOTE: Get file categories
-router.get('/files/:source/:category', (req, res) => {
+router.get('/files/:source/:category?', (req, res) => {
   // console.info(req.params);
 
   fileList = Utils.getList(req.params.source)
-  // console.info(fileList);
+  console.info(fileList);
 
-  category = req.params.category
-  // console.info(category);
-
-  if (category !== undefined) {
-    categoryList = 'fileList.' + category
+  if (req.params.category !== undefined) {
+    categoryList = 'fileList.' + eval(req.params.category)
     // console.info(categoryList);
-    // console.info(eval(categoryList));
+    console.info(eval(categoryList));
     res.send({ category: eval(categoryList) });
   } else {
     // console.info(fileList)
-    res.send({ 'fileList': fileList });
+    res.send({ 'navigation': fileList });
   }
 });
 

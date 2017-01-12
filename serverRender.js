@@ -9,15 +9,15 @@ import axios from 'axios';
 // FIXME: Causes application crash because the server doesn't have access to the URL parameters the same way the client does.
 // FIXME: Ref => https://www.lynda.com/Express-js-tutorials/Fetching-data-from-server-side/533304/557625-4.html
 
-const serverRender = () => {
+const serverRender = (list) => {
   axios.get(`${config.serverUrl}/api/files/navigation`)
     .then(resp => {
       console.info(resp.data)
-      console.info({initialMarkup: ReactDOMServer.renderToString(<App list='2010109' />), initialNavigation: resp.data})
+      // console.info({initialMarkup: ReactDOMServer.renderToString(<App list={list} />), initialNavigation: resp.data})
 
       return {
         initialMarkup: ReactDOMServer.renderToString(
-          <App list='2010109' />
+          <App list={list} />
         ),
         initialNavigation: resp.data
       };
