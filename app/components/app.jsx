@@ -30,10 +30,10 @@ export default class App extends React.Component {
   componentDidMount () {
     // console.info("Component Did Mount")
 
-    if (this.props.category) {
+    if (this.props.navCategory) {
       this.url = '/api/files/' + this.props.navSource + '/' + this.props.navCategory;
       this.resp = 'resp.data.category'
-      console.info('category')
+    //   console.info('category')
 
       this.setState({
         category: this.props.navCategory
@@ -41,14 +41,14 @@ export default class App extends React.Component {
     } else {
       this.url = '/api/files/' + this.props.navSource;
       this.resp = 'resp.data'
-      console.info('no category')
+    //   console.info('no category')
     }
 
     axios.get(this.url)
       .then( resp => {
-        console.info(resp)
-        console.info(resp.data.category)
-        console.info(eval(this.resp))
+        // console.info(resp)
+        // console.info(resp.data.category)
+        // console.info(eval(this.resp))
 
         this.setState({
           data: eval(this.resp)
@@ -83,6 +83,6 @@ export default class App extends React.Component {
   }
 }
 
-App.propTypes = {
-  dataList: React.PropTypes.String
-}
+// App.propTypes = {
+//   dataList: React.PropTypes.String
+// }

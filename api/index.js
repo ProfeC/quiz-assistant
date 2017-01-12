@@ -17,20 +17,20 @@ router.get('/words/:listID', (req, res) => {
 
 // NOTE: Get file
 router.get('/files/:source', (req, res) => {
-  // console.info(req.params);
+  console.info(req.params);
 
-  fileList = Utils.getList(req.params.source)
-    // console.info(fileList);
+  fileList = req.params.source
+  console.info(fileList);
   category = req.params.category
-    // console.info(category);
+  console.info(category);
 
   if (category !== undefined) {
     categoryList = 'fileList.' + category
     // console.info(categoryList);
     // console.info(eval(categoryList));
-
     res.send({ category: eval(categoryList) });
   } else {
+    // console.info(fileList)
     res.send({ 'fileList': fileList });
   }
 });
@@ -40,17 +40,18 @@ router.get('/files/:source/:category', (req, res) => {
   // console.info(req.params);
 
   fileList = Utils.getList(req.params.source)
-    // console.info(fileList);
+  console.info(fileList);
+
   category = req.params.category
-    // console.info(category);
+  console.info(category);
 
   if (category !== undefined) {
     categoryList = 'fileList.' + category
-    // console.info(categoryList);
-    // console.info(eval(categoryList));
-
+    console.info(categoryList);
+    console.info(eval(categoryList));
     res.send({ category: eval(categoryList) });
   } else {
+    console.info(fileList)
     res.send({ 'fileList': fileList });
   }
 });

@@ -28,8 +28,8 @@ export function getSpellingWords(list) {
     return false
   }
 
-  console.info('utils.getSpellingWords()')
-  console.info(eval('data_' + list))
+  // console.info('utils.getSpellingWords()')
+  // console.info(eval('data_' + list))
   return eval('data_' + list)
 }
 

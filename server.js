@@ -9,14 +9,14 @@ server.set('view engine', 'ejs');
 
 
 server.get('/', (req, res) => {
-  serverRender().then(({initialMarkup, initialNavigation}) => {
+  // serverRender().then(({initialMarkup, initialNavigation}) => {
     res.render('index', {
-      initialMarkup,
-      initialNavigation
-      // content: 'Loading Application...'
+  //     initialMarkup,
+  //     initialNavigation
+      content: 'Loading Application...'
     });
-  })
-  .catch(console.error);
+  // })
+  // .catch(console.error);
 });
 
 server.get('/words/:list', (req, res) => {

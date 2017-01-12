@@ -60,10 +60,13 @@ export default class Navigation extends React.Component {
   }
 
   render () {
+
+     console.log()
+
     return (
       <div>
         <ul>
-          {this.props.data.fileList.spelling.map(item => '<li key={item.id} {...item}>' + item.title + '</li>')}
+          {this.props.data.map(item => '<li key={item.id} {...item}>' + item.title + '</li>')}
         </ul>
         <hr />
         <ul>
