@@ -51,7 +51,7 @@ export default class App extends React.Component {
         // console.info(eval(this.resp))
 
         this.setState({
-          data: eval(this.resp)
+          data: resp.data
         })
       })
       .catch(console.error)
