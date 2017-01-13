@@ -2,6 +2,7 @@
 	<section id="root"><%- content -%></section>
 
 	<script type="text/javascript">
-		window.list = '<%- list -%>';
+		window.list = <%- list -%>;
+		window.content = <%- JSON.stringify(content) -%>;
 	</script>
 <%- include('site-footer') -%>
