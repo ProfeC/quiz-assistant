@@ -18,9 +18,10 @@ server.get('/', (req, res) => {
     //   console.log(resp.data)
 
     res.render('index', {
-      content: ReactDOMServer.renderToString(
+      initialMarkup: ReactDOMServer.renderToString(
         <App list='20170109' displayTime='13' navSource='navigation' navCategory='spelling' />),
-      list: 20170109
+      list: 20170109,
+      initialData: resp.data
     });
   })
   .catch(console.error);
