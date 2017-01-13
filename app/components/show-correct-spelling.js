@@ -1,36 +1,34 @@
 import React from 'react'
 
 class ShowCorrectSpelling extends React.Component {
-  constructor (props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    this.displayName = 'Show Correct Spelling'
+        this.displayName = 'Show Correct Spelling'
 
-    // console.info( "\nMounted: 'Correct Spelling' Component." )
-  }
-
-  render () {
-    const showMe = this.props.show
-    const checkMe = this.props.checked
-    // console.log({showMe})
-    // console.log({checkMe})
-
-    if (!this.props.checked) {
-      return (
-        null
-      )
+        // console.info( "\nMounted: 'Correct Spelling' Component." )
     }
 
-    if (this.props.checked && !this.props.show) {
-      return (
-        <h2 className="incorrect">Incorrect!</h2>
-      )
-    }
+    render() {
+        const showMe = this.props.show
+        const checkMe = this.props.checked
+        // console.log({showMe})
+        // console.log({checkMe})
 
-    return (
-        <h2 className="correct">Correct!</h2>
-    )
-  }
+        if (!this.props.checked) {
+            return (null)
+        }
+
+        if (this.props.checked && !this.props.show) {
+            return (
+                <h2 className="incorrect">Incorrect!</h2>
+            )
+        }
+
+        return (
+            <h2 className="correct">Correct!</h2>
+        )
+    }
 }
 
 export default ShowCorrectSpelling
