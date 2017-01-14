@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 // import ReactDOM from 'react-dom'
 import Navigation from './navigation'
+import QuizGrid from './quiz-grid'
 import * as Utils from '../libs/utils'
 
 // NOTE: Layout
@@ -80,6 +81,7 @@ export default class App extends React.Component {
   render () {
     return (
       <div>
+          <QuizGrid />
         <nav className={this.props.category} id="side-nav">
           <Navigation source={this.props.navSource} category={this.props.navCategory} className="side-nav" data={this.state.data} />
         </nav>
