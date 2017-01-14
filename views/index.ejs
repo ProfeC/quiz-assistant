@@ -1,8 +1,10 @@
 <%- include('site-header') -%>
-	<section id="root"><%- content -%></section>
+	<section id="root">
+		<%- initialMarkup -%>
+	</section>
 
 	<script type="text/javascript">
 		window.list = <%- list -%>;
-		window.content = <%- JSON.stringify(content) -%>;
+		window.initialData = <%- JSON.stringify(initialData) -%>
 	</script>
-<%- include('site-footer') -%>
+	<%- include('site-footer') -%>
