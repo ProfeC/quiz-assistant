@@ -12,19 +12,32 @@ const server = express();
 server.set('view engine', 'ejs');
 
 server.get('/', (req, res) => {
-  // serverRender('20170109', '7', 'navigation', 'spelling')
-  axios.get(`${config.serverUrl}/api/words/20170109`)
-  .then(resp => {
-    //   console.log(resp.data)
+    // serverRender('20170109', '7', 'navigation', 'spelling')
 
-    res.render('index', {
-      initialMarkup: ReactDOMServer.renderToString(
-        <App list='20170109' displayTime='13' navSource='navigation' navCategory='spelling' />),
-      list: 20170109,
-      initialData: resp.data
-    });
-  })
-  .catch(console.error);
+    // NOTE: Get quiz list data
+    let getQuizCardData = () => {
+        return axios.get(`${config.serverUrl}/api/files/navigation`)
+    }
+
+    // NOTE: Get initial quiz data
+    let getQuizData = () => {
+        return axios.get(`${config.serverUrl}/api/words/20170109`)
+    }
+
+    axios.all([getQuizData(), getQuizCardData()])
+    .then(resp => {
+        // console.info(resp[0].data) // Returns Navigation.
+        // console.info(resp[1].data) // Returns Word list.
+
+        res.render('index', {
+            initialMarkup: ReactDOMServer.renderToString(
+            <App list='20170109' displayTime='13' navSource='navigation' navCategory='spelling' />),
+            list: 20170109,
+            initialData: resp[0].data,
+            initialCardData: resp[1].data
+        });
+    })
+    .catch(console.error);
 });
 
 server.get('/words/:list', (req, res) => {
