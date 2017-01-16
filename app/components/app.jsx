@@ -12,85 +12,85 @@ const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
 
 export default class App extends React.Component {
-  constructor (props) {
-    super(props)
-    this.displayName = 'Main Application'
+    constructor (props) {
+        super(props)
+        this.displayName = 'Main Application'
 
-    this.state = {
-      data: null,
-      category: null
+        this.state = {
+            data: null,
+            category: null
+        }
+
+        // console.info( "\nMounted: 'App'" )
     }
 
-    // console.info( "\nMounted: 'App'" )
-  }
-
-  componentWillMount () {
-    // console.info("Component Will Mount")
-  }
-
-  componentDidMount () {
-    // console.info("Component Did Mount")
-
-    if (this.props.navCategory) {
-      this.url = '/api/files/' + this.props.navSource + '/' + this.props.navCategory;
-      this.resp = 'resp.data.category'
-    //   console.info('category')
-
-      this.setState({
-        category: this.props.navCategory
-      })
-    } else {
-      this.url = '/api/files/' + this.props.navSource;
-      this.resp = 'resp.data'
-    //   console.info('no category')
+    componentWillMount () {
+        // console.info("Component Will Mount")
     }
 
-    axios.get(this.url)
-      .then( resp => {
-        // console.info(resp)
-        // console.info(resp.data.category)
-        // console.info(eval(this.resp))
+    componentDidMount () {
+        // console.info("Component Did Mount")
 
-        this.setState({
-          data: resp.data
+        if (this.props.navCategory) {
+            this.url = '/api/files/' + this.props.navSource + '/' + this.props.navCategory;
+            this.resp = 'resp.data.category'
+            //   console.info('category')
+
+            this.setState({
+                category: this.props.navCategory
+            })
+        } else {
+            this.url = '/api/files/' + this.props.navSource;
+            this.resp = 'resp.data'
+            //   console.info('no category')
+        }
+
+        axios.get(this.url)
+        .then( resp => {
+            // console.info(resp)
+            // console.info(resp.data.category)
+            // console.info(eval(this.resp))
+
+            this.setState({
+                data: resp.data
+            })
         })
-      })
-      .catch(console.error)
-  }
+        .catch(console.error)
+    }
 
-  componentWillUpdate () {
-    // console.info("Component Will Update")
-  }
+    componentWillUpdate () {
+        // console.info("Component Will Update")
+    }
 
-  componentDidUpdate () {
-    // console.info("Component Updated")
-  }
+    componentDidUpdate () {
+        // console.info("Component Updated")
+    }
 
-  componentWillUnmount () {
-    // console.info( "Unmounted ShowCurrentWord" )
-  }
+    componentWillUnmount () {
+        // console.info( "Unmounted ShowCurrentWord" )
+    }
 
-  // fetchWords = (listID) => {
-  //   console.info(this.props)
-  //   pushState(
-  //     {currentListID: listID},
-  //     `/words/${listID}`
-  //   )
-  // }
+    // fetchWords = (listID) => {
+    //   console.info(this.props)
+    //   pushState(
+    //     {currentListID: listID},
+    //     `/words/${listID}`
+    //   )
+    // }
 
-  render () {
-    return (
-      <div>
-          <QuizGrid />
-        <nav className={this.props.category} id="side-nav">
-          <Navigation source={this.props.navSource} category={this.props.navCategory} className="side-nav" data={this.state.data} />
-        </nav>
-        <div>
-          <Words urlList={this.props.urlList} displayTime={this.props.displayTime} />
-        </div>
-      </div>
-    )
-  }
+    render () {
+        return (
+            <div>
+                <QuizGrid />
+                <nav className={this.props.category} id="side-nav">
+                    <Navigation source={this.props.navSource} category={this.props.navCategory} className="side-nav" data={this.state.data} />
+                </nav>
+                <div>
+                    <Words urlList={this.props.urlList} displayTime={this.props.displayTime} />
+                </div>
+            </div>
+        )
+    }
 }
 
 // App.propTypes = {
