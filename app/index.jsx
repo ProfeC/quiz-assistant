@@ -13,11 +13,11 @@ ReactDOM.render(
 )
 
 ReactDOM.render(
-    <App urlList={Utils.getUrlParam('list') || '20170109'} displayTime={Utils.getUrlParam('displayTime')} navSource="navigation" navCategory="spelling" quizzes={window.avaiableQuizzes} />,
+    <App quizID={window.list} displayTime={window.displayTime} navSource="navigation" navCategory="spelling" quizzes={window.avaiableQuizzes} />,
   document.getElementById('root')
 )
 
 // ReactDOM.render(
-//     <Words urlList={Utils.getUrlParam('list') || '20161127'} displayTime={Utils.getUrlParam('displayTime')} />,
+//     <Words quizID={Utils.getUrlParam('list') || '20161127'} displayTime={Utils.getUrlParam('displayTime')} />,
 //   document.getElementById('root')
 // )

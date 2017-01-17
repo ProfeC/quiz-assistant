@@ -18,7 +18,8 @@ export default class App extends React.Component {
 
         this.state = {
             data: null,
-            category: null
+            category: null,
+            quizID: this.props.quizID
         }
 
         // console.info( "\nMounted: 'App'" )
@@ -90,7 +91,7 @@ export default class App extends React.Component {
                     <Navigation source={this.props.navSource} category={this.props.navCategory} className="side-nav" data={this.state.data} />
                 </nav>
                 <div>
-                    <Words urlList={this.props.urlList} displayTime={this.props.displayTime} />
+                    <Words quizID={this.state.quizID} displayTime={this.props.displayTime} />
                 </div>
             </div>
         )

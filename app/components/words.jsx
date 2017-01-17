@@ -44,7 +44,7 @@ export default class Words extends React.Component {
 
     componentDidMount() {
         // console.info('Component Did Mount')
-        axios.get('/api/words/' + this.props.urlList).then(resp => {
+        axios.get('/api/words/' + this.props.quizID).then(resp => {
             console.info(resp.data.wordList);
             this.setState({wordList: resp.data.wordList, spellingWordsCount: resp.data.wordList.spellingWords.length, title: resp.data.wordList.title, skill: resp.data.wordList.skill});
 
@@ -160,7 +160,7 @@ export default class Words extends React.Component {
 }
 
 // Words.defaultProps = {
-//   urlList: Utils.getUrlParam('list') || '20161127',
+//   quizID: Utils.getUrlParam('list') || '20161127',
 //   displayTime: Utils.getUrlParam('displayTime')
 //   // countSpelling: Utils.getCount(this.wordList.spellingWords)
 // }
