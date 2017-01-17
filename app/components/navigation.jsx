@@ -2,7 +2,7 @@ import React from 'react'
 import * as Utils from '../libs/utils'
 
 // NOTE: Layout
-import PageHeader from '../views/page-header'
+import PageHeader from './page-header'
 //
 // const NavList = ({items, onNavClick}) => (
 //   <div className="NavList">

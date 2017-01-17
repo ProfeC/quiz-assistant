@@ -4,8 +4,8 @@ import * as Utils from './libs/utils'
 
 import App from './components/app'
 import Words from './components/words'
-import PageHeader from './views/page-header'
-import PageFooter from './views/page-footer'
+import PageHeader from './components/page-header'
+import PageFooter from './components/page-footer'
 
 ReactDOM.render(
     <PageHeader title='Quiz Assistant - Main Application' skill='' />,
