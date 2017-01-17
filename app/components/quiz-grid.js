@@ -10,10 +10,8 @@ export default class QuizGrid extends React.Component {
         super(props)
 
         this.state = {
-            data: {},
-            category: null,
-            displayName: 'Available Practice Quizes',
-            spelling: []
+            data: this.props,
+            displayName: this.props.title
         }
 
         // console.info( "\nMounted: 'Quiz Grid'" )
@@ -25,21 +23,6 @@ export default class QuizGrid extends React.Component {
 
     componentDidMount() {
         // console.info("Component Did Mount")
-
-        axios.get('/api/files/navigation').then(resp => {
-            // console.info(resp)
-            // console.info(resp.data.category)
-            // console.info(eval(this.resp))
-
-            let spelling_items = resp.data.all.spelling.map(item => {
-                return <li className="link-item" key={item.id} {...item}>{item.title}</li>
-            })
-
-            this.setState({
-                data: resp.data,
-                spelling: spelling_items
-            })
-        }).catch(console.error)
     }
 
     componentWillUpdate() {
@@ -47,23 +30,28 @@ export default class QuizGrid extends React.Component {
     }
 
     componentDidUpdate() {
-        console.info('Component Updated')
+        // console.info('Component Updated')
     }
 
     componentWillUnmount() {
         // console.info( "Unmounted ShowCurrentWord" )
     }
 
+    handleClick = () => {
+        console.info(this.props.contestName);
+    };
+
     render() {
+
         return (
-            <div>
-                <ul>
-                    {JSON.stringify(this.state.data.all)}
-                </ul>
-                <ul>
-                    {this.state.spelling}
-                </ul>
-            </div>
+            <article onClick="" className="nav-grid">
+                <header>
+                    <h3>{this.state.displayName}</h3>
+                </header>
+                <p>
+                    {this.state.data.subject}
+                </p>
+            </article>
         )
     }
 }

@@ -13,7 +13,7 @@ ReactDOM.render(
 )
 
 ReactDOM.render(
-    <App urlList={Utils.getUrlParam('list') || '20170109'} displayTime={Utils.getUrlParam('displayTime')} navSource="navigation" navCategory="spelling" />,
+    <App urlList={Utils.getUrlParam('list') || '20170109'} displayTime={Utils.getUrlParam('displayTime')} navSource="navigation" navCategory="spelling" cards={window.initialCardData} />,
   document.getElementById('root')
 )
 

@@ -6,6 +6,7 @@ import axios from 'axios';
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import App from './app/components/app'
+import Words from './app/components/words'
 
 const server = express();
 
@@ -31,7 +32,7 @@ server.get('/', (req, res) => {
 
         res.render('index', {
             initialMarkup: ReactDOMServer.renderToString(
-            <App list='20170109' displayTime='13' navSource='navigation' navCategory='spelling' />),
+            <App list='20170109' displayTime='13' navSource='navigation' navCategory='spelling'  cards={resp[1].data} />),
             list: 20170109,
             initialData: resp[0].data,
             initialCardData: resp[1].data
@@ -44,7 +45,7 @@ server.get('/words/:list', (req, res) => {
   // res.send(req.params);
   // res.redirect('/?list=' + req.params.list)
 
-  console.log('list = ' + req.params.list);
+  console.log('/words/:list = ' + req.params.list);
 
   // serverRender()
   // .then(({initialMarkup, initialNavigation, list, content}) => {
@@ -57,15 +58,21 @@ server.get('/words/:list', (req, res) => {
   // })
   // .catch(console.error);
 
-  axios.get(`${config.serverUrl}/api/files/navigation/${req.params.list}`)
-  .then( resp => {
-    console.log(resp.data)
+  // axios.get(`${config.serverUrl}/api/files/navigation/${req.params.list}`)
+  // .then( resp => {
+  //   console.log(resp.data)
+  //
+  //   res.render('index', {content: resp.data, list: req.params.list, initialData: null})
+  // })
+  // .catch(console.error)
 
-    res.render('index', {content: resp.data, list: req.params.list})
-  })
-  .catch(console.error)
-
-
+  res.render('index', {
+      initialMarkup: ReactDOMServer.renderToString(
+      <Words urlList={req.params.list} displayTime='13' navSource='navigation' navCategory='spelling' cards={{'all': {'title':null, 'spelling':[]}}} />),
+      list: req.params.list,
+      initialData: null,
+      initialCardData: null
+  });
 
 
 });
