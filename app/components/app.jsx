@@ -79,9 +79,15 @@ export default class App extends React.Component {
     // }
 
     render () {
+        // console.info(this.props.cards)
+        // let mySpellingCards = this.props.cards.spelling
+        // console.info(mySpellingCards)
+
         return (
             <div>
-                <QuizGrid />
+                {this.props.cards.all.spelling.map( item =>
+                    <QuizGrid key={item.id} {...item} />
+                )}
                 <nav className={this.props.category} id="side-nav">
                     <Navigation source={this.props.navSource} category={this.props.navCategory} className="side-nav" data={this.state.data} />
                 </nav>

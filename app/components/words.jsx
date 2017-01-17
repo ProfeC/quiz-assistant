@@ -35,7 +35,7 @@ export default class Words extends React.Component {
         this.handleSpellingChange = this.handleSpellingChange.bind(this)
         this.handleSpellingCheck = this.handleSpellingCheck.bind(this)
 
-        // console.info( "\nMounted: 'App'" )
+        console.info( '\nMounted: \'Words\'' )
     }
 
     componentWillMount() {
@@ -135,8 +135,9 @@ export default class Words extends React.Component {
 
     render() {
         let currentSpelling = this.state.currentSpelling
+        console.log(currentSpelling)
         // let wordCount = Utils.getCount(this.state.wordList.spellingWords)
-        // console.info(wordCount)
+        // console.info('Words - wordCount: ' + wordCount)
 
         return (
             <section id="rapper">
@@ -163,6 +164,3 @@ export default class Words extends React.Component {
 //   displayTime: Utils.getUrlParam('displayTime')
 //   // countSpelling: Utils.getCount(this.wordList.spellingWords)
 // }
-
-// NOTE: Render the app on the page.
-// ReactDOM.render(<App />, document.getElementById('root'))
