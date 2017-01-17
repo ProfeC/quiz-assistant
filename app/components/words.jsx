@@ -35,7 +35,7 @@ export default class Words extends React.Component {
         this.handleSpellingChange = this.handleSpellingChange.bind(this)
         this.handleSpellingCheck = this.handleSpellingCheck.bind(this)
 
-        console.info( '\nMounted: \'Words\'' )
+        // console.info( '\nMounted: \'Words\'' )
     }
 
     componentWillMount() {

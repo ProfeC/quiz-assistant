@@ -44,14 +44,16 @@ export default class QuizGrid extends React.Component {
     render() {
 
         return (
-            <article onClick="" className="nav-grid">
-                <header>
-                    <h3>{this.state.displayName}</h3>
-                </header>
-                <p>
-                    {this.state.data.subject}
-                </p>
-            </article>
+            {data.cards.all.spelling.map( item =>
+                <article onClick="" className="nav-grid">
+                    <header>
+                        <h3>{item.displayName}</h3>
+                    </header>
+                    <p>
+                        {item.data.subject}
+                    </p>
+                </article>
+            )}
         )
     }
 }
