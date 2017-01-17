@@ -35,7 +35,8 @@ server.get('/', (req, res) => {
             <App list='20170109' displayTime='13' navSource='navigation' navCategory='spelling' quizzes={resp[1].data} />),
             list: 20170109,
             initialData: resp[0].data,
-            avaiableQuizzes: resp[1].data
+            avaiableQuizzes: resp[1].data,
+            displayTime: 13
         });
     })
     .catch(console.error);
@@ -67,7 +68,8 @@ server.get('/words/:list', (req, res) => {
             <App list={req.params.list} displayTime='13' navSource='navigation' navCategory='spelling' quizzes={resp[1].data} />),
             list: `${req.params.list}`,
             initialData: resp[0].data,
-            avaiableQuizzes: resp[1].data
+            avaiableQuizzes: resp[1].data,
+            displayTime: 13
         });
     })
     .catch(console.error);
