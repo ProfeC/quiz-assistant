@@ -4,8 +4,8 @@ import React from 'react'
 import * as Utils from '../libs/utils'
 
 // NOTE: Layout
-import PageHeader from '../views/page-header'
-import PageFooter from '../views/page-footer'
+import PageHeader from './page-header'
+import PageFooter from './page-footer'
 
 // NOTE: Components
 import CurrentWord from './show-current-word'
