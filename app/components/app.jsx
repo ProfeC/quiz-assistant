@@ -3,7 +3,6 @@ import React from 'react'
 // import ReactDOM from 'react-dom'
 import Navigation from './navigation'
 import QuizGrid from './quiz-grid'
-import * as Utils from '../libs/utils'
 
 // NOTE: Layout
 import Words from './words'
@@ -18,8 +17,10 @@ export default class App extends React.Component {
 
         this.state = {
             data: null,
-            category: null,
-            quizID: this.props.quizID
+            quizID: this.props.quizID,
+            quizzes: this.props.quizzes.files,
+            category: this.props.category,
+            displayTime: this.props.displayTime
         }
 
         // console.info( "\nMounted: 'App'" )
@@ -31,32 +32,32 @@ export default class App extends React.Component {
 
     componentDidMount () {
         // console.info("Component Did Mount")
-
-        if (this.props.navCategory) {
-            this.url = '/api/files/' + this.props.navSource + '/' + this.props.navCategory;
-            this.resp = 'resp.data.category'
-            //   console.info('category')
-
-            this.setState({
-                category: this.props.navCategory
-            })
-        } else {
-            this.url = '/api/files/' + this.props.navSource;
-            this.resp = 'resp.data'
-            //   console.info('no category')
-        }
-
-        axios.get(this.url)
-        .then( resp => {
-            // console.info(resp)
-            // console.info(resp.data.category)
-            // console.info(eval(this.resp))
-
-            this.setState({
-                data: resp.data
-            })
-        })
-        .catch(console.error)
+        //
+        // if (this.props.navCategory) {
+        //     this.url = '/api/files/' + this.props.navSource + '/' + this.props.navCategory;
+        //     this.resp = 'resp.data.category'
+        //     //   console.info('category')
+        //
+        //     this.setState({
+        //         category: this.props.navCategory
+        //     })
+        // } else {
+        //     this.url = '/api/files/' + this.props.navSource;
+        //     this.resp = 'resp.data'
+        //     //   console.info('no category')
+        // }
+        //
+        // axios.get(this.url)
+        // .then( resp => {
+        //     // console.info(resp)
+        //     // console.info(resp.data.category)
+        //     // console.info(eval(this.resp))
+        //
+        //     this.setState({
+        //         data: resp.data
+        //     })
+        // })
+        // .catch(console.error)
     }
 
     componentWillUpdate () {
@@ -84,17 +85,27 @@ export default class App extends React.Component {
         // let mySpellingCards = this.props.cards.spelling
         // console.info(mySpellingCards)
 
-        return (
-            <div>
-                <QuizGrid quizzes={this.props.quizzes} />
-                <nav className={this.props.category} id="side-nav">
-                    <Navigation source={this.props.navSource} category={this.props.navCategory} className="side-nav" data={this.state.data} />
-                </nav>
+        if ( this.state.quizzes.length > 0 ) {
+            return(
+                <section className="quiz-grid">
+                    {this.state.quizzes.map( quiz =>
+                        <QuizGrid key={quiz.id} {...quiz} />
+                    )}
+                </section>
+            )
+        } else {
+            return (
                 <div>
-                    <Words quizID={this.state.quizID} displayTime={this.props.displayTime} />
+
+                    <nav className={this.state.category} id="side-nav">
+                        <Navigation source={this.props.navSource} category={this.props.navCategory} className="side-nav" data={this.state.data} />
+                    </nav>
+                    <div>
+                        <Words quizID={this.state.quizID} displayTime={this.props.displayTime} />
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 }
 

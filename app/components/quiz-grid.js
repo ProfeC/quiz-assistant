@@ -9,9 +9,8 @@ export default class QuizGrid extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            data: this.props.quizzes
-        }
+        this.state = {}
+
         // console.info( "\nMounted: 'Quiz Grid'" )
     }
 
@@ -36,24 +35,19 @@ export default class QuizGrid extends React.Component {
     }
 
     handleClick = () => {
-        console.info(this.props.contestName);
+        console.info(this.props.title);
     };
 
     render() {
-
         return (
-            <section>
-            {this.state.data.map( item =>
-                <article key={item.id} onClick="" className="nav-grid">
-                    <header>
-                        <h3>{item.title}</h3>
-                    </header>
-                    <p>
-                        {item.subject}
-                    </p>
-                </article>
-            )}
-            </section>
+            <article onClick={this.handleClick} className="quiz">
+                <header>
+                    <h3>{this.props.title}</h3>
+                </header>
+                <p>
+                    {this.props.subject}
+                </p>
+            </article>
         )
     }
 }

@@ -143,7 +143,7 @@ export default class Words extends React.Component {
             <section id="rapper">
                 <header>
                     <h3>
-                        <em><{this.state.title}</a></em>
+                        <em>{this.state.title}</em>
                     </h3>
                     <p className="skills">{this.state.skill}</p>
                 </header>
