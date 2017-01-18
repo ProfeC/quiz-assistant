@@ -11,7 +11,7 @@ class PageHeader extends React.Component {
         return (
             <header>
                 <h3>
-                    <em>{this.props.title}</em>
+                    <em><a href="/" title={this.props.title}>{this.props.title}</a></em>
                 </h3>
                 <p className="skills">{this.props.skill}</p>
             </header>
