@@ -1,28 +1,65 @@
 {
   "title": "Data Files",
-  "spelling": [{
+  "files": [{
     "id": "20170109",
     "title": "Jan's New Home",
-    "subject": "Controlled or, ore - ending: es; plural es"
+    "subject": "Controlled or, ore - ending: es; plural es",
+    "category": "spelling"
   }, {
     "id": "20161127",
     "title": "Honey Bees",
-    "subject": "Long e (e, ee) Syllables VCCV pattern"
+    "subject": "Long e (e, ee) Syllables VCCV pattern",
+    "category": "spelling"
   }, {
     "id": "20161121",
     "title": "Life in the Forest",
-    "subject": "Long u (CVCe) Long e (CVCe)"
+    "subject": "Long u (CVCe) Long e (CVCe)",
+    "category": "spelling"
   }, {
     "id": "20161107",
     "title": "The Big Circle",
-    "subject": "Long o (CVCe) contractions n't, 'm and 'll"
+    "subject": "Long o (CVCe) contractions n't, 'm and 'll",
+    "category": "spelling"
   }, {
     "id": "20161031",
     "title": "The Farmer in the Hat",
-    "subject": "Long a (CVCe) c /s/ and g /j/"
+    "subject": "Long a (CVCe) c /s/ and g /j/",
+    "category": "spelling"
   }, {
     "id": "20161024",
     "title": "Who Works Here?",
-    "subject": "Long i (CVCe) wh, ch and tch"
+    "subject": "Long i (CVCe) wh, ch and tch",
+    "category": "spelling"
+  },
+  {
+    "id": "m20170109",
+    "title": "Math - Jan's New Home",
+    "subject": "Controlled or, ore - ending: es; plural es",
+    "category": "math"
+  }, {
+    "id": "m20161127",
+    "title": "Math - Honey Bees",
+    "subject": "Long e (e, ee) Syllables VCCV pattern",
+    "category": "math"
+  }, {
+    "id": "m20161121",
+    "title": "Math - Life in the Forest",
+    "subject": "Long u (CVCe) Long e (CVCe)",
+    "category": "math"
+  }, {
+    "id": "m20161107",
+    "title": "Math - The Big Circle",
+    "subject": "Long o (CVCe) contractions n't, 'm and 'll",
+    "category": "math"
+  }, {
+    "id": "m20161031",
+    "title": "Math - The Farmer in the Hat",
+    "subject": "Long a (CVCe) c /s/ and g /j/",
+    "category": "math"
+  }, {
+    "id": "m20161024",
+    "title": "Math - Who Works Here?",
+    "subject": "Long i (CVCe) wh, ch and tch",
+    "category": "math"
   }]
 }
