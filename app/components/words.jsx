@@ -141,7 +141,12 @@ export default class Words extends React.Component {
 
         return (
             <section id="rapper">
-                <PageHeader title={this.state.title} skill={this.state.skill}/>
+                <header>
+                    <h3>
+                        <em><{this.state.title}</a></em>
+                    </h3>
+                    <p className="skills">{this.state.skill}</p>
+                </header>
 
                 <CurrentWord visibility={this.state.showWord} word={this.state.currentWord}/>
                 <CorrectSpelling show={this.state.spellingMatches} checked={this.state.spellingChecked}/>
