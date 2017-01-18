@@ -10,10 +10,8 @@ export default class QuizGrid extends React.Component {
         super(props)
 
         this.state = {
-            data: this.props,
-            displayName: this.props.title
+            data: this.props.quizzes
         }
-
         // console.info( "\nMounted: 'Quiz Grid'" )
     }
 
@@ -43,23 +41,19 @@ export default class QuizGrid extends React.Component {
 
     render() {
 
-        let data = this.state
-
-        // return (
-        //     {this.state.data.cards.all.spelling.map( item =>
-        //         <article onClick="" className="nav-grid">
-        //             <header>
-        //                 <h3>{item.displayName}</h3>
-        //             </header>
-        //             <p>
-        //                 {item.data.subject}
-        //             </p>
-        //         </article>
-        //     )}
-        // )
-
         return (
-            <div>{JSON.stringify(data)}</div>
+            <section>
+            {this.state.data.map( item =>
+                <article key={item.id} onClick="" className="nav-grid">
+                    <header>
+                        <h3>{item.title}</h3>
+                    </header>
+                    <p>
+                        {item.subject}
+                    </p>
+                </article>
+            )}
+            </section>
         )
     }
 }
