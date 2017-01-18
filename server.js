@@ -17,7 +17,7 @@ server.get('/', (req, res) => {
 
     // NOTE: Get quiz list data
     let getQuizzes = () => {
-        return axios.get(`${config.serverUrl}/api/files/navigation`)
+        return axios.get(`${config.serverUrl}/api/files`)
     }
 
     // NOTE: Get initial quiz data
