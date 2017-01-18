@@ -25,18 +25,15 @@ server.get('/', (req, res) => {
         return axios.get(`${config.serverUrl}/api/words/20170109`)
     }
 
-    axios.all([getQuizData(), getQuizzes()])
+    axios.get(`${config.serverUrl}/api/files`)
     .then(resp => {
         // console.info(resp[0].data) // Returns Navigation.
         // console.info(resp[1].data) // Returns Word list.
 
         res.render('index', {
             initialMarkup: ReactDOMServer.renderToString(
-            <App list='20170109' displayTime='13' navSource='navigation' navCategory='spelling' quizzes={resp[1].data} />),
-            list: 20170109,
-            initialData: resp[0].data,
-            avaiableQuizzes: resp[1].data,
-            displayTime: 13
+            <App quizzes={resp.data} />),
+            avaiableQuizzes: resp.data
         });
     })
     .catch(console.error);

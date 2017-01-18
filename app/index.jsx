@@ -13,7 +13,7 @@ ReactDOM.render(
 )
 
 ReactDOM.render(
-    <App quizID={window.list} displayTime={window.displayTime} navSource="navigation" navCategory="spelling" quizzes={window.avaiableQuizzes} />,
+    <App quizzes={window.avaiableQuizzes} />,
   document.getElementById('root')
 )
 
