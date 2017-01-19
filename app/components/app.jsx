@@ -71,7 +71,7 @@ export default class App extends React.Component {
     }
 
     fetchWords = (id) => {
-        console.info(this.props)
+        // console.info(this.props)
         pushState(
             {quizID: id},
             `/words/${id}`
@@ -101,7 +101,7 @@ export default class App extends React.Component {
     }
 
     render () {
-        console.info(this.fetchWords)
+        // console.info(this.fetchWords)
         return(
             <div>{this.currentContent()}</div>
         )

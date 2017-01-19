@@ -1,18 +1,32 @@
-import express from 'express';
-import fileList from '../app/data/file-list';
-import * as Utils from '../app/libs/utils';
+import express from 'express'
+import fs from 'fs'
+import path from 'path'
+
+import fileList from '../app/data/file-list'
+import * as Utils from '../app/libs/utils'
 
 const router = express.Router();
+const data_dir = path.join(__dirname, '..', 'app', 'data')
+
 let wordList = [];
 let category = null;
 let categoryList = null;
 
 router.get('/words/:listID', (req, res) => {
     // res.send(req.params);
+    let wordDataPath = path.join(data_dir, req.params.listID) + '.json'
+    // console.info('Path => ' + wordDataPath)
 
-    wordList = Utils.getList(req.params.listID)
+    fs.readFile(wordDataPath, 'utf8', (err, data) => {
+        // let wordData =
+        if (err) {
+            return console.error(err)
+        }
+        // console.info(data)
 
-    res.send({ 'wordList': wordList });
+        res.send(JSON.parse(data))
+    })
+
 });
 
 // NOTE: Get JSON data from files
