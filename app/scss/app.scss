@@ -24,17 +24,13 @@ body {
 		}
 	}
 
-	// #rapper {
-	// 	float: right;
-	// 	margin-left: auto;
-	// }
 }
 
 input {
-	font-size: 2.3em;
-	padding: 3px 5px;
-	margin: 0;
 	border: 2px solid rgba(128, 128, 128, 0.5);
+	font-size: 2.3em;
+	margin: 0;
+	padding: 3px 5px;
 }
 
 #current-word {
@@ -79,29 +75,16 @@ nav {
 		text-decoration: none;
 	}
 
-	// &#side-nav {
-	// 	float:left;
-	// 	margin-right: 13px;
-	// 	margin-top: 50px;
-	// 	min-height: 100%;
-	//
-	// 	& ul {
-	// 		padding-left: 0;
-	//
-	// 		& li {
-	// 			list-style-type: none;
-	// 		}
-	// 	}
-	// }
 }
 
 .quiz-grid {
 	.quiz {
-		display: inline-block;
-		margin: 7px;
-		padding: 13px;
-		font-size: .85rem;
 		background-color: lightyellow;
 		border: 1px dotted red;
+		cursor: context-menu;
+		display: inline-block;
+		font-size: .85rem;
+		margin: 7px;
+		padding: 13px;
 	}
 }
