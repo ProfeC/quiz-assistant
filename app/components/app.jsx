@@ -16,10 +16,8 @@ export default class App extends React.Component {
         this.displayName = 'Main Application'
 
         this.state = {
-            data: null,
             quizID: this.props.quizID,
             quizzes: this.props.quizzes.files,
-            category: this.props.category,
             displayTime: this.props.displayTime
         }
 
@@ -72,24 +70,24 @@ export default class App extends React.Component {
         // console.info( "Unmounted ShowCurrentWord" )
     }
 
-    // fetchWords = (listID) => {
-    //   console.info(this.props)
-    //   pushState(
-    //     {currentListID: listID},
-    //     `/words/${listID}`
-    //   )
-    // }
+    fetchWords = (id) => {
+        console.info(this.props)
+        pushState(
+            {listID: id},
+            `/words/${id}`
+        )
 
-    render () {
-        // console.info(this.props.cards)
-        // let mySpellingCards = this.props.cards.spelling
-        // console.info(mySpellingCards)
+        this.setState({
+            currentListID: id
+        })
+    }
 
+    currentContent = () => {
         if ( this.state.quizzes.length > 0 ) {
             return(
                 <section className="quiz-grid">
                     {this.state.quizzes.map( quiz =>
-                        <QuizGrid key={quiz.id} {...quiz} />
+                        <QuizGrid key={quiz.id} onQuizClick={this.fetchWords} {...quiz} />
                     )}
                 </section>
             )
@@ -106,6 +104,14 @@ export default class App extends React.Component {
                 </div>
             )
         }
+
+    }
+
+    render () {
+        console.info(this.fetchWords)
+        return(
+            <div>{this.currentContent()}</div>
+        )
     }
 }
 

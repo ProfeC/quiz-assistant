@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React from 'react'
+import React, { Component } from 'react'
 // import ReactDOM from 'react-dom'
 import * as Utils from '../libs/utils'
 
@@ -9,7 +9,7 @@ export default class QuizGrid extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {}
+        // this.state = {}
 
         // console.info( "\nMounted: 'Quiz Grid'" )
     }
@@ -35,7 +35,8 @@ export default class QuizGrid extends React.Component {
     }
 
     handleClick = () => {
-        console.info(this.props.title);
+        console.info(this.props.id)
+        this.props.onQuizClick(this.props.id)
     };
 
     render() {
@@ -50,9 +51,4 @@ export default class QuizGrid extends React.Component {
             </article>
         )
     }
-}
-
-QuizGrid.propTypes = {
-    // dataList: React.PropTypes.String
-    // data: React.PropTypes.Struct
 }
