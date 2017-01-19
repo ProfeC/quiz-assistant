@@ -13,7 +13,7 @@ ReactDOM.render(
 )
 
 ReactDOM.render(
-    <App quizzes={window.avaiableQuizzes} />,
+    <App quizzes={window.avaiableQuizzes} quizID={window.quizID} />,
   document.getElementById('root')
 )
 

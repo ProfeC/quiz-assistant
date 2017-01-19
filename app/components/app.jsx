@@ -84,7 +84,7 @@ export default class App extends React.Component {
     }
 
     currentContent = () => {
-        if ( this.state.quizzes.length > 0 ) {
+        if ( Array.isArray(this.state.quizzes) && this.state.quizzes.length > 0 ) {
             return(
                 <section className="quiz-grid">
                     {this.state.quizzes.map( quiz =>
