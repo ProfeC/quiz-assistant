@@ -20,8 +20,8 @@ export default class Words extends React.Component {
             skill: '',
             spellingChecked: false,
             spellingMatches: false,
-            title: '',
-            spellingWords: {}
+            spellingWords: {},
+            title: ''
         }
 
         // Scope functions...
