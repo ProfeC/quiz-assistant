@@ -30,23 +30,8 @@ server.get('/words/:list', (req, res) => {
 });
 
 server.get('/', (req, res) => {
-    // serverRender('20170109', '7', 'navigation', 'spelling')
-
-    // NOTE: Get quiz list data
-    let getQuizzes = () => {
-        return axios.get(`${config.serverUrl}/api/files`)
-    }
-
-    // NOTE: Get initial quiz data
-    let getQuizData = () => {
-        return axios.get(`${config.serverUrl}/api/words/20170109`)
-    }
-
     axios.get(`${config.serverUrl}/api/files`)
     .then(resp => {
-        // console.info(resp[0].data) // Returns Navigation.
-        // console.info(resp[1].data) // Returns Word list.
-
         res.render('index', {
             initialMarkup: ReactDOMServer.renderToString(
             <App quizzes={resp.data} />),
