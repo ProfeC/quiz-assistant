@@ -24,10 +24,10 @@ body {
 		}
 	}
 
-	#rapper {
-		float: right;
-		margin-left: auto;
-	}
+	// #rapper {
+	// 	float: right;
+	// 	margin-left: auto;
+	// }
 }
 
 input {
@@ -79,20 +79,20 @@ nav {
 		text-decoration: none;
 	}
 
-	&#side-nav {
-		float:left;
-		margin-right: 13px;
-		margin-top: 50px;
-		min-height: 100%;
-
-		& ul {
-			padding-left: 0;
-
-			& li {
-				list-style-type: none;
-			}
-		}
-	}
+	// &#side-nav {
+	// 	float:left;
+	// 	margin-right: 13px;
+	// 	margin-top: 50px;
+	// 	min-height: 100%;
+	//
+	// 	& ul {
+	// 		padding-left: 0;
+	//
+	// 		& li {
+	// 			list-style-type: none;
+	// 		}
+	// 	}
+	// }
 }
 
 .quiz-grid {

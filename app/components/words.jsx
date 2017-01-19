@@ -135,7 +135,7 @@ export default class Words extends React.Component {
 
     render() {
         let currentSpelling = this.state.currentSpelling
-        console.log(currentSpelling)
+        // console.log(currentSpelling)
         // let wordCount = Utils.getCount(this.state.wordList.spellingWords)
         // console.info('Words - wordCount: ' + wordCount)
 

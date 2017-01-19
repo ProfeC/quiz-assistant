@@ -73,12 +73,13 @@ export default class App extends React.Component {
     fetchWords = (id) => {
         console.info(this.props)
         pushState(
-            {listID: id},
+            {quizID: id},
             `/words/${id}`
         )
 
         this.setState({
-            currentListID: id
+            quizID: id,
+            quizzes: []
         })
     }
 
@@ -93,15 +94,7 @@ export default class App extends React.Component {
             )
         } else {
             return (
-                <div>
-
-                    <nav className={this.state.category} id="side-nav">
-                        <Navigation source={this.props.navSource} category={this.props.navCategory} className="side-nav" data={this.state.data} />
-                    </nav>
-                    <div>
-                        <Words quizID={this.state.quizID} displayTime={this.props.displayTime} />
-                    </div>
-                </div>
+                <Words quizID={this.state.quizID} displayTime={this.props.displayTime} />
             )
         }
 
