@@ -40,7 +40,7 @@ export default class Words extends React.Component {
 
     componentDidMount() {
         // console.info('Component Did Mount')
-        axios.get('/api/words/' + this.props.quizID).then(resp => {
+        axios.get('/api/quiz/' + this.props.quizID).then(resp => {
             console.info(resp.data);
 
             this.setState({

@@ -12,7 +12,7 @@ let wordList = [];
 let category = null;
 let categoryList = null;
 
-router.get('/words/:listID', (req, res) => {
+router.get('/quiz/:listID', (req, res) => {
     // res.send(req.params);
     let wordDataPath = path.join(data_dir, req.params.listID) + '.json'
     // console.info('Path => ' + wordDataPath)

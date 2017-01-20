@@ -12,9 +12,9 @@ const server = express();
 
 server.set('view engine', 'ejs');
 
-server.get('/words/:list', (req, res) => {
+server.get('/quiz/:list', (req, res) => {
     // NOTE: Get initial quiz data
-    axios.get(`${config.serverUrl}/api/words/${req.params.list}`)
+    axios.get(`${config.serverUrl}/api/quiz/${req.params.list}`)
     .then(resp => {
         // console.info(resp.data) // Returns Word list.
 
