@@ -1,7 +1,7 @@
 import config from './config';
 import apiRouter from './api';
 import express from 'express';
-// import serverRender from './serverRender';
+import serverRender from './serverRender';
 import axios from 'axios';
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
@@ -11,6 +11,22 @@ import Words from './app/components/words'
 const server = express();
 
 server.set('view engine', 'ejs');
+
+// server.get('/test/:quizID', (req, res) => {
+//     console.info(req.params)
+//     console.info(res.data)
+//
+//     serverRender(req.params.quizID, 3)
+//     .then( ({ initialMarkup, initialData }) => {
+//         console.info(initialData)
+//
+//         res.render({
+//             initialMarkup,
+//             initialData
+//         });
+//
+//     })
+// })
 
 server.get('/quiz/:quizID', (req, res) => {
     // NOTE: Get initial quiz data
