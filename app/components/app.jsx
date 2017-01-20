@@ -70,11 +70,11 @@ export default class App extends React.Component {
         // console.info( "Unmounted ShowCurrentWord" )
     }
 
-    fetchWords = (id) => {
+    fetchQuiz = (id) => {
         // console.info(this.props)
         pushState(
             {quizID: id},
-            `/words/${id}`
+            `/quiz/${id}`
         )
 
         this.setState({
@@ -88,7 +88,7 @@ export default class App extends React.Component {
             return(
                 <section className="quiz-grid">
                     {this.state.quizzes.map( quiz =>
-                        <QuizGrid key={quiz.id} onQuizClick={this.fetchWords} {...quiz} />
+                        <QuizGrid key={quiz.id} onQuizClick={this.fetchQuiz} {...quiz} />
                     )}
                 </section>
             )
