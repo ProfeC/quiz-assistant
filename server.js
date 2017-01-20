@@ -12,16 +12,16 @@ const server = express();
 
 server.set('view engine', 'ejs');
 
-server.get('/quiz/:list', (req, res) => {
+server.get('/quiz/:quizID', (req, res) => {
     // NOTE: Get initial quiz data
-    axios.get(`${config.serverUrl}/api/quiz/${req.params.list}`)
+    axios.get(`${config.serverUrl}/api/quiz/${req.params.quizID}`)
     .then(resp => {
         // console.info(resp.data) // Returns Word list.
 
         res.render('index', {
             initialMarkup: ReactDOMServer.renderToString(
-            <App quizID={req.params.list} displayTime='13' quizzes={[]} />),
-            quizID: `${req.params.list}`,
+            <App quizID={req.params.quizID} displayTime='13' quizzes={[]} />),
+            quizID: `${req.params.quizID}`,
             initialData: resp.data,
             avaiableQuizzes: []
         });
@@ -30,12 +30,12 @@ server.get('/quiz/:list', (req, res) => {
 });
 
 server.get('/', (req, res) => {
-    axios.get(`${config.serverUrl}/api/files`)
+    axios.get(`${config.serverUrl}/api/quizzes`)
     .then(resp => {
         res.render('index', {
             initialMarkup: ReactDOMServer.renderToString(
-            <App quizzes={resp.data} />),
-            avaiableQuizzes: resp.data,
+            <App quizzes={resp.data.quizzes} />),
+            avaiableQuizzes: resp.data.quizzes,
             quizID: 0
         });
     })

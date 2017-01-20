@@ -17,7 +17,7 @@ export default class App extends React.Component {
 
         this.state = {
             quizID: this.props.quizID,
-            quizzes: this.props.quizzes.files,
+            quizzes: this.props.quizzes,
             displayTime: this.props.displayTime
         }
 
@@ -102,6 +102,9 @@ export default class App extends React.Component {
 
     render () {
         // console.info(this.fetchWords)
+        // console.info(Array.isArray(this.state.quizzes))
+        // console.info(this.state.quizzes.length)
+
         return(
             <div>{this.currentContent()}</div>
         )
