@@ -1,7 +1,6 @@
 import config from './config';
 import apiRouter from './api';
 import express from 'express';
-import serverRender from './serverRender';
 import axios from 'axios';
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
@@ -12,13 +11,15 @@ const server = express();
 
 server.set('view engine', 'ejs');
 
+// import serverRender from './serverRender';
 // server.get('/test/:quizID', (req, res) => {
-//     console.info(req.params)
-//     console.info(res.data)
+//     console.info('req.params => ' + req.params)
 //
 //     serverRender(req.params.quizID, 3)
 //     .then( ({ initialMarkup, initialData }) => {
-//         console.info(initialData)
+//         // console.info(initialData)
+//         initialData = 0
+//         initialMarkup = 'string'
 //
 //         res.render({
 //             initialMarkup,

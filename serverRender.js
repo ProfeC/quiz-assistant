@@ -8,12 +8,16 @@ import axios from 'axios'
 
 // NOTE: Set the URL for the API endpoint to use
 const getApiUrl = (quizID) => {
+    // console.info('getApiUrl(quizID) => ' + quizID)
+
     if ( quizID ) {
         // NOTE: Return a specific list of words
+        // console.info('`${config.serverUrl}/api/quiz/${quizID}` => ' + `${config.serverUrl}/api/quiz/${quizID}`)
         return `${config.serverUrl}/api/quiz/${quizID}`
     }
 
     // NOTE: Return a list of quizzes
+    // console.info('`${config.serverUrl}/api/files` => ' + `${config.serverUrl}/api/files`)
     return `${config.serverUrl}/api/files`
 }
 
@@ -22,19 +26,21 @@ const getQuizzes = () => {}
 const getInitialQuizData = (quizID, apiData) => {}
 
 const serverRender = (quizID, displayTime) => {
-    // axios.get(`${config.serverUrl}/api/files/navigation/${navSource}`)
-    console.info('quizID => ' + quizID)
-    console.info('displayTime => ' + displayTime)
+    // console.info('quizID => ' + quizID)
+    // console.info('displayTime => ' + displayTime)
+    let s = getApiUrl(quizID)
+    console.info(s)
 
     axios.get(getApiUrl(quizID))
-    .then(res => {
-        console.info(res.data)
-        console.info({initialMarkup: ReactDOMServer.renderToString(<App quizID={quizID} displayTime={displayTime} />)})
+    .then(resp => {
+        console.info('serverRender() => ' + resp.data)
+        console.info('serverRender() => ' + {initialMarkup: ReactDOMServer.renderToString(<App quizID={quizID} displayTime={displayTime} />)})
 
         return {
             initialMarkup: ReactDOMServer.renderToString(
               <App quizID={quizID} displayTime={displayTime} />
-            )
+            ),
+            initialData: resp.data
         };
     })
     .catch(console.error);
