@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 // import ReactDOM from 'react-dom'
 import * as Utils from '../libs/utils'
+import * as api from '../api'
 
 // NOTE: Components
 import CurrentWord from './show-current-word'
@@ -40,14 +41,14 @@ export default class Words extends React.Component {
 
     componentDidMount() {
         // console.info('Component Did Mount')
-        axios.get('/api/quiz/' + this.props.quizID).then(resp => {
-            console.info(resp.data);
+        api.getQuiz(this.props.currentQuizID).then(data => {
+            // console.info(data);
 
             this.setState({
-                spellingWords: resp.data.spellingWords,
-                spellingWordsCount: resp.data.spellingWords.length,
-                title: resp.data.title,
-                skill: resp.data.skill
+                spellingWords: data.spellingWords,
+                spellingWordsCount: data.spellingWords.length,
+                title: data.title,
+                skill: data.skill
             });
 
             // NOTE: Get a random Word

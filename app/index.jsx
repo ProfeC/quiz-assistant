@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom'
 import App from './components/app'
 
 ReactDOM.render(
-    <App quizzes={window.avaiableQuizzes} quizID={window.quizID} />,
+    <App initialData={window.initialData} />,
   document.getElementById('root')
 )

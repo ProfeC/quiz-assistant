@@ -6,7 +6,7 @@ import axios from 'axios';
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import App from './app/components/app'
-import Words from './app/components/words'
+// import Words from './app/components/words'
 
 const server = express();
 
@@ -36,9 +36,10 @@ server.get('/quiz/:quizID', (req, res) => {
 
         res.render('index', {
             initialMarkup: ReactDOMServer.renderToString(
-            <App quizID={req.params.quizID} displayTime='13' quizzes={[]} />),
+            <App quizID={req.params.quizID} displayTime='13' initialData={[]} />),
             quizID: `${req.params.quizID}`,
-            initialData: resp.data,
+            initialData: {data: resp.data, currentQuizID: `${req.params.quizID}`},
+            // initialData: resp.data,
             avaiableQuizzes: []
         });
     })
@@ -46,16 +47,30 @@ server.get('/quiz/:quizID', (req, res) => {
 });
 
 server.get('/', (req, res) => {
-    axios.get(`${config.serverUrl}/api/quizzes`)
-    .then(resp => {
-        res.render('index', {
-            initialMarkup: ReactDOMServer.renderToString(
-            <App quizzes={resp.data.quizzes} />),
-            avaiableQuizzes: resp.data.quizzes,
-            quizID: 0
-        });
-    })
-    .catch(console.error);
+    serverRender(req.params.quizID)
+        .then(({initialMarkup, initialData}) => {
+            // console.info('server => serverRender(req.params.quizID) => initialMarkup is ' + initialMarkup)
+            // console.info('server => serverRender(req.params.quizID) => initialData is ' + initialData)
+
+            res.render('index', {
+                initialMarkup: initialMarkup,
+                initialData: initialData
+            });
+        })
+        .catch(console.error)
+
+    // axios.get(`${config.serverUrl}/api/quizzes`)
+    // .then(resp => {
+    //     console.info(resp.data.quizzes)
+    //
+    //     res.render('index', {
+    //         initialMarkup: ReactDOMServer.renderToString(
+    //         <App initialData={resp.data.quizzes} />),
+    //         initialData: resp.data.quizzes,
+    //         quizID: 0
+    //     });
+    // })
+    // .catch(console.error);
 });
 
 server.use('/api', apiRouter);

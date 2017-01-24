@@ -7,48 +7,52 @@ import axios from 'axios'
 // NOTE: Ref => https://www.lynda.com/Express-js-tutorials/Fetching-data-from-server-side/533304/557625-4.html
 
 // NOTE: Set the URL for the API endpoint to use
-const getApiUrl = (quizID) => {
-    if ( quizID ) {
+const getApiUrl = (currentQuizID) => {
+    // console.info('serverRender => getApiUrl(currentQuizID) => currentQuizID is ' + currentQuizID)
+
+    if ( currentQuizID ) {
         // NOTE: Return a specific list of words
-        return `${config.serverUrl}/api/quiz/${quizID}`
+        return `${config.serverUrl}/api/quiz/${currentQuizID}`
     }
 
     // NOTE: Return a list of quizzes
-    return `${config.serverUrl}/api/files`
+    return `${config.serverUrl}/api/quizzes`
 }
 
 const getQuizzes = () => {}
 
-const getInitialQuizData = (quizID, apiData) => {}
+const getInitialQuizData = (currentQuizID, apiData) => {
+    // console.info('serverRender => getInitialQuizData(currentQuizID, apiData) => currentQuizID is ' + currentQuizID + ', apiData is ' + apiData)
 
-const serverRender = (quizID, displayTime) => {
-    // axios.get(`${config.serverUrl}/api/files/navigation/${navSource}`)
-    console.info('quizID => ' + quizID)
-    console.info('displayTime => ' + displayTime)
+    if ( currentQuizID ) {
+        return {
+            currentQuizID: apiData.id,
+            quizzes: {
+                [apiData.id]: apiData
+            }
+        }
+    }
+    return {
+        quizzes: apiData.quizzes
+    }
+}
 
-    axios.get(getApiUrl(quizID))
-    .then(res => {
-        console.info(res.data)
-        console.info({initialMarkup: ReactDOMServer.renderToString(<App quizID={quizID} displayTime={displayTime} />)})
+const serverRender = (currentQuizID) =>
+    axios.get(getApiUrl(currentQuizID))
+    .then(resp => {
+        // console.info('serverRender => axios.get => ' + resp.data)
+        // console.info({initialMarkup: ReactDOMServer.renderToString(<App currentQuizID={currentcurrentQuizID} />)})
+
+        const initialData = getInitialQuizData(currentQuizID, resp.data)
+        // console.info('serverRender => initialData is ' + initialData)
 
         return {
             initialMarkup: ReactDOMServer.renderToString(
-              <App quizID={quizID} displayTime={displayTime} />
-            )
+              <App initialData={initialData} />
+            ),
+            initialData
         };
     })
     .catch(console.error);
-
-    // TODO: 20170111 - Look up the most recent list show it is displayed first
-    // axios.get(`${config.serverUrl}/api/files/navigation`)
-    //   .then(resp => {
-    //     return {
-    //       initialMarkup: ReactDOMServer.renderToString(
-    //         <App list='2010109' />
-    //       ),
-    //       initialNavigationData: resp.data
-    //     };
-    //   });
-}
 
 export default serverRender;
