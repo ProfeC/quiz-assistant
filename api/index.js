@@ -14,7 +14,7 @@ let categoryList = null;
 router.get(['/quiz/:quizID', '/quizzes/:quizID'], (req, res) => {
     // res.send(req.params);
     let quizDataPath = path.join(data_dir, req.params.quizID) + '.json'
-    // console.info('Path => ' + quizDataPath)
+    console.info('Path => ' + quizDataPath)
 
     fs.readFile(quizDataPath, 'utf8', (err, data) => {
         // let quizData =
