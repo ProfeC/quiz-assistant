@@ -1,9 +1,7 @@
 import express from 'express'
 import fs from 'fs'
 import path from 'path'
-
 import quizList from '../app/data/quizzes'
-// import * as Utils from '../app/libs/utils'
 
 const router = express.Router();
 const data_dir = path.join(__dirname, '..', 'app', 'data')
