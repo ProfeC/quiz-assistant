@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 // import ReactDOM from 'react-dom'
 import Navigation from './navigation'
+import PageHeader from './page-header'
 import QuizGrid from './quiz-grid'
 
 // NOTE: Layout
@@ -106,7 +107,10 @@ export default class App extends React.Component {
         // console.info(this.state.quizzes.length)
 
         return(
-            <div>{this.currentContent()}</div>
+            <div>
+                <PageHeader title='Quiz Assistant - Main Application' skill='' />
+                {this.currentContent()}
+            </div>
         )
     }
 }
