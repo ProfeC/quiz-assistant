@@ -1,17 +1,16 @@
 import express from 'express'
 import fs from 'fs'
 import path from 'path'
-
 import quizList from '../app/data/quizzes'
-// import * as Utils from '../app/libs/utils'
 
-const router = express.Router();
+const router = express.Router()
 const data_dir = path.join(__dirname, '..', 'app', 'data')
 
-let category = null;
-let categoryList = null;
+let category = null
+let categoryList = null
 
-router.get(['/quiz/:quizID', '/quizzes/:quizID'], (req, res) => {
+// NOTE: Get specific quiz data for the requested quiz.
+router.get(['/quiz/:quizID'], (req, res) => {
     // res.send(req.params);
     let quizDataPath = path.join(data_dir, req.params.quizID) + '.json'
     console.info('Path => ' + quizDataPath)
@@ -28,8 +27,10 @@ router.get(['/quiz/:quizID', '/quizzes/:quizID'], (req, res) => {
 
 });
 
-// NOTE: Get JSON data from files
+// NOTE: Get list of quizzes from the JSON data file
 router.get('/quizzes/:category?', (req, res) => {
+    // console.info(req.params.category)
+
     if ( req.params.category !== undefined ) {
         let filtered = quizList.quizzes.filter( (quiz) => {
             return quiz.category == req.params.category;
@@ -39,6 +40,18 @@ router.get('/quizzes/:category?', (req, res) => {
     } else {
         res.send(quizList);
     }
+});
+
+
+// NOTE: Testing.....
+router.get('/test', (req, res) => {
+    const objQuizList = quizList.quizzes.reduce((obj, quiz) => {
+        obj[quiz.id] = quiz
+        return obj
+    }, {})
+    console.info('quiz list  object => ' + objQuizList)
+
+    res.send(objQuizList);
 });
 
 export default router;

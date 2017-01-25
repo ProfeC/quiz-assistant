@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 // import ReactDOM from 'react-dom'
-import * as Utils from '../libs/utils'
 
 const pushState = (obj, url) => window.history.pushState(obj, '', url);
 

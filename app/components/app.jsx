@@ -1,27 +1,37 @@
 import axios from 'axios'
 import React from 'react'
-// import ReactDOM from 'react-dom'
 import Navigation from './navigation'
+import PageHeader from './page-header'
 import QuizGrid from './quiz-grid'
-
-// NOTE: Layout
 import Words from './words'
+import * as api from '../api'
 
 const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
 
 export default class App extends React.Component {
+    static propTypes = {
+        initialData: React.PropTypes.object.isRequired
+    }
+
+    // state = this.props.initialData
+
     constructor (props) {
         super(props)
         this.displayName = 'Main Application'
 
-        this.state = {
-            quizID: this.props.quizID,
-            quizzes: this.props.quizzes,
-            displayTime: this.props.displayTime
-        }
+        // this.state = {
+        //     quizID: this.props.quizID,
+        //     quizzes: this.props.quizzes,
+        //     displayTime: this.props.displayTime
+        // }
 
-        // console.info( "\nMounted: 'App'" )
+        // console.info('app.jsx => this.props.initialData is ' + JSON.stringify(this.props.initialData))
+        this.state = this.props.initialData;
+
+        // console.info('app.jsx => this.state is ' + JSON.stringify(this.state))
+
+        console.info( '\nMounted: \'App\'' )
     }
 
     componentWillMount () {
@@ -29,6 +39,7 @@ export default class App extends React.Component {
     }
 
     componentDidMount () {
+        console.info(this.state)
         // console.info("Component Did Mount")
         //
         // if (this.props.navCategory) {
@@ -73,30 +84,28 @@ export default class App extends React.Component {
     fetchQuiz = (id) => {
         // console.info(this.props)
         pushState(
-            {quizID: id},
+            {currentQuizID: id},
             `/quiz/${id}`
         )
 
         this.setState({
-            quizID: id,
+            currentQuizID: id,
             quizzes: []
         })
     }
 
     currentContent = () => {
-        if ( Array.isArray(this.state.quizzes) && this.state.quizzes.length > 0 ) {
-            return(
-                <section className="quiz-grid">
-                    {this.state.quizzes.map( quiz =>
-                        <QuizGrid key={quiz.id} onQuizClick={this.fetchQuiz} {...quiz} />
-                    )}
-                </section>
-            )
-        } else {
-            return (
-                <Words quizID={this.state.quizID} displayTime={this.props.displayTime} />
-            )
+        // console.info('app.jsx => this.state.quizzes is ' + JSON.stringify(this.state.quizzes))
+
+        if ( this.state.currentQuizID ) {
+            return <Words currentQuizID={this.state.currentQuizID} />
         }
+
+        return <section className="quiz-grid">
+            {this.state.quizzes.map( quiz =>
+                <QuizGrid key={quiz.id} onQuizClick={this.fetchQuiz} {...quiz} />
+            )}
+        </section>
 
     }
 
@@ -105,8 +114,11 @@ export default class App extends React.Component {
         // console.info(Array.isArray(this.state.quizzes))
         // console.info(this.state.quizzes.length)
 
-        return(
-            <div>{this.currentContent()}</div>
+        return (
+            <div className="App">
+                <PageHeader title='Quiz Assistant - Main Application' skill='' />
+                {this.currentContent()}
+            </div>
         )
     }
 }
