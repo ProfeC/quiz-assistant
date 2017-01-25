@@ -30,7 +30,7 @@ server.set('view engine', 'ejs');
 // });
 
 server.get(['/', '/quiz/:quizID'], (req, res) => {
-    console.info('req.params.quizID is ' + req.params.quizID)
+    // console.info('req.params.quizID is ' + req.params.quizID)
 
     serverRender(req.params.quizID)
         .then(({initialMarkup, initialData}) => {

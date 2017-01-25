@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-// import ReactDOM from 'react-dom'
 
 const pushState = (obj, url) => window.history.pushState(obj, '', url);
 
@@ -34,7 +33,7 @@ export default class QuizGrid extends React.Component {
     }
 
     handleClick = () => {
-        console.info(this.props.id)
+        // console.info(this.props.id)
         this.props.onQuizClick(this.props.id)
     };
 

@@ -14,24 +14,12 @@ export default class App extends React.Component {
         initialData: React.PropTypes.object.isRequired
     }
 
-    // state = this.props.initialData
-
     constructor (props) {
         super(props)
         this.displayName = 'Main Application'
-
-        // this.state = {
-        //     quizID: this.props.quizID,
-        //     quizzes: this.props.quizzes,
-        //     displayTime: this.props.displayTime
-        // }
-
-        // console.info('app.jsx => this.props.initialData is ' + JSON.stringify(this.props.initialData))
         this.state = this.props.initialData;
 
-        // console.info('app.jsx => this.state is ' + JSON.stringify(this.state))
-
-        console.info( '\nMounted: \'App\'' )
+        // console.info( '\nMounted: \'App\'' )
     }
 
     componentWillMount () {
@@ -39,34 +27,8 @@ export default class App extends React.Component {
     }
 
     componentDidMount () {
-        console.info(this.state)
+        // console.info(this.state)
         // console.info("Component Did Mount")
-        //
-        // if (this.props.navCategory) {
-        //     this.url = '/api/files/' + this.props.navSource + '/' + this.props.navCategory;
-        //     this.resp = 'resp.data.category'
-        //     //   console.info('category')
-        //
-        //     this.setState({
-        //         category: this.props.navCategory
-        //     })
-        // } else {
-        //     this.url = '/api/files/' + this.props.navSource;
-        //     this.resp = 'resp.data'
-        //     //   console.info('no category')
-        // }
-        //
-        // axios.get(this.url)
-        // .then( resp => {
-        //     // console.info(resp)
-        //     // console.info(resp.data.category)
-        //     // console.info(eval(this.resp))
-        //
-        //     this.setState({
-        //         data: resp.data
-        //     })
-        // })
-        // .catch(console.error)
     }
 
     componentWillUpdate () {

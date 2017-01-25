@@ -13,7 +13,7 @@ let categoryList = null
 router.get(['/quiz/:quizID'], (req, res) => {
     // res.send(req.params);
     let quizDataPath = path.join(data_dir, req.params.quizID) + '.json'
-    console.info('Path => ' + quizDataPath)
+    // console.info('Path => ' + quizDataPath)
 
     fs.readFile(quizDataPath, 'utf8', (err, data) => {
         // let quizData =
@@ -49,7 +49,7 @@ router.get('/test', (req, res) => {
         obj[quiz.id] = quiz
         return obj
     }, {})
-    console.info('quiz list  object => ' + objQuizList)
+    // console.info('quiz list  object => ' + objQuizList)
 
     res.send(objQuizList);
 });
