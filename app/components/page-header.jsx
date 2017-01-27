@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component, PropTypes} from 'react'
 
 class PageHeader extends React.Component {
     constructor(props) {
@@ -11,12 +11,17 @@ class PageHeader extends React.Component {
         return (
             <header>
                 <h3>
-                    <em><a href="/" title={this.props.title}>{this.props.title}</a></em>
+                    <em><a onClick={this.props.homeLinkClick}>{this.props.title}</a></em>
                 </h3>
                 <p className="skills">{this.props.skill}</p>
             </header>
         )
     }
+}
+
+PageHeader.propTypes = {
+    title: PropTypes.string.isRequired,
+    homeLinkClick: PropTypes.func.isRequired
 }
 
 export default PageHeader

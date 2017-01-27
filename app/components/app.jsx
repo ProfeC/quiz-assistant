@@ -50,9 +50,26 @@ export default class App extends React.Component {
             `/quiz/${id}`
         )
 
-        this.setState({
-            currentQuizID: id,
-            quizzes: []
+        api.getQuiz(id).then( quiz =>{
+            this.setState({
+                currentQuizID: quiz.id,
+                quizzes: []
+            })
+        })
+    }
+
+    fetchQuizList = () => {
+        // console.info('fetchQuizList() => ' + JSON.stringify(this.props))
+        pushState(
+            {currentQuizID: null},
+            '/'
+        )
+
+        api.getQuizList().then(data => {
+            this.setState({
+                currentQuizID: null,
+                quizzes: data
+            })
         })
     }
 
@@ -78,7 +95,7 @@ export default class App extends React.Component {
 
         return (
             <div className="App">
-                <PageHeader title='Quiz Assistant - Main Application' skill='' />
+                <PageHeader title='Quiz Assistant - Main Application' skill='' homeLinkClick={this.fetchQuizList} />
                 {this.currentContent()}
             </div>
         )

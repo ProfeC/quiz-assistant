@@ -13,8 +13,11 @@ export const getQuizList = (category) => {
             .then(resp => resp.data)
 
     } else {
+        // axios.get('/api/quizzes')
+        //     .then(resp => console.info('getQuizList() => ' + JSON.stringify(resp.data)))
+
         return axios.get('/api/quizzes')
-            .then(resp => resp.data)
+            .then(resp => resp.data.quizzes)
 
     }
 }
