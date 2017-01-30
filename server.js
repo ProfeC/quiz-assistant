@@ -5,9 +5,16 @@ import serverRender from './serverRender';
 import axios from 'axios';
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
+import sassMiddleware from 'node-sass-middleware';
+import path from 'path';
 import App from './app/components/app'
 
 const server = express();
+
+server.use(sassMiddleware({
+    src: path.join(__dirname, 'app', 'scss'),
+    dest: path.join(__dirname, 'public')
+}));
 
 server.set('view engine', 'ejs');
 
@@ -46,7 +53,7 @@ server.get(['/', '/quiz/:quizID'], (req, res) => {
 });
 
 server.use('/api', apiRouter);
-server.use(express.static('public'));
+server.use('/public', express.static(path.join(__dirname, 'public')));
 
 server.listen(config.port, config.host, () => {
     console.info('Express listening on port', config.port);

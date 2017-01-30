@@ -22,7 +22,7 @@ const common = {
   // convenient with more complex configurations.
 
   entry: {
-    style: PATHS.style,
+    // style: PATHS.style,
     app: PATHS.app,
   },
 
@@ -94,7 +94,7 @@ switch(process.env.npm_lifecycle_event) {
         entries: ['react', 'react-dom']
       }),
       parts.minify(),
-      parts.extractSass(PATHS.style),
+    //   parts.extractSass(PATHS.style),
       // parts.purifyCSS([PATHS.app]),
       parts.loadJSX(PATHS.app),
       parts.lintJSX(PATHS.app)
