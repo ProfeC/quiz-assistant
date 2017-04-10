@@ -1,23 +1,33 @@
-import axios from 'axios'
-import React from 'react'
+import * as axios from 'axios'
+import * as React from 'react'
 import Navigation from './navigation'
 import PageHeader from './page-header'
 import QuizGrid from './quiz-grid'
 import Words from './words'
 import * as api from '../api'
 
-const pushState = (obj, url) =>
+export interface AppProps {
+	initialData?: object[]
+}
+
+export interface AppState {
+    initialData?: object[] | undefined | null
+}
+
+const pushState = (obj:{}, url:string) =>
   window.history.pushState(obj, '', url);
 
-export default class App extends React.Component {
+export default class App extends React.Component<AppProps, AppState> {
     static propTypes = {
         initialData: React.PropTypes.object.isRequired
     }
 
-    constructor (props) {
-        super(props)
-        this.displayName = 'Main Application'
-        this.state = this.props.initialData;
+    constructor () {
+        super()
+        // this.displayName = 'Main Application'
+        this.state = {
+            this.props.initialData
+        }
 
         // console.info( '\nMounted: \'App\'' )
     }

@@ -26,11 +26,12 @@ exports.devServer = function(options) {
 
 			// Unlike the cli flag, this doesn't set
 			// HotModuleReplacementPlugin!
-			hot: true,
+			// hot: true,
 			inline: true,
 
 			// Display only errors to reduce the amount of output.
-			stats: 'errors-only',
+			//"errors-only", "minimal", "none", "normal", "verbose"
+			stats: 'minimal',
 
 			// Parse host and port from env to allow customization.
 			//
