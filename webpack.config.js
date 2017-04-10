@@ -2,7 +2,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const path = require( 'path' );
-const validate = require('webpack-validator');
 const webpack = require( 'webpack' );
 const parts = require('./libs/parts');
 const TARGET = process.env.npm_lifecycle_event;
@@ -34,7 +33,7 @@ const common = {
   // NOTE: Don't remove ' '. Imports without an extension won't work without it.
   resolve: {
     extensions: ['ts', 'tsx', '.js', '.jsx'],
-    modulesDirectories: ['node_modules']
+    modules: ['node_modules']
   },
 
   module: {
@@ -120,6 +119,4 @@ switch(process.env.npm_lifecycle_event) {
 }
 
 // Run validator in quiet mode to avoid output in stats
-module.exports = validate(config, {
-  quiet: true
-});
+module.exports = config;
