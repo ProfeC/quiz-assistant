@@ -22,7 +22,8 @@ const common = {
 
   entry: {
     // style: PATHS.style,
-    app: PATHS.app,
+    app: path.join(PATHS.app, 'index.tsx'),
+    vendor: ['react', 'react-dom']
   },
 
   output: {
@@ -30,19 +31,13 @@ const common = {
     filename: '[name].js'
   },
 
-  // NOTE: Don't remove ' '. Imports without an extension won't work without it.
   resolve: {
-    extensions: ['ts', 'tsx', '.js', '.jsx'],
+    extensions: ['ts', 'tsx', '.js', '.webpack.js', '.web.js'],
     modules: ['node_modules']
   },
 
   module: {
     loaders: [
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   include: PATHS.app,
-      //   loaders: ['babel?cacheDirectory']
-      // } ,
       {
         test: /\.json$/,
         loader: 'json'
@@ -51,6 +46,11 @@ const common = {
   },
 
   plugins: [
+		new webpack.optimize.CommonsChunkPlugin({
+			names: ['vendor', 'manifest'] // Specify the common bundle's name.
+		}),
+		new webpack.HotModuleReplacementPlugin(), // enable HMR globally
+		new webpack.NamedModulesPlugin(), // prints more readable module names in the browser console on HMR updates
     new HtmlWebpackPlugin ({
       title: 'Spelling Quiz Assistant'
     })
@@ -61,7 +61,7 @@ const common = {
   },
 };
 
-process.env.BABEL_ENV = TARGET;
+// process.env.BABEL_ENV = TARGET;
 var config;
 
 // Detect how npm is run and branch based on that
