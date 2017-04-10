@@ -26,7 +26,7 @@ exports.devServer = function(options) {
 
 			// Unlike the cli flag, this doesn't set
 			// HotModuleReplacementPlugin!
-			// hot: true,
+			hot: true,
 			inline: true,
 
 			// Display only errors to reduce the amount of output.
@@ -113,29 +113,29 @@ exports.extractSass = function(paths) {
   };
 }
 
-exports.lintJSX = function(include) {
-  return {
-    module: {
-      preLoaders: [
-        {
-          test: /\.(js|jsx)$/,
-          loaders: ['eslint'],
-          include: include
-        }
-      ]
-    }
-  };
-}
+// exports.lintJSX = function(include) {
+//   return {
+//     module: {
+//       preLoaders: [
+//         {
+//           test: /\.(js|jsx)$/,
+//           loaders: ['eslint'],
+//           include: include
+//         }
+//       ]
+//     }
+//   };
+// }
 
-exports.loadJSX = function(include) {
+exports.loadTSX = function(include) {
   return {
     module: {
       loaders: [
         {
-          test: /\.(js|jsx)$/,
-          // Enable caching for extra performance
-          loaders: ['babel?cacheDirectory'],
-          include: include
+          test: /\.tsx?$/,
+          loader: 'ts-loader',
+          include: include,
+          exclude: '/node_modules'
         }
       ]
     }

@@ -8,7 +8,7 @@ const parts = require('./libs/parts');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'public'),
+  build: path.join(__dirname, 'dist'),
   components: path.join(__dirname, 'app', 'components'),
   data: path.join(__dirname, 'app', 'data'),
   libs: path.join(__dirname, 'app', 'libs'),
@@ -33,7 +33,7 @@ const common = {
 
   // NOTE: Don't remove ' '. Imports without an extension won't work without it.
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['ts', 'tsx', '.js', '.jsx'],
     modulesDirectories: ['node_modules']
   },
 
@@ -94,10 +94,10 @@ switch(process.env.npm_lifecycle_event) {
         entries: ['react', 'react-dom']
       }),
       parts.minify(),
-    //   parts.extractSass(PATHS.style),
+      // parts.extractSass(PATHS.style),
       // parts.purifyCSS([PATHS.app]),
-      parts.loadJSX(PATHS.app),
-      parts.lintJSX(PATHS.app)
+      parts.loadTSX(PATHS.app)
+      // parts.lintJSX(PATHS.app)
     );
     break;
 
@@ -114,8 +114,8 @@ switch(process.env.npm_lifecycle_event) {
         host: process.env.HOST,
         port: process.env.PORT
       }),
-      parts.loadJSX(PATHS.app),
-      parts.lintJSX(PATHS.app)
+      parts.loadTSX(PATHS.app)
+      // parts.lintJSX(PATHS.app)
     );
 }
 
