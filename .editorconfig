@@ -10,21 +10,10 @@ trim_trailing_whitespace = true
 # Unix-style newlines with a newline ending every file
 [*]
 end_of_line = lf
-indent_size = 4
-indent_style = tab
+indent_size = 2
+indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
 [*.md]
 trim_trailing_whitespace = false
-
-# Microsoft's settings for TypeScript. Found on https://github.com/Microsoft/TypeScript/blob/master/.editorconfig
-[*.{ts,json,js,jsx}]
-end_of_line = lf
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
-indent_style = space
-
-[{package,bower}.json]
-indent_style = space
