@@ -20,7 +20,7 @@
     "node": true
   },
   "rules": {
-    "indent": "warn",
+    // "indent": "warn",
     "linebreak-style": ["error","unix"],
     // Disable `no-console` rule
     // "no-console": 0,
