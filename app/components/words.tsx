@@ -1,4 +1,4 @@
-// / <reference types="../app.d.ts" />
+/// <reference path="../app.d.ts" />
 
 import * as axios from 'axios'
 import * as React from 'react'
@@ -10,34 +10,12 @@ import * as api from '../api'
 import * as CurrentWord from './show-current-word'
 import * as CorrectSpelling from './show-correct-spelling'
 
-export interface WordsProps {
-    currentQuizID: string;
-    displayName?: string;
-}
-
-export interface WordsState{
-    currentSpelling: string;
-    currentWord: string;
-    displayTime: number;
-    showWord: boolean;
-    skill: string;
-    spellingChecked: boolean;
-    spellingMatches: boolean;
-    spellingWords: SpellingWordsProps;
-    spellingWordsCount: number;
-    title: string;
-}
-
-export interface SpellingWordsProps {
-    words: {};
-}
-
-export default class Words extends React.Component<WordsProps, WordsState> {
-    constructor(props: WordsProps) {
+export default class Words extends React.Component<QuizAssistant.WordsProps, QuizAssistant.WordsState> {
+    constructor(props: QuizAssistant.WordsProps) {
         super(props)
 
-        this.displayName = 'Spelling Words Application'
-        this.timerID = 0
+        let displayName: string = 'Spelling Words Application'
+        let timerID: string = ''
 
         this.state = {
             currentSpelling: '',
@@ -47,7 +25,7 @@ export default class Words extends React.Component<WordsProps, WordsState> {
             skill: '',
             spellingChecked: false,
             spellingMatches: false,
-            spellingWords: {},
+            spellingWords: [],
             spellingWordsCount: 0,
             title: ''
         }
@@ -98,14 +76,18 @@ export default class Words extends React.Component<WordsProps, WordsState> {
 
     // NOTE: Get a random word
     getRandomWord() {
-        const rndNum = Math.floor(Math.random() * this.state.spellingWordsCount)
-        const wrd: string = this.state.spellingWords[rndNum]
+        let rndNum = Math.floor(Math.random() * this.state.spellingWordsCount)
+        let wrd = this.state.spellingWords[rndNum]
 
-        this.displayWord(wrd)
-        this.setState({currentWord: wrd})
+        this.displayWord()
+        this.setState(
+          {
+            currentWord: wrd
+          }
+        )
     }
 
-    displayWord(word:string) {
+    displayWord() {
         // NOTE: Make sure the timer stops running.
         this.stopTimer()
 
@@ -141,11 +123,11 @@ export default class Words extends React.Component<WordsProps, WordsState> {
     }
 
     startTimer() {
-        this.timerID = setInterval(() => this.hideWord(), this.state.displayTime)
+        QuizAssistant.timerID = setInterval(() => this.hideWord(), this.state.displayTime)
     }
 
     stopTimer() {
-        clearInterval(this.timerID)
+        clearInterval(QuizAssistant.timerID)
     }
 
     render() {

@@ -10,6 +10,7 @@
 declare namespace QuizAssistant {
     //~ We can write 'QuizAssistant.timeout = 50;'
     let timeout: number;
+    let timerID: number;
 
     //~ We can access 'QuizAssistant.version', but not change it
     const version: string;
@@ -47,13 +48,23 @@ declare namespace QuizAssistant {
         quizzes?: {};
     }
 
+    interface QuizGridProps {
+      id: string;
+      title: string;
+      subject: string;
+      onQuizClick: any
+    }
+
+    interface QuizGridState {}
+
     interface SpellingWordsProps {
-        words: {};
+        words: object[];
     }
 
     interface WordsProps {
         currentQuizID: string;
         displayName?: string;
+        timerID?: number;
     }
 
     interface WordsState{
@@ -64,11 +75,23 @@ declare namespace QuizAssistant {
         skill: string;
         spellingChecked: boolean;
         spellingMatches: boolean;
-        spellingWords: SpellingWordsProps;
+        spellingWords: string[];
         spellingWordsCount: number;
         title: string;
     }
 
+    //~ There's some class we can create via 'let c = new myLib.Cat(42)'
+    //~ Or reference e.g. 'function f(c: myLib.Cat) { ... }
+    // class Cat {
+    //     constructor(n: number);
+
+    //     //~ We can read 'c.age' from a 'Cat' instance
+    //     readonly age: number;
+
+    //     //~ We can invoke 'c.purr()' from a 'Cat' instance
+    //     purr(): void;
+    // }
+
     //~ We can invoke 'QuizAssistant.checkCat(c)' or 'QuizAssistant.checkCat(c, v);'
-    function checkCat(c: Cat, s?: VetID);
+    // function checkCat(c: Cat, s?: VetID);
 }
