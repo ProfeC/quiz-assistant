@@ -1,3 +1,5 @@
+/// <reference path="../app.d.ts" />
+
 import * as axios from 'axios'
 import * as React from 'react'
 // import Navigation from './navigation'
@@ -6,32 +8,15 @@ import PageHeader from './page-header'
 // import Words from './words'
 import * as api from '../api'
 
-export interface AppProps {
-	initialData: InitialDataProps | undefined;
-    displayName?: string;
-}
-
-export interface AppState {
-    initialData: InitialDataProps | undefined;
-    quizzes: {};
-    currentQuizID: string;
-    currentContent: {};
-    fetchQuizList: any;
-}
-
-export interface InitialDataProps {
-    quizzes?: any;
-}
-
 const pushState = (obj:{}, url:string) =>
   window.history.pushState(obj, '', url);
 
-export default class App extends React.Component<AppProps, AppState> {
+export default class App extends React.Component<QuizAssistant.AppProps, QuizAssistant.AppState> {
     // static propTypes = {
     //     initialData: React.PropTypes.object.isRequired
     // }
 
-    constructor (props: AppProps) {
+    constructor (props: QuizAssistant.AppProps) {
         super(props)
         // let displayName = 'Main Application'
 
@@ -116,8 +101,8 @@ export default class App extends React.Component<AppProps, AppState> {
 
         return (
             <div className="App">
-                <PageHeader title='Quiz Assistant - Main Application' skill='' homeLinkClick={fetchQuizList()} />
-                {currentContent()}
+                <PageHeader title='Quiz Assistant - Main Application' skill='' homeLinkClick={this.fetchQuizList()} />
+                {this.currentContent()}
             </div>
         )        
     }
