@@ -1,8 +1,22 @@
-import React, {Component, PropTypes} from 'react'
+import * as React from 'react'
 
-class PageHeader extends React.Component {
-    constructor(props) {
+export interface PageHeaderProps{
+    homeLinkClick: any;
+    skill: string;
+    title: string;
+}
+
+export interface PageHeaderState{}
+
+export default class PageHeader extends React.Component<PageHeaderProps, PageHeaderState> {
+    // static propTypes = {
+    //     title: PropTypes.string.isRequired,
+    //     homeLinkClick: PropTypes.func.isRequired
+    // }
+
+    constructor(props: PageHeaderProps) {
         super(props)
+        this.state = {}
 
         // console.info( "\nMounted: 'Current Word' Component." )
     }
@@ -18,10 +32,3 @@ class PageHeader extends React.Component {
         )
     }
 }
-
-PageHeader.propTypes = {
-    title: PropTypes.string.isRequired,
-    homeLinkClick: PropTypes.func.isRequired
-}
-
-export default PageHeader

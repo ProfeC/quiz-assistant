@@ -1,17 +1,43 @@
-import axios from 'axios'
-import React from 'react'
-// import ReactDOM from 'react-dom'
+// / <reference types="../app.d.ts" />
+
+import * as axios from 'axios'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import * as Utils from '../libs/utils'
 import * as api from '../api'
 
 // NOTE: Components
-import CurrentWord from './show-current-word'
-import CorrectSpelling from './show-correct-spelling'
+import * as CurrentWord from './show-current-word'
+import * as CorrectSpelling from './show-correct-spelling'
 
-export default class Words extends React.Component {
-    constructor(props) {
+export interface WordsProps {
+    currentQuizID: string;
+    displayName?: string;
+}
+
+export interface WordsState{
+    currentSpelling: string;
+    currentWord: string;
+    displayTime: number;
+    showWord: boolean;
+    skill: string;
+    spellingChecked: boolean;
+    spellingMatches: boolean;
+    spellingWords: SpellingWordsProps;
+    spellingWordsCount: number;
+    title: string;
+}
+
+export interface SpellingWordsProps {
+    words: {};
+}
+
+export default class Words extends React.Component<WordsProps, WordsState> {
+    constructor(props: WordsProps) {
         super(props)
+
         this.displayName = 'Spelling Words Application'
+        this.timerID = 0
 
         this.state = {
             currentSpelling: '',
@@ -22,6 +48,7 @@ export default class Words extends React.Component {
             spellingChecked: false,
             spellingMatches: false,
             spellingWords: {},
+            spellingWordsCount: 0,
             title: ''
         }
 
@@ -34,6 +61,7 @@ export default class Words extends React.Component {
 
         // console.info( '\nMounted: \'Words\'' )
     }
+
 
     componentWillMount() {
         // console.info("Component Will Mount")
@@ -71,13 +99,13 @@ export default class Words extends React.Component {
     // NOTE: Get a random word
     getRandomWord() {
         const rndNum = Math.floor(Math.random() * this.state.spellingWordsCount)
-        const wrd = this.state.spellingWords[rndNum]
+        const wrd: string = this.state.spellingWords[rndNum]
 
         this.displayWord(wrd)
         this.setState({currentWord: wrd})
     }
 
-    displayWord(word) {
+    displayWord(word:string) {
         // NOTE: Make sure the timer stops running.
         this.stopTimer()
 
@@ -88,18 +116,18 @@ export default class Words extends React.Component {
         this.startTimer()
     }
 
-    handleNextWord(event) {
+    handleNextWord(event: any) {
         this.setState({currentSpelling: '', spellingMatches: false, spellingChecked: false})
 
         event.target.value = ''
         this.getRandomWord()
     }
 
-    handleSpellingChange(event) {
+    handleSpellingChange(event: any) {
         this.setState({currentSpelling: event.target.value.toLowerCase()})
     }
 
-    handleSpellingCheck(event) {
+    handleSpellingCheck(event: any) {
         if (this.state.currentSpelling === this.state.currentWord) {
             this.setState({spellingMatches: true, spellingChecked: true})
         } else {
@@ -135,7 +163,7 @@ export default class Words extends React.Component {
                 <CurrentWord visibility={this.state.showWord} word={this.state.currentWord}/>
                 <CorrectSpelling show={this.state.spellingMatches} checked={this.state.spellingChecked}/>
 
-                <p><input tabIndex="1" placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} autoFocus={true} onKeyPress={Utils.checkEnter}/>
+                <p><input placeholder="Spell the word..." type="text" name="current-spelling" value={currentSpelling} onChange={this.handleSpellingChange} autoFocus={true} onKeyPress={Utils.checkEnter}/>
                     <button id="check-spelling" onClick={this.handleSpellingCheck}>Check It</button>
                 </p>
 

@@ -1,9 +1,18 @@
-import React from 'react';
+import * as React from 'react';
 // import ShowCurrentWord from './show-current-word';
 // import NextWord from './next-word';
 
-class FormSpellchecker extends React.Component {
-  constructor(props) {
+export interface FormSpellcheckerProps {
+  displayName?: string;
+}
+
+export interface FormSpellcheckerState {
+  currentSpelling: string;
+  showWord: boolean;
+}
+
+class FormSpellchecker extends React.Component<FormSpellcheckerProps, FormSpellcheckerState> {
+  constructor(props: FormSpellcheckerProps) {
     super(props);
 
     this.displayName = 'Spell Checking Form'

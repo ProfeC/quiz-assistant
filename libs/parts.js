@@ -26,12 +26,12 @@ exports.devServer = function(options) {
 
 			// Unlike the cli flag, this doesn't set
 			// HotModuleReplacementPlugin!
-			// hot: true,
+			hot: true,
 			inline: true,
 
 			// Display only errors to reduce the amount of output.
 			//"errors-only", "minimal", "none", "normal", "verbose"
-			stats: 'minimal',
+			stats: 'errors-only',
 
 			// Parse host and port from env to allow customization.
 			//
@@ -131,7 +131,7 @@ exports.extractSass = function(paths) {
 exports.loadTSX = function(include) {
   return {
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.tsx?$/,
           loader: 'ts-loader',

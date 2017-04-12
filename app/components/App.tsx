@@ -1,33 +1,39 @@
 import * as axios from 'axios'
 import * as React from 'react'
-import Navigation from './navigation'
+// import Navigation from './navigation'
 import PageHeader from './page-header'
-import QuizGrid from './quiz-grid'
-import Words from './words'
+// import QuizGrid from './quiz-grid'
+// import Words from './words'
 import * as api from '../api'
 
 export interface AppProps {
-	initialData?: object[]
+	initialData: InitialDataProps | undefined;
+    displayName?: string;
 }
 
 export interface AppState {
-    initialData?: object[] | undefined | null
+    initialData: InitialDataProps | undefined;
+    quizzes: {};
+    currentQuizID: string;
+    currentContent: {};
+    fetchQuizList: any;
+}
+
+export interface InitialDataProps {
+    quizzes?: any;
 }
 
 const pushState = (obj:{}, url:string) =>
   window.history.pushState(obj, '', url);
 
 export default class App extends React.Component<AppProps, AppState> {
-    static propTypes = {
-        initialData: React.PropTypes.object.isRequired
-    }
+    // static propTypes = {
+    //     initialData: React.PropTypes.object.isRequired
+    // }
 
-    constructor () {
-        super()
-        // this.displayName = 'Main Application'
-        this.state = {
-            this.props.initialData
-        }
+    constructor (props: AppProps) {
+        super(props)
+        // let displayName = 'Main Application'
 
         // console.info( '\nMounted: \'App\'' )
     }
@@ -53,7 +59,7 @@ export default class App extends React.Component<AppProps, AppState> {
         // console.info( "Unmounted ShowCurrentWord" )
     }
 
-    fetchQuiz = (id) => {
+    fetchQuiz = (id:string) => {
         // console.info(this.props)
         pushState(
             {currentQuizID: id},
@@ -71,13 +77,13 @@ export default class App extends React.Component<AppProps, AppState> {
     fetchQuizList = () => {
         // console.info('fetchQuizList() => ' + JSON.stringify(this.props))
         pushState(
-            {currentQuizID: null},
+            {currentQuizID: ''},
             '/'
         )
 
-        api.getQuizList().then(data => {
+        api.getQuizList().then((data:{}) => {
             this.setState({
-                currentQuizID: null,
+                currentQuizID: '',
                 quizzes: data
             })
         })
@@ -87,13 +93,18 @@ export default class App extends React.Component<AppProps, AppState> {
         // console.info('app.jsx => this.state.quizzes is ' + JSON.stringify(this.state.quizzes))
 
         if ( this.state.currentQuizID ) {
-            return <Words currentQuizID={this.state.currentQuizID} />
+            // return <Words currentQuizID={this.state.currentQuizID} />
+            return 'some words'
         }
 
+//        return <section className="quiz-grid">
+//            {this.state.quizzes.map( quiz =>
+//                <QuizGrid key={quiz.id} onQuizClick={this.fetchQuiz} {...quiz} />
+//            )}
+//        </section>
+
         return <section className="quiz-grid">
-            {this.state.quizzes.map( quiz =>
-                <QuizGrid key={quiz.id} onQuizClick={this.fetchQuiz} {...quiz} />
-            )}
+            <p>some testing</p>
         </section>
 
     }
@@ -105,10 +116,10 @@ export default class App extends React.Component<AppProps, AppState> {
 
         return (
             <div className="App">
-                <PageHeader title='Quiz Assistant - Main Application' skill='' homeLinkClick={this.fetchQuizList} />
-                {this.currentContent()}
+                <PageHeader title='Quiz Assistant - Main Application' skill='' homeLinkClick={fetchQuizList()} />
+                {currentContent()}
             </div>
-        )
+        )        
     }
 }
 

@@ -1,10 +1,17 @@
-import React from 'react'
+import * as React from 'react'
 
-class PageFooter extends React.Component {
-    constructor(props) {
-        super(props)
+export interface PageFooterProps {
+    totalWords: number;
+}
 
-        this.displayName = 'Page Footer'
+export interface PageFooterState {}
+
+
+class PageFooter extends React.Component<PageFooterProps, PageFooterState> {
+    constructor() {
+        super()
+
+        let displayName = 'Page Footer'
 
         // console.info( "\nMounted: 'Current Word' Component." )
     }

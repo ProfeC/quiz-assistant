@@ -1,5 +1,13 @@
-import React from 'react'
+import * as React from 'react'
 import * as Utils from '../libs/utils'
+
+export interface NavigationProps {
+    title: string;
+    category: string;
+    data: {};
+}
+
+export interface NavigationState {}
 
 // NOTE: Layout
 import PageHeader from './page-header'
@@ -16,10 +24,10 @@ import PageHeader from './page-header'
 
 // let data = null
 
-export default class Navigation extends React.Component {
-    constructor (props) {
-        super(props)
-        this.displayName = this.props.title
+export default class Navigation extends React.Component<NavigationProps, NavigationState> {
+    constructor () {
+        super()
+        let displayName = this.props.title
 
         // console.info( "\nMounted: 'Navigation'" )
     }
