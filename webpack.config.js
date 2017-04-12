@@ -32,7 +32,7 @@ const common = {
   },
 
   resolve: {
-    extensions: ['ts', 'tsx', '.js', '.webpack.js', '.web.js'],
+    extensions: ['.ts', '.tsx', '.js', '.webpack.js', '.web.js'],
     modules: ['node_modules']
   },
 
@@ -107,7 +107,7 @@ switch(process.env.npm_lifecycle_event) {
       {
         devtool: 'eval-source-map'
       },
-      parts.setupSass(PATHS.style),
+      // parts.setupSass(PATHS.style),
       parts.devServer({
         // Customize host/port here if needed
         host: process.env.HOST,
