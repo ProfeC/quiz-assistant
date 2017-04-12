@@ -44,7 +44,13 @@ exports.devServer = function(options) {
 			port: options.port, // Defaults to 8080
 
 			// Set this if you want to enable gzip compression for assets
-			compress: true
+			compress: true,
+
+      setup(app) {
+        app.get('/api/quiz/${quizID}', function (req, resp) {
+          resp.json(resp.data)
+        })
+      }
 		},
 		plugins: [
 			// Enable multi-pass compilation for enhanced performance

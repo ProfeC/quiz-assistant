@@ -1,10 +1,12 @@
-import React from 'react'
+/// <reference path="../app.d.ts" />
 
-class ShowCorrectSpelling extends React.Component {
-    constructor(props) {
+import * as React from 'react'
+
+class ShowCorrectSpelling extends React.Component<QuizAssistant.ShowCorrectSpellingProps, QuizAssistant.ShowCorrectSpellingState> {
+    constructor(props: QuizAssistant.ShowCorrectSpellingProps) {
         super(props)
 
-        this.displayName = 'Show Correct Spelling'
+        let displayName = 'Show Correct Spelling'
 
         // console.info( "\nMounted: 'Correct Spelling' Component." )
     }

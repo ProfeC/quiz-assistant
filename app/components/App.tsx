@@ -2,10 +2,10 @@
 
 import * as axios from 'axios'
 import * as React from 'react'
-// import Navigation from './navigation'
+import Navigation from './navigation'
 import PageHeader from './page-header'
-// import QuizGrid from './quiz-grid'
-// import Words from './words'
+import QuizGrid from './quiz-grid'
+import Words from './words'
 import * as api from '../api'
 
 const pushState = (obj:{}, url:string) =>
@@ -66,7 +66,13 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
             '/'
         )
 
-        api.getQuizList().then((data:{}) => {
+        // api.getQuizList().then((data:object[]) => {
+        //     this.setState({
+        //         currentQuizID: '',
+        //         quizzes: data
+        //     })
+        // })
+        api.getQuizList().then((data:object[]) => {
             this.setState({
                 currentQuizID: '',
                 quizzes: data
@@ -78,20 +84,14 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
         // console.info('app.jsx => this.state.quizzes is ' + JSON.stringify(this.state.quizzes))
 
         if ( this.state.currentQuizID ) {
-            // return <Words currentQuizID={this.state.currentQuizID} />
-            return 'some words'
+            return <Words currentQuizID={this.state.currentQuizID} />
         }
 
-//        return <section className="quiz-grid">
-//            {this.state.quizzes.map( quiz =>
-//                <QuizGrid key={quiz.id} onQuizClick={this.fetchQuiz} {...quiz} />
-//            )}
-//        </section>
-
-        return <section className="quiz-grid">
-            <p>some testing</p>
-        </section>
-
+       return <section className="quiz-grid">
+           {this.state.quizzes.map( (quiz: QuizAssistant.QuizProps) =>
+               <QuizGrid key={quiz.id} onQuizClick={this.fetchQuiz} {...quiz} />
+           )}
+       </section>
     }
 
     render () {
@@ -104,7 +104,7 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
                 <PageHeader title='Quiz Assistant - Main Application' skill='' homeLinkClick={this.fetchQuizList()} />
                 {this.currentContent()}
             </div>
-        )        
+        )
     }
 }
 

@@ -7,15 +7,14 @@ import * as Utils from '../libs/utils'
 import * as api from '../api'
 
 // NOTE: Components
-import * as CurrentWord from './show-current-word'
-import * as CorrectSpelling from './show-correct-spelling'
+import CurrentWord from './show-current-word'
+import CorrectSpelling from './show-correct-spelling'
 
 export default class Words extends React.Component<QuizAssistant.WordsProps, QuizAssistant.WordsState> {
     constructor(props: QuizAssistant.WordsProps) {
         super(props)
 
         let displayName: string = 'Spelling Words Application'
-        let timerID: string = ''
 
         this.state = {
             currentSpelling: '',

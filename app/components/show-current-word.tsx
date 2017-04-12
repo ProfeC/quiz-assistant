@@ -1,14 +1,9 @@
+/// <reference path="../app.d.ts" />
+
 import * as React from 'react'
 
-export interface ShowCurrentWordProps{
-    visibility: string;
-    word: string;
-}
-
-export interface ShowCurrentWordState{}
-
-export default class ShowCurrentWord extends React.Component {
-    constructor(props: ShowCurrentWordProps) {
+export default class ShowCurrentWord extends React.Component<QuizAssistant.ShowCurrentWordProps, QuizAssistant.ShowCurrentWordState> {
+    constructor(props: QuizAssistant.ShowCurrentWordProps) {
         super(props)
 
         let displayName = 'Show Current Word'

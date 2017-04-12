@@ -52,7 +52,9 @@ const common = {
 		new webpack.HotModuleReplacementPlugin(), // enable HMR globally
 		new webpack.NamedModulesPlugin(), // prints more readable module names in the browser console on HMR updates
     new HtmlWebpackPlugin ({
-      title: 'Spelling Quiz Assistant'
+      title: 'Spelling Quiz Assistant',
+      inject: true,
+      hash: true
     })
   ],
 

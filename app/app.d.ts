@@ -32,20 +32,37 @@ declare namespace QuizAssistant {
     // }
 
     interface AppProps {
-        initialData: InitialDataProps;
+        initialData?: InitialDataProps;
         displayName?: string;
     }
 
     interface AppState {
         initialData: InitialDataProps;
-        quizzes: {};
+        quizzes: object[];
         currentQuizID: string;
         currentContent: {};
         fetchQuizList: any;
     }
 
+    interface FormSpellcheckerProps {
+      word: string;
+    }
+
+    interface FormSpellcheckerState {
+      currentSpelling: string;
+      showWord: boolean;
+      value: string;
+    }
+
     interface InitialDataProps {
         quizzes?: {};
+    }
+
+    interface QuizProps {
+      id: string;
+      title: string;
+      subject: string;
+      category: string[];
     }
 
     interface QuizGridProps {
@@ -60,6 +77,24 @@ declare namespace QuizAssistant {
     interface SpellingWordsProps {
         words: object[];
     }
+
+    interface ShowCurrentWordProps{
+        visibility: boolean;
+        word: string;
+    }
+
+    interface ShowCurrentWordState{}
+
+    interface WordsProps {
+        currentQuizID: string;
+    }
+
+    interface ShowCorrectSpellingProps{
+        show: boolean | string;
+        checked: boolean | string;
+    }
+
+    interface ShowCorrectSpellingState{}
 
     interface WordsProps {
         currentQuizID: string;

@@ -2,24 +2,16 @@ import * as React from 'react';
 // import ShowCurrentWord from './show-current-word';
 // import NextWord from './next-word';
 
-export interface FormSpellcheckerProps {
-  displayName?: string;
-}
-
-export interface FormSpellcheckerState {
-  currentSpelling: string;
-  showWord: boolean;
-}
-
-class FormSpellchecker extends React.Component<FormSpellcheckerProps, FormSpellcheckerState> {
-  constructor(props: FormSpellcheckerProps) {
+class FormSpellchecker extends React.Component<QuizAssistant.FormSpellcheckerProps, QuizAssistant.FormSpellcheckerState> {
+  constructor(props: QuizAssistant.FormSpellcheckerProps) {
     super(props);
 
-    this.displayName = 'Spell Checking Form'
+    let displayName = 'Spell Checking Form'
 
     this.state = {
       currentSpelling: '',
-      showWord: true
+      showWord: true,
+      value: ''
     };
 
     // this.handleChange = this.handleChange.bind(this);
