@@ -1,10 +1,10 @@
 import axios from 'axios'
-import React, { Component } from 'react'
+import * as React from 'react'
 
-const pushState = (obj, url) => window.history.pushState(obj, '', url);
+const pushState = (obj:{}, url:string) => window.history.pushState(obj, '', url);
 
-export default class QuizGrid extends React.Component {
-    constructor(props) {
+export default class QuizGrid extends React.Component<QuizAssistant.QuizGridProps, QuizAssistant.QuizGridState> {
+    constructor(props: QuizAssistant.QuizGridProps) {
         super(props)
 
         // this.state = {}
@@ -43,9 +43,7 @@ export default class QuizGrid extends React.Component {
                 <header>
                     <h3>{this.props.title}</h3>
                 </header>
-                <p>
-                    {this.props.subject}
-                </p>
+                <p>{this.props.subject}</p>
             </article>
         )
     }
