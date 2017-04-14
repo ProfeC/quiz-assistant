@@ -10,13 +10,6 @@ console.info('Data Directory =>', data_dir);
 let category = null
 let categoryList = null
 
-// simple logger for this router's requests
-// all requests to this router will first hit this middleware
-router.use(function(req, res, next) {
-  console.log('%s %s %s', req.method, req.url, req.path);
-  next();
-});
-
 // NOTE: Get specific quiz data for the requested quiz.
 router.get(['/quiz/:quizID'], (req, res) => {
     // res.send(req.params);

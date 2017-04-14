@@ -11,6 +11,13 @@ const serverRender = require('./serverRender')();
 
 const server = express();
 
+// simple logger for this router's requests
+// all requests to this router will first hit this middleware
+server.use(function(req, res, next) {
+  console.log('%s %s %s', req.method, req.url, req.path);
+  next();
+});
+
 server.use(sassMiddleware({
     src: path.join(__dirname, 'app', 'scss'),
     dest: path.join(__dirname, 'dist')
@@ -38,8 +45,12 @@ server.use('/api', apiRouter);
 //     .catch(console.error);
 // });
 
-server.get(['/quiz/:quizID'], (req, res) => {
+server.get(['/', '/quiz/:quizID'], (req, res) => {
     console.info('req.params.quizID is ' + req.params.quizID)
+
+    server.get(serverRender.render(req.params.quizID), (req, resp) => {
+      console.info('Server Get Render => ', req)
+    } )
 
     serverRender.render(req.params.quizID)
         .then(({initialMarkup, initialData}) => {
