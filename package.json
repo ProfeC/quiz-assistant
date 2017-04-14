@@ -47,7 +47,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "ejs": "^2.5.5",
-    "express": "^4.14.0",
+    "express": "^4.0.0",
     "foundation-sites": "^6.3.0",
     "json-loader": "^0.5.4",
     "mongodb": "^2.2.22",
@@ -59,11 +59,11 @@
     "react-dom": "^15.3.2"
   },
   "scripts": {
-    "build": "webpack --progress",
-    "watch": "webpack --progress --watch -d",
+    "build": "webpack --progress --config config/webpack.config.js",
+    "watch": "webpack --progress --config config/webpack.config.js --watch -d",
     "deploy": "gh-pages -d build",
-    "start": "webpack-dev-server --progress",
-    "stats": "webpack --profile --json > stats.json",
+    "start": "webpack-dev-server --config config/webpack.config.js --progress",
+    "stats": "webpack --config config/webpack.config.js --profile --json > stats.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

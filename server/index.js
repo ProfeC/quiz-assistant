@@ -1,22 +1,24 @@
-import config from './config';
-import apiRouter from './api';
-import express from 'express';
-import serverRender from './serverRender';
-import axios from 'axios';
-import React from 'react'
-import ReactDOMServer from 'react-dom/server'
-import sassMiddleware from 'node-sass-middleware';
-import path from 'path';
-import App from './app/components/app'
+const config = require('./config')();
+const express = require('express');
+// const axios = require('axios');
+// const React = require('react');
+// const ReactDOMServer = require('react-dom/server');
+const sassMiddleware = require('node-sass-middleware');
+const path = require('path');
+// const App = require('../app/components/app)';
+const apiRouter = require('./api')();
+const serverRender = require('./serverRender')();
 
 const server = express();
 
 server.use(sassMiddleware({
     src: path.join(__dirname, 'app', 'scss'),
-    dest: path.join(__dirname, 'public')
+    dest: path.join(__dirname, 'dist')
 }));
 
 server.set('view engine', 'ejs');
+
+server.use('/api', apiRouter);
 
 // server.get('/quiz/:quizID', (req, res) => {
 //     // NOTE: Get initial quiz data
@@ -36,10 +38,10 @@ server.set('view engine', 'ejs');
 //     .catch(console.error);
 // });
 
-server.get(['/', '/quiz/:quizID'], (req, res) => {
-    // console.info('req.params.quizID is ' + req.params.quizID)
+server.get(['/quiz/:quizID'], (req, res) => {
+    console.info('req.params.quizID is ' + req.params.quizID)
 
-    serverRender(req.params.quizID)
+    serverRender.render(req.params.quizID)
         .then(({initialMarkup, initialData}) => {
             // console.info('server => serverRender(req.params.quizID) => initialMarkup is ' + initialMarkup)
             // console.info('server => serverRender(req.params.quizID) => initialData is ' + initialData)
@@ -52,8 +54,8 @@ server.get(['/', '/quiz/:quizID'], (req, res) => {
         .catch(console.error)
 });
 
-server.use('/api', apiRouter);
-server.use('/public', express.static(path.join(__dirname, 'public')));
+
+server.use(express.static(path.resolve('dist')));
 
 server.listen(config.port, config.host, () => {
     console.info('Express listening on port', config.port);

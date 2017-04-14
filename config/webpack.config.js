@@ -6,13 +6,13 @@ const webpack = require( 'webpack' );
 const parts = require('./libs/parts');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
-  app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'dist'),
-  components: path.join(__dirname, 'app', 'components'),
-  data: path.join(__dirname, 'app', 'data'),
-  libs: path.join(__dirname, 'app', 'libs'),
-  style: path.join(__dirname, 'app', 'scss', 'app.scss'),
-  views: path.join(__dirname, 'app', 'views')
+  app: path.resolve('app'),
+  build: path.resolve('dist'),
+  components: path.resolve('app', 'components'),
+  data: path.resolve('app', 'data'),
+  libs: path.resolve('app', 'libs'),
+  style: path.resolve('app', 'scss', 'app.scss'),
+  views: path.resolve('app', 'views')
 };
 
 const common = {
@@ -22,7 +22,7 @@ const common = {
 
   entry: {
     // style: PATHS.style,
-    app: path.join(PATHS.app, 'index.tsx'),
+    app: path.resolve(PATHS.app, 'index.tsx'),
     vendor: ['react', 'react-dom']
   },
 

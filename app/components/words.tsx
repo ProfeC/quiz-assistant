@@ -1,10 +1,10 @@
 /// <reference path="../app.d.ts" />
 
-import * as axios from 'axios'
+// import * as axios from 'axios'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as Utils from '../libs/utils'
-import * as api from '../api'
+// import * as api from '../api'
 
 // NOTE: Components
 import CurrentWord from './show-current-word'
@@ -46,19 +46,19 @@ export default class Words extends React.Component<QuizAssistant.WordsProps, Qui
 
     componentDidMount() {
         // console.info('Component Did Mount')
-        api.getQuiz(this.props.currentQuizID).then(data => {
-            // console.info(data);
+        // api.getQuiz(this.props.currentQuizID).then(data => {
+        //     // console.info(data);
 
-            this.setState({
-                spellingWords: data.spellingWords,
-                spellingWordsCount: data.spellingWords.length,
-                title: data.title,
-                skill: data.skill
-            });
+        //     this.setState({
+        //         spellingWords: data.spellingWords,
+        //         spellingWordsCount: data.spellingWords.length,
+        //         title: data.title,
+        //         skill: data.skill
+        //     });
 
-            // NOTE: Get a random Word
-            this.getRandomWord();
-        }).catch(console.error);
+        //     // NOTE: Get a random Word
+        //     this.getRandomWord();
+        // }).catch(console.error);
     }
 
     componentWillUpdate() {

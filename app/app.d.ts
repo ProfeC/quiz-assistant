@@ -69,7 +69,8 @@ declare namespace QuizAssistant {
       id: string;
       title: string;
       subject: string;
-      onQuizClick: any
+      category: string[];
+      onQuizClick: any;
     }
 
     interface QuizGridState {}

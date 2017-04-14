@@ -1,10 +1,21 @@
-import React from 'react'
-import ReactDOMServer from 'react-dom/server'
-import App from './app/components/app'
-import config from './config'
-import axios from 'axios'
+const config = require('./config')();
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+// const App = require('../app/components/App');
+// const config = require('./config');
+const axios = require('axios');
 
 // NOTE: Ref => https://www.lynda.com/Express-js-tutorials/Fetching-data-from-server-side/533304/557625-4.html
+
+// const env = process.env;
+// const config = {
+//     mongodbUri: 'mongodb://localhost:27017/quiz_assistant',
+//     port: env.PORT || 8080,
+//     host: env.HOST || '0.0.0.0',
+//     get serverUrl() {
+//         return `http://${this.host}:${this.port}`;
+//     }
+// };
 
 // NOTE: Set the URL for the API endpoint to use
 const getApiUrl = (currentQuizID) => {
@@ -19,7 +30,9 @@ const getApiUrl = (currentQuizID) => {
     return `${config.serverUrl}/api/quizzes`
 }
 
-const getQuizzes = () => {}
+const getQuizzes = () => {
+  return false;
+}
 
 const getInitialQuizData = (currentQuizID, apiData) => {
     // console.info('serverRender => getInitialQuizData(currentQuizID, apiData) => currentQuizID is ' + currentQuizID + ', apiData is ' + apiData)
@@ -48,11 +61,18 @@ const serverRender = (currentQuizID) =>
 
         return {
             initialMarkup: ReactDOMServer.renderToString(
-              <App initialData={initialData} />
+              '<App initialData={initialData} />'
             ),
             initialData
         };
     })
     .catch(console.error);
 
-export default serverRender;
+module.exports = function () {
+   return {
+     'render': serverRender,
+     'getInitialData': getInitialQuizData,
+     'getApiUrl': getApiUrl,
+     'getQuizzes': getQuizzes
+   };
+};

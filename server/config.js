@@ -1,15 +1,15 @@
 const env = process.env;
 
-export const nodeEnv = env.NODE_ENV || 'development';
+const nodeEnv = env.NODE_ENV || 'development';
 
-export const logStars = function(message) {
+const logStars = function(message) {
     console.info('**********');
     console.info(message);
     console.info('**********');
 };
 
-export default {
-    mongodbUri: 'mongodb://localhost:27017/quiz_assistant',
+const defaults = {
+    dbUri: 'mongodb://localhost:27017/quiz_assistant', //Mongo DB
     port: env.PORT || 8080,
     host: env.HOST || '0.0.0.0',
     get serverUrl() {
@@ -17,4 +17,6 @@ export default {
     }
 };
 
-// REF:  https://github.com/jscomplete/learn-fullstack-javascript/
+module.exports = function () {
+  return defaults;
+}
