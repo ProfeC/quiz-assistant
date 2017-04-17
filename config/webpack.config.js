@@ -23,7 +23,7 @@ const common = {
   entry: {
     // style: PATHS.style,
     app: path.resolve(PATHS.app, 'index.tsx'),
-    vendor: ['react', 'react-dom']
+    // vendor: ['react', 'react-dom']
   },
 
   output: {
@@ -32,7 +32,7 @@ const common = {
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.webpack.js', '.web.js'],
+    extensions: ['.ts', '.tsx', '.js', '.webpack.conf.js', '.web.js'],
     modules: ['node_modules']
   },
 
@@ -46,21 +46,27 @@ const common = {
   },
 
   plugins: [
-		new webpack.optimize.CommonsChunkPlugin({
-			names: ['vendor', 'manifest'] // Specify the common bundle's name.
-		}),
+		// new webpack.optimize.CommonsChunkPlugin({
+		// 	names: ['vendor', 'manifest'] // Specify the common bundle's name.
+		// }),
 		new webpack.HotModuleReplacementPlugin(), // enable HMR globally
 		new webpack.NamedModulesPlugin(), // prints more readable module names in the browser console on HMR updates
     new HtmlWebpackPlugin ({
       title: 'Spelling Quiz Assistant',
       inject: true,
-      hash: true
+      hash: true,
+      template: path.resolve('server', 'views', 'index.ejs')
     })
   ],
 
   stats: {
     colors: true
   },
+
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM'
+  }
 };
 
 // process.env.BABEL_ENV = TARGET;
@@ -90,10 +96,10 @@ switch(process.env.npm_lifecycle_event) {
         'process.env.NODE_ENV',
         'production'
       ),
-      parts.extractBundle({
-        name: 'frameworks',
-        entries: ['react', 'react-dom']
-      }),
+      // parts.extractBundle({
+      //   name: 'vendor',
+      //   entries: ['react', 'react-dom']
+      // }),
       parts.minify(),
       // parts.extractSass(PATHS.style),
       // parts.purifyCSS([PATHS.app]),
