@@ -2,20 +2,9 @@ const config = require('./config')();
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 // const App = require('../app/components/App');
-// const config = require('./config');
 const axios = require('axios');
 
 // NOTE: Ref => https://www.lynda.com/Express-js-tutorials/Fetching-data-from-server-side/533304/557625-4.html
-
-// const env = process.env;
-// const config = {
-//     mongodbUri: 'mongodb://localhost:27017/quiz_assistant',
-//     port: env.PORT || 8080,
-//     host: env.HOST || '0.0.0.0',
-//     get serverUrl() {
-//         return `http://${this.host}:${this.port}`;
-//     }
-// };
 
 // NOTE: Set the URL for the API endpoint to use
 const getApiUrl = (currentQuizID) => {
