@@ -20,6 +20,13 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
         super(props)
         // let displayName = 'Main Application'
 
+        this.state = {
+          quizzes: [],
+          currentQuizID: '',
+          currentContent: '',
+          fetchQuizList: ''
+        }
+
         // console.info( '\nMounted: \'App\'' )
     }
 
@@ -28,8 +35,8 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
     }
 
     componentDidMount () {
-        // console.info(this.state)
-        // console.info("Component Did Mount")
+        console.info(this.state)
+        console.info("Component Did Mount")
     }
 
     componentWillUpdate () {
@@ -75,7 +82,7 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
         //         quizzes: data
         //     })
         // })
-        api.getQuizList().then((data:object[]) => {
+        api.getQuizListFS().then((data:object[]) => {
             this.setState({
                 currentQuizID: '',
                 quizzes: data
@@ -84,11 +91,14 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
     }
 
     currentContent = () => {
-        // console.info('app.jsx => this.state.quizzes is ' + JSON.stringify(this.state.quizzes))
+        console.info('App => this.state.quizzes is ' + JSON.stringify(this.state.quizzes))
 
-        if ( this.state.currentQuizID ) {
+        if ( this.state.currentQuizID.length > 0 ) {
             return <Words currentQuizID={this.state.currentQuizID} />
         }
+
+        this.fetchQuizList()
+
 
        return <section className="quiz-grid">
            {this.state.quizzes.map( (quiz: QuizAssistant.QuizProps) =>
@@ -99,8 +109,8 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
 
     render () {
         // console.info(this.fetchWords)
-        // console.info(Array.isArray(this.state.quizzes))
-        // console.info(this.state.quizzes.length)
+        console.info('Quizzes in the state?', Array.isArray(this.state.quizzes))
+        console.info('Length of Quiz array: ', this.state.quizzes.length)
 
         return (
             <div className="App">

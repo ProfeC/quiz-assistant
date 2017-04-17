@@ -10,7 +10,7 @@
 declare namespace QuizAssistant {
     //~ We can write 'QuizAssistant.timeout = 50;'
     let timeout: number;
-    let timerID: number;
+    let timerID: any;
 
     //~ We can access 'QuizAssistant.version', but not change it
     const version: string;
@@ -37,7 +37,7 @@ declare namespace QuizAssistant {
     }
 
     interface AppState {
-        initialData: InitialDataProps;
+        // initialData: InitialDataProps;
         quizzes: object[];
         currentQuizID: string;
         currentContent: {};

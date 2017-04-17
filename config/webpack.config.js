@@ -23,7 +23,7 @@ const common = {
   entry: {
     // style: PATHS.style,
     app: path.resolve(PATHS.app, 'index.tsx'),
-    // vendor: ['react', 'react-dom']
+    vendor: ['react', 'react-dom']
   },
 
   output: {
@@ -51,6 +51,7 @@ const common = {
 		// }),
 		new webpack.HotModuleReplacementPlugin(), // enable HMR globally
 		new webpack.NamedModulesPlugin(), // prints more readable module names in the browser console on HMR updates
+    // new webpack.BannerPlugin({banner: 'Banner', raw: false, entryOnly: false}),
     new HtmlWebpackPlugin ({
       title: 'Spelling Quiz Assistant',
       inject: true,
@@ -61,11 +62,6 @@ const common = {
 
   stats: {
     colors: true
-  },
-
-  externals: {
-    'react': 'React',
-    'react-dom': 'ReactDOM'
   }
 };
 

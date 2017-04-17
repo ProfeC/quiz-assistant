@@ -10,8 +10,13 @@
 	<body>
 		<header id="header-main"></header>
 
-	<section id="root"></section>
+	<section id="root">
+		<%= initialMarkup %>
+	</section>
 
+	<script type="text/javascript">
+		window.initialData = <%= JSON.stringify(initialData) %>;
+	</script>
 	<!-- % = include('site-footer') % -->
 
 		<footer></footer>

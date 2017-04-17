@@ -4,9 +4,9 @@ const express = require('express');
 const path = require('path');
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const sassMiddleware = require('node-sass-middleware');
+// const sassMiddleware = require('node-sass-middleware');
 
-const App = require(path.resolve('app', 'components', 'App.tsx'));
+// const App = require(path.resolve('app', 'components', 'App.tsx'));
 const apiRouter = require('./api')();
 // const serverRender = require('./serverRender')();
 
@@ -28,12 +28,15 @@ server.use(function(req, res, next) {
   next();
 });
 
-server.use(sassMiddleware({
-    src: path.join(__dirname, 'app', 'scss'),
-    dest: path.join(__dirname, 'dist')
-}));
+// server.use(sassMiddleware({
+//     src: path.join(__dirname, 'app', 'scss'),
+//     dest: path.join(__dirname, 'dist')
+// }));
 
 server.set('view engine', 'ejs');
+server.set('views', [
+  path.resolve('.', 'views')
+]);
 
 server.use('/api', apiRouter);
 
@@ -133,12 +136,10 @@ const serverRender = (currentQuizID) =>
         // console.info({initialMarkup: ReactDOMServer.renderToString(<App currentQuizID={currentcurrentQuizID} />)})
 
         const initialData = getInitialQuizData(currentQuizID, resp.data)
-        // console.info('serverRender => initialData is ' + initialData)
+        console.info('serverRender => initialData is ' + initialData)
 
         return {
-            initialMarkup: ReactDOMServer.renderToString(
-              '<App initialData={initialData} />'
-            ),
+            initialMarkup: '<App initialData=' + initialData + ' />',
             initialData
         };
     })
