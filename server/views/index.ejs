@@ -1,9 +1,25 @@
-<%- include('site-header') -%>
+<!-- % = include('site-header') % -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Spelling Quiz Assistant</title>
+		<meta charset="utf-8">
+		<!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'> -->
+		<link rel="stylesheet" type="text/css" href="/style.css">
+	</head>
+	<body>
+		<header id="header-main"></header>
+
 	<section id="root">
-		<%- initialMarkup -%>
+		<%= initialMarkup %>
 	</section>
 
 	<script type="text/javascript">
-		window.initialData = <%- JSON.stringify(initialData) -%>;
+		window.initialData = <%= JSON.stringify(initialData) %>;
 	</script>
-	<%- include('site-footer') -%>
+	<!-- % = include('site-footer') % -->
+
+		<footer></footer>
+	</body>
+</html>
+
