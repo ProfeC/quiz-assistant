@@ -51,12 +51,15 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
             `/quiz/${id}`
         )
 
-        api.getQuiz(id).then( quiz =>{
-            this.setState({
-                currentQuizID: quiz.id,
-                quizzes: []
-            })
-        })
+        // api.getQuiz(id).then( quiz =>{
+        //     this.setState({
+        //         currentQuizID: quiz.id,
+        //         quizzes: []
+        //     })
+        // })
+
+        fetch(`/api/quiz/${id}`)
+        .then( (resp:any)  => resp.data)
     }
 
     fetchQuizList = () => {
