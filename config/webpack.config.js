@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 const path = require( 'path' );
 const webpack = require( 'webpack' );
 const parts = require('./libs/parts');
+const wds = require('./libs/webpack-dev-server');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.resolve('app'),
@@ -112,7 +113,7 @@ switch(process.env.npm_lifecycle_event) {
         devtool: 'eval-source-map'
       },
       // parts.setupSass(PATHS.style),
-      parts.devServer({
+      wds.devServer({
         // Customize host/port here if needed
         host: process.env.HOST,
         port: process.env.PORT
