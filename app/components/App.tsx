@@ -70,7 +70,7 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
     }
 
     fetchQuizList = () => {
-        // console.info('fetchQuizList() => ' + JSON.stringify(this.props))
+        console.info('fetchQuizList() => ' + JSON.stringify(this.props))
         pushState(
             {currentQuizID: ''},
             '/'
@@ -82,12 +82,18 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
         //         quizzes: data
         //     })
         // })
-        api.getQuizListFS().then((data:object[]) => {
-            this.setState({
-                currentQuizID: '',
-                quizzes: data
-            })
-        })
+
+        let test = api.getQuizListFS()
+        console.info('Testing', test)
+
+        // .then((data:object[]) => {
+        //   console.info('api.getQuizListFS Data...', data)
+
+        //     this.setState({
+        //         currentQuizID: '',
+        //         quizzes: data
+        //     })
+        // })
     }
 
     currentContent = () => {

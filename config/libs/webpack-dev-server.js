@@ -16,7 +16,7 @@ exports.devServer = function(options) {
 
 			// Display only errors to reduce the amount of output.
 			//"errors-only", "minimal", "none", "normal", "verbose"
-			stats: 'errors-only',
+			stats: 'normal',
 
       // When using inline mode, the console in your DevTools will show you
       // messages e.g. before reloading, before an error or when Hot Module
@@ -40,7 +40,7 @@ exports.devServer = function(options) {
       // Tell the server where to serve content from. This is only necessary if
       // you want to serve static files. devServer.publicPath will be used to
       // determine where the bundles should be served from, and takes precedence.
-      // contentBase: [path.join(__dirname, 'build'), path.join(__dirname, 'app', 'data')],
+      // contentBase: [path.join(__dirname, 'dist'), path.join(__dirname, 'app', 'data')],
 
       // Shows a full-screen overlay in the browser when there are compiler
       // errors or warnings. Disabled by default.
@@ -63,7 +63,7 @@ exports.devServer = function(options) {
 			// Enable multi-pass compilation for enhanced performance
 			// in larger projects. Good default.
 			new webpack.HotModuleReplacementPlugin({
-        multiStep: true
+        // multiStep: true
 			})
 		]
 	};

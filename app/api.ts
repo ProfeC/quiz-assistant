@@ -27,8 +27,17 @@ export const getQuizList = (category?:string) => {
 
 // NOTE: Get list of quizzes from the file system.
 export const getQuizListFS:any = (category?:string) => {
-    let data = fs.readFile('./data/quizzes.json', (err:any, data:any) => {
-      if (err) throw err
-      return data
+    fetch('./app/data/quizzes.json')
+    .then( function(res:any) {
+      if (res.ok) {
+        console.info('getQuizListFS Response.', res)
+        return res
+        // return true
+      }
+
+      throw new Error('Request for quiz list was unsuccessful')
+    })
+    .catch( function(error: any) {
+      console.info('There was a problem with Fetch!', error)
     })
 }
