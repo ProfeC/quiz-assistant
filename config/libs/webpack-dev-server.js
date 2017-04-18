@@ -58,18 +58,12 @@ exports.devServer = function(options) {
           pathRewrite: {'^/api' : '/app/data'}
         }
       },
-
-      // setup(app) {
-      //   app.get('/api/quiz/${quizID}', function (req, resp) {
-      //     resp.json(resp.data)
-      //   })
-      // }
 		},
 		plugins: [
 			// Enable multi-pass compilation for enhanced performance
 			// in larger projects. Good default.
 			new webpack.HotModuleReplacementPlugin({
-        // multiStep: true
+        multiStep: true
 			})
 		]
 	};
