@@ -31,7 +31,26 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
     }
 
     componentWillMount () {
-        // console.info("Component Will Mount")
+
+        let myData = new Request('/app/data/quizzes.json')
+
+        let jsnData:any = fetch(myData)
+        .then( function(res) {
+          return res.json()
+        })
+        .then( function(jsn){
+          console.info('L48 - JSON Data', jsn)
+          return jsn
+        })
+      .catch( function(error: any) {
+        console.error('There was a problem with Fetch!', error)
+      })
+
+      this.setState({
+        currentQuizID: '',
+        quizzes: jsnData
+      })
+        console.info("Component Will Mount")
     }
 
     componentDidMount () {
@@ -69,7 +88,7 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
         .then( (resp:any)  => resp.data)
     }
 
-    fetchQuizList = () => {
+    fetchQuizList:any = () => {
         console.info('fetchQuizList() => ' + JSON.stringify(this.props))
         pushState(
             {currentQuizID: ''},
@@ -83,11 +102,25 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
         //     })
         // })
 
-        let test = api.getQuizListFS()
-        console.info('Testing', test)
+        fetch('./app/data/quizzes.json')
+        .then( function(res:any) {
+        if (res.ok) {
+          console.info('getQuizListFS Response.', res)
+          console.info('getQuizListFS body.', res.body)
+          console.info('getQuizListFS URL.', res.url)
 
+          return res.json
+        }
+
+        throw new Error('Request for quiz list was unsuccessful')
+      })
+      .catch( function(error: any) {
+        console.info('There was a problem with Fetch!', error)
+      })
+
+        // let test = api.getQuizListFS()
         // .then((data:object[]) => {
-        //   console.info('api.getQuizListFS Data...', data)
+          // console.info('api.getQuizListFS Data...', data)
 
         //     this.setState({
         //         currentQuizID: '',
@@ -102,9 +135,6 @@ export default class App extends React.Component<QuizAssistant.AppProps, QuizAss
         if ( this.state.currentQuizID.length > 0 ) {
             return <Words currentQuizID={this.state.currentQuizID} />
         }
-
-        this.fetchQuizList()
-
 
        return <section className="quiz-grid">
            {this.state.quizzes.map( (quiz: QuizAssistant.QuizProps) =>

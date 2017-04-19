@@ -16,13 +16,13 @@ exports.devServer = function(options) {
 
 			// Display only errors to reduce the amount of output.
 			//"errors-only", "minimal", "none", "normal", "verbose"
-			stats: 'normal',
+			stats: 'minimal',
 
       // When using inline mode, the console in your DevTools will show you
       // messages e.g. before reloading, before an error or when Hot Module
       // Replacement is enabled. This may be too verbose. Possible values are:
       // none, error, warning or info (default).
-      clientLogLevel: 'info',
+      clientLogLevel: 'warning',
 
 			// Parse host and port from env to allow customization.
 			//
@@ -44,10 +44,10 @@ exports.devServer = function(options) {
 
       // Shows a full-screen overlay in the browser when there are compiler
       // errors or warnings. Disabled by default.
-      overlay: {
-        warnings: true,
-        errors: true
-      },
+      // overlay: {
+      //   warnings: true,
+      //   errors: true
+      // },
 
       // Proxying some URLs can be useful when you have a separate API backend
       // development server and you want to send API requests on the same

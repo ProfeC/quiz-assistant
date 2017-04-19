@@ -31,7 +31,9 @@ export const getQuizListFS:any = (category?:string) => {
     .then( function(res:any) {
       if (res.ok) {
         console.info('getQuizListFS Response.', res)
-        return res
+        console.info('getQuizListFS body.', res.body)
+        console.info('getQuizListFS URL.', res.url)
+        return res.json
         // return true
       }
 
